@@ -2,26 +2,48 @@
 % Please edit documentation in R/generics.R
 \name{d2linkfun}
 \alias{d2linkfun}
-\title{2nd Derivative of Link Function}
+\title{2nd Derivative of a Link Function}
 \usage{
 d2linkfun(x, theta)
 }
 \arguments{
 \item{x}{An object of class \code{link}.}
 
-\item{theta}{A numeric vector.}
+\item{theta}{A numeric vector of parameter values, inside
+\code{x@link_bounds}. A value outside gives \code{NaN} or \code{NA} according to the
+link, and nothing is thrown.}
 }
 \value{
 A numeric vector of the same length as \code{theta}, missing wherever
 \code{theta} is.
 }
 \description{
-The second derivative of \eqn{g(\theta)} with respect to \eqn{\theta}.
+The second derivative of the link \eqn{g(\theta)} with respect to the
+parameter, on the parameter scale. This is the direction a delta-method
+standard error is carried in, from a variance on \eqn{\theta} to one on
+\eqn{\eta}.
+}
+\details{
+Every link answers this generic. A link whose class registers no method
+for it gets the base class's numerical one, which applies a single central
+stencil to the highest order that link does supply analytically, never a
+chain of lower-order differences. \code{\link[=link_fallback_orders]{link_fallback_orders()}} says which
+orders of a given link are exact, and \code{\link[=check_link]{check_link()}} leaves a fallback
+order unchecked, since comparing it against a difference of itself would
+agree however wrong the link is.
+
+Call this generic directly in a hot loop. \code{\link[=linkderiv]{linkderiv()}} and
+\code{\link[=linkinvderiv]{linkinvderiv()}} route by order and so dispatch twice, once on themselves
+and once here, which is about a third of the cost of the call.
 }
 \examples{
-d2linkfun(logit_link(), 0.5)
-d2linkfun(log_link(), c(1, 2))
+# The log link's forward derivatives are -1 / t^2, so at theta = 2:
+d2linkfun(log_link(), 2) - (-1 / 2^2)
+
+# Missingness propagates instead of being filled in.
+d2linkfun(logit_link(), c(0.5, NA))
 }
 \seealso{
-\code{\link[=linkderiv]{linkderiv()}}, which routes to this generic by order.
+\code{\link[=linkderiv]{linkderiv()}}, which routes to this generic by order, and
+\code{\link[=d2linkinv]{d2linkinv()}} for the same order in the other direction.
 }

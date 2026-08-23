@@ -2,26 +2,51 @@
 % Please edit documentation in R/generics.R
 \name{d2linkinv}
 \alias{d2linkinv}
-\title{2nd Derivative of Inverse Link Function}
+\title{2nd Derivative of an Inverse Link Function}
 \usage{
 d2linkinv(x, eta)
 }
 \arguments{
 \item{x}{An object of class \code{link}.}
 
-\item{eta}{A numeric vector.}
+\item{eta}{A numeric vector of linear predictors. Any finite value is
+admissible; the inverse link clamps its result strictly inside
+\code{x@link_bounds} before this derivative is taken.}
 }
 \value{
 A numeric vector of the same length as \code{eta}, missing wherever
 \code{eta} is.
 }
 \description{
-The second derivative of \eqn{g^{-1}(\eta)} with respect to \eqn{\eta}.
+The second derivative of the inverse link \eqn{g^{-1}(\eta)} with respect to
+the linear predictor. This is the direction a modeling routine working on
+the unconstrained scale needs: it is the chain-rule factor that carries a
+derivative of the log-likelihood from \eqn{\theta} onto \eqn{\eta}.
+}
+\details{
+Every link answers this generic. A link whose class registers no method
+for it gets the base class's numerical one, which applies a single central
+stencil to the highest order that link does supply analytically, never a
+chain of lower-order differences. \code{\link[=link_fallback_orders]{link_fallback_orders()}} says which
+orders of a given link are exact, and \code{\link[=check_link]{check_link()}} leaves a fallback
+order unchecked, since comparing it against a difference of itself would
+agree however wrong the link is.
+
+Call this generic directly in a hot loop. \code{\link[=linkderiv]{linkderiv()}} and
+\code{\link[=linkinvderiv]{linkinvderiv()}} route by order and so dispatch twice, once on themselves
+and once here, which is about a third of the cost of the call.
 }
 \examples{
-d2linkinv(logit_link(), 0)     # zero, by symmetry about eta = 0
-d2linkinv(probit_link(), 1)
+# Every derivative of exp is exp, so the log link's inverse gives the
+# same number at every order.
+d2linkinv(log_link(), 1) - exp(1)
+
+# The logit's inverse derivatives are polynomials in theta. At eta = 0 the
+# logistic is symmetric about 1/2, so its even-order derivatives vanish
+# there while the first is the Bernoulli variance, 1/4.
+d2linkinv(logit_link(), 0)
 }
 \seealso{
-\code{\link[=linkinvderiv]{linkinvderiv()}}, which routes to this generic by order.
+\code{\link[=linkinvderiv]{linkinvderiv()}}, which routes to this generic by order, and
+\code{\link[=d2linkfun]{d2linkfun()}} for the same order in the other direction.
 }
