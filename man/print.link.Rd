@@ -9,16 +9,24 @@
 \arguments{
 \item{x}{An object of class \code{link}.}
 
-\item{...}{Additional arguments passed to methods (currently unused).}
+\item{...}{Additional arguments passed to methods, currently unused.}
 }
 \value{
-The function returns \code{x} invisibly.
+\code{x}, invisibly. Called for the printed output.
 }
 \description{
-Print method for \code{link} objects: the name, the domain and any link
-parameters.
-It displays the name of the link function, its valid parameter domain, and any
-additional parameters it may have (e.g., lambda for a power link).
+Prints a link's name, the open interval its parameter lives in, and the link
+parameters it carries, if any. Three lines at most, and two for a link with
+no parameters of its own.
+}
+\details{
+The domain is shown as the open interval it is, so a probability link reads
+\verb{(0, 1)} and never \verb{[0, 1]}: no link ever returns an endpoint, and
+\code{\link[=link_bounds_clamp]{link_bounds_clamp()}} is what keeps that true in double precision.
+
+The parameter line appears only for a link that has parameters, and names
+them, so \code{power(lambda=2)} and \code{bounded(lwr=0, upr=10)} report the values
+they were constructed with.
 }
 \examples{
 print(logit_link())
