@@ -41,5 +41,5 @@ check_link(lk)
 
 }
 \seealso{
-\code{\link{link}}, \code{\link{logit_link}}
+\code{\link[=link]{link()}}, \code{\link[=logit_link]{logit_link()}}
 }

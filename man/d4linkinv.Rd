@@ -23,5 +23,5 @@ d4linkinv(logit_link(), 0)
 d4linkinv(probit_link(), 1)
 }
 \seealso{
-\code{\link{linkinvderiv}}, which routes to this generic by order.
+\code{\link[=linkinvderiv]{linkinvderiv()}}, which routes to this generic by order.
 }

@@ -16,13 +16,13 @@ SoftplusLink(
 }
 \value{
 An S7 object of class \code{SoftplusLink}, inheriting from
-\code{\link{link}}.
+\code{\link[=link]{link()}}.
 }
 \description{
-The class \code{\link{softplus_link}} instantiates. Carries the scale
+The class \code{\link[=softplus_link]{softplus_link()}} instantiates. Carries the scale
 parameter \code{a} in a dedicated property.
 }
 \seealso{
-\code{\link{softplus_link}}, the constructor users call.
+\code{\link[=softplus_link]{softplus_link()}}, the constructor users call.
 }
 \keyword{internal}

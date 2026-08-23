@@ -1,12 +1,12 @@
 #' @title S7 Class for the InverseSq Link
 #'
 #' @description
-#' The class \code{\link{inverse_sq_link}} instantiates.
+#' The class [inverse_sq_link()] instantiates.
 #'
-#' @return An S7 object of class \code{InverseSqLink}, inheriting from
-#'   \code{\link{link}}.
+#' @return An S7 object of class `InverseSqLink`, inheriting from
+#'   [link()].
 #'
-#' @seealso \code{\link{inverse_sq_link}}, the constructor users call.
+#' @seealso [inverse_sq_link()], the constructor users call.
 #' @keywords internal
 InverseSqLink <- S7::new_class(
   name = "InverseSqLink",
@@ -48,15 +48,15 @@ S7::method(d4linkinv, InverseSqLink) <- function(x, eta) 105 / (16 * eta^4.5)
 #' assuming an Inverse Gaussian response distribution. In such frameworks, the variance
 #' is proportional to the cube of the mean (\eqn{\text{Var}(Y) \propto \mu^3}).
 #'
-#' \strong{Domain and Optimization Constraints:}
+#' **Domain and Optimization Constraints:**
 #' Both the parameter \eqn{\theta} and the linear predictor \eqn{\eta} must be strictly
-#' positive. The valid mathematical domain for \eqn{\theta} is \code{c(0, Inf)}. During
+#' positive. The valid mathematical domain for \eqn{\theta} is `c(0, Inf)`. During
 #' optimization routines (e.g., Fisher Scoring or Newton-Raphson), extreme care must be
 #' taken to ensure the linear predictor \eqn{\eta > 0}. Evaluating the inverse link or
-#' its derivatives at non-positive values of \eqn{\eta} will inevitably result in \code{NaN}s
+#' its derivatives at non-positive values of \eqn{\eta} will inevitably result in `NaN`s
 #' due to fractional powers and square root operations.
 #'
-#' @return An S7 object of class \code{InverseSqLink} (inheriting from \code{link}) containing the transformation functions
+#' @return An S7 object of class `InverseSqLink` (inheriting from `link`) containing the transformation functions
 #' and their exact analytical derivatives up to the fourth order.
 #'
 #' @examples
@@ -71,7 +71,7 @@ S7::method(d4linkinv, InverseSqLink) <- function(x, eta) 105 / (16 * eta^4.5)
 #' # the canonical link of the inverse Gaussian; eta must stay positive
 #' dlinkinv(lk, c(0.5, 1, 4))
 #'
-#' @seealso \code{\link{link}}, \code{\link{inverse_link}}
+#' @seealso [link()], [inverse_link()]
 #' @export
 inverse_sq_link <- function() {
   InverseSqLink(

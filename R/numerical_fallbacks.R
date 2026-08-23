@@ -23,31 +23,31 @@ NULL
 #'
 #' @description
 #' The largest \eqn{k \le 4} for which the link's own class registers a method
-#' for the order-\eqn{k} derivative generic; \code{0} when it registers none, so
-#' that only \code{\link{linkfun}} or \code{\link{linkinv}} is available.
+#' for the order-\eqn{k} derivative generic; `0` when it registers none, so
+#' that only [linkfun()] or [linkinv()] is available.
 #'
 #' @details
 #' Detection uses the documented S7 property that a method records the class it
-#' was registered on in its \code{signature} attribute: a method inherited from
-#' the base \code{\link{link}} class is a fallback, anything else is the link's
-#' own. Comparing method objects with \code{identical()} does not work for this,
+#' was registered on in its `signature` attribute: a method inherited from
+#' the base [link()] class is a fallback, anything else is the link's
+#' own. Comparing method objects with `identical()` does not work for this,
 #' because S7 wraps them.
 #'
 #' The recorded class is compared by name and package rather than with
-#' \code{identical()}, since \code{identical()} on S7 class objects tests
-#' object identity and returns \code{FALSE} for a class re-created from the
+#' `identical()`, since `identical()` on S7 class objects tests
+#' object identity and returns `FALSE` for a class re-created from the
 #' same definition, as happens when the package's code is re-evaluated under
 #' coverage instrumentation; identity is kept only as a fast path.
 #'
 #' The search stops at the first missing order, so the answer always means
 #' that every order up to it is analytic.
 #'
-#' @param x An object of class \code{link}.
-#' @param inverse Logical; \code{TRUE} to ask about the inverse-link generics.
+#' @param x An object of class `link`.
+#' @param inverse Logical; `TRUE` to ask about the inverse-link generics.
 #'
 #' @return An integer between 0 and 4.
 #'
-#' @seealso \code{\link{link_fallback_orders}}, which reports this to the user.
+#' @seealso [link_fallback_orders()], which reports this to the user.
 #' @keywords internal
 analytic_order <- function(x, inverse = FALSE) {
   gens <- if (inverse) {
@@ -71,14 +71,14 @@ analytic_order <- function(x, inverse = FALSE) {
 #' Is a Class the Base Link Class
 #'
 #' @description
-#' Answers whether an S7 class is this package's own \code{\link{link}} class,
+#' Answers whether an S7 class is this package's own [link()] class,
 #' which is how a method inherited from the base class is told from one a link
 #' registered for itself.
 #'
 #' @details
 #' Object identity is tried first, since it is the usual case and costs
 #' nothing, and the class name and package are compared after. The second
-#' comparison is what makes the answer reliable: \code{identical()} on an S7
+#' comparison is what makes the answer reliable: `identical()` on an S7
 #' class is object identity, so it is false for a class re-created from the
 #' same definition, which is what happens whenever a package's code is
 #' evaluated rather than loaded. A base fallback mistaken for an analytic
@@ -87,9 +87,9 @@ analytic_order <- function(x, inverse = FALSE) {
 #'
 #' @param cls An S7 class.
 #'
-#' @return \code{TRUE} or \code{FALSE}.
+#' @return `TRUE` or `FALSE`.
 #'
-#' @seealso \code{\link{link_fallback_orders}}
+#' @seealso [link_fallback_orders()]
 #'
 #' @keywords internal
 is_base_link_class <- function(cls) {
@@ -103,7 +103,7 @@ is_base_link_class <- function(cls) {
 #' A Finite-Difference Step for a Given Order
 #'
 #' @description
-#' The step for a central stencil of order \code{order}, scaled by the magnitude
+#' The step for a central stencil of order `order`, scaled by the magnitude
 #' of the evaluation point and, when bounds are supplied, shrunk so that the
 #' whole stencil stays strictly inside them.
 #'
@@ -121,9 +121,9 @@ is_base_link_class <- function(cls) {
 #' @param x A numeric vector of evaluation points.
 #' @param order The derivative order, 1 to 4.
 #' @param bounds An optional length-2 numeric vector, the open interval
-#'   \code{x} must stay inside.
+#'   `x` must stay inside.
 #'
-#' @return A numeric vector of steps, the same length as \code{x}.
+#' @return A numeric vector of steps, the same length as `x`.
 #'
 #' @keywords internal
 fd_step <- function(x, order, bounds = NULL) {
@@ -136,7 +136,7 @@ fd_step <- function(x, order, bounds = NULL) {
 #' One Central Stencil, Never Nested
 #'
 #' @description
-#' The order-\code{order} central finite difference of \code{f} at \code{x},
+#' The order-`order` central finite difference of `f` at `x`,
 #' applied in a single step rather than by composing lower-order differences.
 #'
 #' @details
@@ -157,9 +157,9 @@ fd_step <- function(x, order, bounds = NULL) {
 #' @param f A vectorized function of one numeric argument.
 #' @param x A numeric vector of evaluation points.
 #' @param order The derivative order, 1 to 4.
-#' @param h A numeric vector of steps, from \code{\link{fd_step}}.
+#' @param h A numeric vector of steps, from [fd_step()].
 #'
-#' @return A numeric vector of the same length as \code{x}.
+#' @return A numeric vector of the same length as `x`.
 #'
 #' @keywords internal
 stencil_deriv <- function(f, x, order, h) {
@@ -173,22 +173,22 @@ stencil_deriv <- function(f, x, order, h) {
 #' The Range a Stencil May Evaluate the Inverse Link On
 #'
 #' @description
-#' The image of the link's parameter bounds under \code{\link{linkfun}}, used
+#' The image of the link's parameter bounds under [linkfun()], used
 #' to keep a finite-difference grid inside the set the inverse link is defined
 #' on.
 #'
 #' @details
 #' A link need not map onto the whole real line: the square root reaches only
-#' the positive half, and a stencil straying outside returns \code{NaN}, which
+#' the positive half, and a stencil straying outside returns `NaN`, which
 #' would make a numerical derivative missing rather than inaccurate. The
 #' bounds are returned sorted, since a decreasing link reverses them, and are
 #' infinite in the directions where they cannot be established.
 #'
-#' @param x A \code{\link{link}} object.
+#' @param x A [link()] object.
 #'
 #' @return A numeric vector of length two.
 #'
-#' @seealso \code{\link{link_bounds_clamp}}
+#' @seealso [link_bounds_clamp()]
 #'
 #' @keywords internal
 eta_bounds <- function(x) {
@@ -200,27 +200,27 @@ eta_bounds <- function(x) {
 #' The Body Shared by Every Numerical Fallback
 #'
 #' @description
-#' Computes the order-\code{order} derivative of a link, in either direction, by
+#' Computes the order-`order` derivative of a link, in either direction, by
 #' differentiating once the highest order the link supplies analytically.
 #'
 #' @details
-#' The whole design is in the two lines that pick \code{m} and \code{gap}: never
+#' The whole design is in the two lines that pick `m` and `gap`: never
 #' differentiate numerically more than the number of orders actually missing.
 #' A link analytic to the second order asks for a first difference to reach the
-#' third, not three; a link supplying nothing but \code{\link{linkfun}} is the
+#' third, not three; a link supplying nothing but [linkfun()] is the
 #' only case in which a fourth-order stencil is applied to the function itself.
 #'
 #' Note the recursion is only apparent. The base function is fetched through
-#' \code{\link{linkderiv}}, which dispatches to the link's own method for an
+#' [linkderiv()], which dispatches to the link's own method for an
 #' order it implements — so the chain always terminates on analytic code, and
 #' never on another fallback.
 #'
-#' @param x An object of class \code{link}.
+#' @param x An object of class `link`.
 #' @param v A numeric vector: \eqn{\theta} going forward, \eqn{\eta} coming back.
 #' @param order The derivative order wanted, 1 to 4.
-#' @param inverse Logical; \code{TRUE} for the inverse-link direction.
+#' @param inverse Logical; `TRUE` for the inverse-link direction.
 #'
-#' @return A numeric vector of the same length as \code{v}.
+#' @return A numeric vector of the same length as `v`.
 #'
 #' @keywords internal
 fallback_deriv <- function(x, v, order, inverse) {
@@ -262,19 +262,19 @@ S7::method(d4linkinv, link) <- function(x, eta) fallback_deriv(x, eta, 4L, TRUE)
 #' Every link can answer every derivative generic, because the base class
 #' supplies numerical fallbacks for the orders a link does not implement. That
 #' convenience requires a way of asking which is which — a fallback is
-#' correct but not exact, and it is the reason \code{\link{check_link}} reports
+#' correct but not exact, and it is the reason [check_link()] reports
 #' such orders separately rather than passing them.
 #'
-#' @param x An object of class \code{link}.
+#' @param x An object of class `link`.
 #'
-#' @return A list with \code{forward} and \code{inverse}, each an integer: the
+#' @return A list with `forward` and `inverse`, each an integer: the
 #'   number of leading orders implemented analytically, from 0 to 4.
 #'
 #' @examples
 #' # everything the package ships is exact to fourth order
 #' link_fallback_orders(logit_link())
 #'
-#' @seealso \code{\link{check_link}}
+#' @seealso [check_link()]
 #' @export
 link_fallback_orders <- function(x) {
   list(forward = analytic_order(x, inverse = FALSE),

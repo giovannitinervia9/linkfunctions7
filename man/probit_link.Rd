@@ -44,5 +44,5 @@ linkinv(logit_link(), 3)
 
 }
 \seealso{
-\code{\link{link}}, \code{\link{logit_link}}, \code{\link{cauchit_link}}
+\code{\link[=link]{link()}}, \code{\link[=logit_link]{logit_link()}}, \code{\link[=cauchit_link]{cauchit_link()}}
 }

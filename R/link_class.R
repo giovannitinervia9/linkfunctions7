@@ -8,7 +8,7 @@
 #' subclass registers on the ten generics.
 #'
 #' @details
-#' Objects of class \code{link} are instantiated using the S7 object system.
+#' Objects of class `link` are instantiated using the S7 object system.
 #'
 #' The object assumes the following mathematical notation:
 #' \itemize{
@@ -19,13 +19,13 @@
 #' \eqn{\theta = g^{-1}(\eta)} (inverse link function).
 #'
 #' @param link_name A character string identifying the link (e.g., "logit").
-#' @param link_bounds A numeric vector of length 2 \code{c(lower, upper)} defining the valid domain for \eqn{\theta}.
-#' @param link_params A list or vector of additional parameters required to define the link, or \code{NULL}.
+#' @param link_bounds A numeric vector of length 2 `c(lower, upper)` defining the valid domain for \eqn{\theta}.
+#' @param link_params A list or vector of additional parameters required to define the link, or `NULL`.
 #'
-#' @return An S7 object of class \code{link}. In practice this class is not
+#' @return An S7 object of class `link`. In practice this class is not
 #'   instantiated directly: each link is a subclass created by one of the
-#'   constructors (\code{\link{logit_link}}, \code{\link{power_link}}, ...), and
-#'   \code{link} is what they all inherit from and what methods dispatch on.
+#'   constructors ([logit_link()], [power_link()], ...), and
+#'   `link` is what they all inherit from and what methods dispatch on.
 #'
 #' @examples
 #' # every constructor returns an object inheriting from `link`
@@ -36,7 +36,7 @@
 #' lk@link_name
 #' lk@link_bounds
 #'
-#' @seealso \code{\link{linkfun}}, \code{\link{linkinv}}, \code{\link{linkderiv}}, \code{\link{linkinvderiv}}, \code{\link{check_link}}
+#' @seealso [linkfun()], [linkinv()], [linkderiv()], [linkinvderiv()], [check_link()]
 #' @export
 link <- S7::new_class(
   name = "link",
@@ -63,24 +63,24 @@ link <- S7::new_class(
 #' A Constant Vector That Preserves Missingness
 #'
 #' @description
-#' Returns \code{value} repeated to the length of \code{v}, but missing wherever
-#' \code{v} is missing.
+#' Returns `value` repeated to the length of `v`, but missing wherever
+#' `v` is missing.
 #'
 #' @details
 #' A derivative that reduces to a constant must still report that it does not
 #' know the answer for an input it was not given. R makes this easy to get wrong:
-#' \code{NA^0} is \code{1}, so \code{theta^(lambda - 2)} silently turns a missing
-#' parameter into a number as soon as \code{lambda} is 2. Every derivative method
+#' `NA^0` is `1`, so `theta^(lambda - 2)` silently turns a missing
+#' parameter into a number as soon as `lambda` is 2. Every derivative method
 #' that returns a constant (the identity link's, the square root link's third and
-#' fourth inverse derivatives) goes through this helper instead of \code{rep()}.
+#' fourth inverse derivatives) goes through this helper instead of `rep()`.
 #'
 #' @param v A numeric vector whose length and missingness pattern are copied.
 #' @param value The constant to repeat.
 #'
-#' @return A numeric vector as long as \code{v}, equal to \code{value} except
-#'   where \code{v} is \code{NA}.
+#' @return A numeric vector as long as `v`, equal to `value` except
+#'   where `v` is `NA`.
 #'
-#' @seealso \code{\link{na_from}}, the same idea for a computed result.
+#' @seealso [na_from()], the same idea for a computed result.
 #' @keywords internal
 const_like <- function(v, value) {
   out <- rep(value, length(v))
@@ -91,21 +91,21 @@ const_like <- function(v, value) {
 #' Carry Missingness From an Input Over to a Result
 #'
 #' @description
-#' Sets \code{r} to \code{NA} wherever \code{v} is \code{NA}.
+#' Sets `r` to `NA` wherever `v` is `NA`.
 #'
 #' @details
-#' Same hazard as \code{\link{const_like}}, one step further along: an expression
+#' Same hazard as [const_like()], one step further along: an expression
 #' whose exponent happens to vanish stops depending on its argument, and loses the
 #' argument's missingness along with it. The power link is the affected case,
-#' \code{theta^(lambda - 2)} being exactly \code{1} for a missing \code{theta}
-#' once \code{lambda} is 2.
+#' `theta^(lambda - 2)` being exactly `1` for a missing `theta`
+#' once `lambda` is 2.
 #'
 #' @param r A numeric vector, the computed result.
 #' @param v The numeric vector the result was computed from.
 #'
-#' @return \code{r}, with \code{NA} in every position where \code{v} is \code{NA}.
+#' @return `r`, with `NA` in every position where `v` is `NA`.
 #'
-#' @seealso \code{\link{const_like}}
+#' @seealso [const_like()]
 #' @keywords internal
 na_from <- function(r, v) {
   r[is.na(v)] <- NA_real_
@@ -115,17 +115,17 @@ na_from <- function(r, v) {
 #' Derivatives of the Standard Logistic Function
 #'
 #' @description
-#' The \code{k}-th derivative of \eqn{\sigma(z) = 1/(1 + e^{-z})}, written as a
+#' The `k`-th derivative of \eqn{\sigma(z) = 1/(1 + e^{-z})}, written as a
 #' polynomial in \eqn{p = \sigma(z)} itself.
 #'
 #' @details
 #' Three separate links need these same four polynomials, which is why they live
 #' in one place rather than being written out three times:
 #' \itemize{
-#'   \item \code{\link{logit_link}} uses them directly, \eqn{h^{(k)} = \sigma^{(k)}};
-#'   \item \code{\link{bounded_link}} with both endpoints scales them by the
+#'   \item [logit_link()] uses them directly, \eqn{h^{(k)} = \sigma^{(k)}};
+#'   \item [bounded_link()] with both endpoints scales them by the
 #'     interval width, \eqn{h^{(k)} = W \sigma^{(k)}};
-#'   \item \code{\link{softplus_link}} uses them shifted one order down, since the
+#'   \item [softplus_link()] uses them shifted one order down, since the
 #'     softplus is an antiderivative of the logistic: \eqn{h^{(k+1)} = a^k \sigma^{(k)}}.
 #' }
 #' The polynomials are
@@ -139,7 +139,7 @@ na_from <- function(r, v) {
 #' @param p A numeric vector of logistic values, \eqn{p = \sigma(z)}.
 #' @param k The derivative order, an integer from 1 to 4.
 #'
-#' @return A numeric vector of the same length as \code{p}.
+#' @return A numeric vector of the same length as `p`.
 #'
 #' @keywords internal
 logistic_deriv <- function(p, k) {
@@ -155,47 +155,47 @@ logistic_deriv <- function(p, k) {
 #' The Smallest Parameter Value the Exponential Links Will Report
 #'
 #' @description
-#' The floor applied to \code{exp(eta)} by every link whose inverse is an
-#' exponential (\code{\link{log_link}}, \code{\link{cloglog_link}}, and the
+#' The floor applied to `exp(eta)` by every link whose inverse is an
+#' exponential ([log_link()], [cloglog_link()], and the
 #' lower- and upper-bounded links).
 #'
 #' @details
 #' The floor exists so that a parameter reported as \eqn{\theta} can be divided
-#' into without producing \code{Inf}: the forward derivatives of these links are
+#' into without producing `Inf`: the forward derivatives of these links are
 #' \eqn{1/\theta}, \eqn{-1/\theta^2}, \eqn{2/\theta^3} and \eqn{-6/\theta^4}, and
-#' the fourth is the binding one. Solving \eqn{6/\theta^4 \le} \code{double.xmax}
+#' the fourth is the binding one. Solving \eqn{6/\theta^4 \le} `double.xmax`
 #' and keeping a factor of four in hand gives
-#' \code{(24 / .Machine$double.xmax)^0.25}, about \code{1.9e-77}, at which
-#' \eqn{-6/\theta^4} evaluates to \code{-4.5e307}.
+#' `(24 / .Machine$double.xmax)^0.25`, about `1.9e-77`, at which
+#' \eqn{-6/\theta^4} evaluates to `-4.5e307`.
 #'
-#' The point of choosing it this way is that the floor should be as \emph{low} as
+#' The point of choosing it this way is that the floor should be as *low* as
 #' that constraint allows, not as high as seems safe. It was previously
-#' \code{.Machine$double.eps}, which is 61 orders of magnitude higher than
+#' `.Machine$double.eps`, which is 61 orders of magnitude higher than
 #' necessary and silently corrupted \eqn{\theta} for every \eqn{\eta < -36}:
-#' \code{linkinv(log_link(), -40)} returned \code{2.2e-16} instead of
-#' \code{4.2e-18}, and the round trip came back \code{-36.04} instead of
-#' \code{-40}. The present value keeps \eqn{\theta} exact down to
+#' `linkinv(log_link(), -40)` returned `2.2e-16` instead of
+#' `4.2e-18`, and the round trip came back `-36.04` instead of
+#' `-40`. The present value keeps \eqn{\theta} exact down to
 #' \eqn{\eta \approx -177} while leaving every derivative just as finite as
 #' before.
 #'
 #' @format A length-one numeric vector.
-#' @return A length-one numeric vector, about \code{1.9e-77}. This is a constant
+#' @return A length-one numeric vector, about `1.9e-77`. This is a constant
 #'   and not a function, but a documented topic needs a return section either
 #'   way: it is one of the two things a first CRAN submission is most often sent
 #'   back for.
-#' @seealso \code{\link{exp_floored}}
+#' @seealso [exp_floored()]
 #' @keywords internal
 exp_floor <- (24 / .Machine$double.xmax)^0.25
 
 #' A Floored Exponential
 #'
 #' @description
-#' \code{exp(eta)}, bounded below by \code{\link{exp_floor}}.
+#' `exp(eta)`, bounded below by [exp_floor()].
 #'
 #' @details
-#' A profile of a plain gaussian fit puts this \code{pmax} above the QR
+#' A profile of a plain gaussian fit puts this `pmax` above the QR
 #' decomposition of the same fit, which invites replacing it with a
-#' \code{min()} reduction and an early return. Measured, that is not worth
+#' `min()` reduction and an early return. Measured, that is not worth
 #' doing: it gains 7 to 11 per cent on the call itself and LOSES on the fit,
 #' because the reduction is a second pass over the same vector and the
 #' allocation it avoids was not what the profile was really charging for.
@@ -203,7 +203,7 @@ exp_floor <- (24 / .Machine$double.xmax)^0.25
 #'
 #' @param eta A numeric vector of linear predictors.
 #'
-#' @return A numeric vector, never smaller than \code{\link{exp_floor}}.
+#' @return A numeric vector, never smaller than [exp_floor()].
 #'
 #' @keywords internal
 exp_floored <- function(eta) pmax(exp(eta), exp_floor)
@@ -214,12 +214,12 @@ exp_floored <- function(eta) pmax(exp(eta), exp_floor)
 #' @description
 #' Moves a value that has reached or passed a bound to the nearest double
 #' strictly inside it, and a non-finite value to the largest finite double of
-#' that sign. Applied by \code{\link{linkinv}} to every link.
+#' that sign. Applied by [linkinv()] to every link.
 #'
 #' @details
-#' A link is documented as a bijection onto an \strong{open} interval, and in
-#' exact arithmetic it is. In double precision it is not: \code{plogis(37)} is
-#' exactly 1, \code{2 + exp(-40)} is exactly 2, and \code{exp(800)} is infinite.
+#' A link is documented as a bijection onto an **open** interval, and in
+#' exact arithmetic it is. In double precision it is not: `plogis(37)` is
+#' exactly 1, `2 + exp(-40)` is exactly 2, and `exp(800)` is infinite.
 #' A caller then receives a probability of exactly 1, or a variance of exactly
 #' 0, and the next thing they do is take its logarithm or divide by it.
 #'
@@ -229,26 +229,26 @@ exp_floored <- function(eta) pmax(exp(eta), exp_floor)
 #' largest finite one.
 #'
 #' \subsection{The relative bump}{
-#' R has no \code{nextafter}, and the arithmetic substitute has to respect that
-#' \strong{the spacing of doubles is absolute near a non-zero bound}. One ulp at
+#' R has no `nextafter`, and the arithmetic substitute has to respect that
+#' **the spacing of doubles is absolute near a non-zero bound**. One ulp at
 #' 2 is about 4.4e-16 while one ulp at 1e-300 is about 1e-316, so a single
-#' additive constant cannot serve both. \code{b + |b| * eps} is one to two ulps
-#' from \code{b} at any magnitude, which is strictly inside and as close as
+#' additive constant cannot serve both. `b + |b| * eps` is one to two ulps
+#' from `b` at any magnitude, which is strictly inside and as close as
 #' arithmetic reliably gets.
 #'
 #' A bound at zero is the exception and needs no bump, since there the spacing
 #' is relative all the way down to 1e-308 and the exponential links already
-#' floor at \code{\link{exp_floor}}. The clamp therefore leaves an exact zero
-#' bound to \code{\link{exp_floor}} and uses the smallest positive normal only
+#' floor at [exp_floor()]. The clamp therefore leaves an exact zero
+#' bound to [exp_floor()] and uses the smallest positive normal only
 #' if something has still landed on it.
 #' }
 #'
 #' @param theta A numeric vector, as a method computed it.
-#' @param bounds The link's \code{link_bounds}, a length-2 numeric vector.
+#' @param bounds The link's `link_bounds`, a length-2 numeric vector.
 #'
-#' @return \code{theta}, with any value that has landed exactly on a bound
+#' @return `theta`, with any value that has landed exactly on a bound
 #'   moved just inside it and any infinity brought back to the largest finite
-#'   double. \code{NA} and \code{NaN} pass through untouched, as does a value
+#'   double. `NA` and `NaN` pass through untouched, as does a value
 #'   strictly outside by a real margin: converting either would hide something
 #'   rather than fix it.
 #'
@@ -256,7 +256,7 @@ exp_floored <- function(eta) pmax(exp(eta), exp_floor)
 #' link_bounds_clamp(c(0, 0.5, 1), c(0, 1))
 #' link_bounds_clamp(c(2, 3, Inf), c(2, Inf))
 #'
-#' @seealso \code{\link{linkinv}}
+#' @seealso [linkinv()]
 #' @export
 link_bounds_clamp <- function(theta, bounds) {
   lwr <- bounds[1]

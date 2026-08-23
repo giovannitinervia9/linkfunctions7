@@ -12,12 +12,12 @@ LogitLink(
 }
 \value{
 An S7 object of class \code{LogitLink}, inheriting from
-\code{\link{link}}.
+\code{\link[=link]{link()}}.
 }
 \description{
-The class \code{\link{logit_link}} instantiates.
+The class \code{\link[=logit_link]{logit_link()}} instantiates.
 }
 \seealso{
-\code{\link{logit_link}}, the constructor users call.
+\code{\link[=logit_link]{logit_link()}}, the constructor users call.
 }
 \keyword{internal}

@@ -18,7 +18,7 @@ back for.
 }
 \description{
 The floor applied to \code{exp(eta)} by every link whose inverse is an
-exponential (\code{\link{log_link}}, \code{\link{cloglog_link}}, and the
+exponential (\code{\link[=log_link]{log_link()}}, \code{\link[=cloglog_link]{cloglog_link()}}, and the
 lower- and upper-bounded links).
 }
 \details{
@@ -41,6 +41,6 @@ necessary and silently corrupted \eqn{\theta} for every \eqn{\eta < -36}:
 before.
 }
 \seealso{
-\code{\link{exp_floored}}
+\code{\link[=exp_floored]{exp_floored()}}
 }
 \keyword{internal}

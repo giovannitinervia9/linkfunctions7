@@ -7,13 +7,13 @@
 eta_bounds(x)
 }
 \arguments{
-\item{x}{A \code{\link{link}} object.}
+\item{x}{A \code{\link[=link]{link()}} object.}
 }
 \value{
 A numeric vector of length two.
 }
 \description{
-The image of the link's parameter bounds under \code{\link{linkfun}}, used
+The image of the link's parameter bounds under \code{\link[=linkfun]{linkfun()}}, used
 to keep a finite-difference grid inside the set the inverse link is defined
 on.
 }
@@ -25,6 +25,6 @@ bounds are returned sorted, since a decreasing link reverses them, and are
 infinite in the directions where they cannot be established.
 }
 \seealso{
-\code{\link{link_bounds_clamp}}
+\code{\link[=link_bounds_clamp]{link_bounds_clamp()}}
 }
 \keyword{internal}

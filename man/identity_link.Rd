@@ -39,5 +39,5 @@ dlinkfun(lk, c(1, NA))
 
 }
 \seealso{
-\code{\link{link}}
+\code{\link[=link]{link()}}
 }

@@ -46,5 +46,5 @@ dlinkinv(lk, 0)            # 1 / pi
 
 }
 \seealso{
-\code{\link{link}}, \code{\link{logit_link}}, \code{\link{probit_link}}
+\code{\link[=link]{link()}}, \code{\link[=logit_link]{logit_link()}}, \code{\link[=probit_link]{probit_link()}}
 }

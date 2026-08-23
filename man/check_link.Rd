@@ -18,7 +18,7 @@ check_link.link(x, tolerance = 1e-05, ...)
 }
 \value{
 Invisibly, a named list of check results; see
-\code{\link{check_link.link}} for its shape. Called mainly for the summary
+\code{\link[=check_link.link]{check_link.link()}} for its shape. Called mainly for the summary
 printed to the console.
 
 Invisibly, a named list of the check results: the four scalar logicals
@@ -30,7 +30,7 @@ mean what they say and \code{NA} means \strong{not checked}: the order is
 supplied by a numerical fallback, so the value and the reference would be
 the same arithmetic and would agree whatever the link did. The number of
 orders actually implemented is carried on the result as the attribute
-\code{"analytic_orders"}; see \code{\link{link_fallback_orders}}. A
+\code{"analytic_orders"}; see \code{\link[=link_fallback_orders]{link_fallback_orders()}}. A
 derivative that raises an error still counts as \code{FALSE}. Called mainly
 for the summary printed to the console.
 }
@@ -68,6 +68,6 @@ all(unlist(check_link(bounded_link(0, 10))))
 
 }
 \seealso{
-\code{\link{linkfun}}, \code{\link{linkinv}}, \code{\link{linkderiv}}, \code{\link{linkinvderiv}}, \code{\link{link}}
+\code{\link[=linkfun]{linkfun()}}, \code{\link[=linkinv]{linkinv()}}, \code{\link[=linkderiv]{linkderiv()}}, \code{\link[=linkinvderiv]{linkinvderiv()}}, \code{\link[=link]{link()}}
 }
 \keyword{internal}

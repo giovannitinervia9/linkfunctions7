@@ -20,10 +20,10 @@ DoublyBoundedLink(
 }
 \value{
 An S7 object of class \code{DoublyBoundedLink}, inheriting from
-\code{\link{link}}.
+\code{\link[=link]{link()}}.
 }
 \description{
-The class \code{\link{bounded_link}} instantiates when given both endpoints.
+The class \code{\link[=bounded_link]{bounded_link()}} instantiates when given both endpoints.
 It is the logit of \eqn{p = (\theta - \mathrm{lwr})/W}, the position of
 \eqn{\theta} within the interval.
 }
@@ -34,6 +34,6 @@ properties and subtracting cost about a third of a call to \code{dlinkinv()};
 the constructor is the only place it can change.
 }
 \seealso{
-\code{\link{bounded_link}}, the constructor users call.
+\code{\link[=bounded_link]{bounded_link()}}, the constructor users call.
 }
 \keyword{internal}

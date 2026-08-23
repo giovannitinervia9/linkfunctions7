@@ -21,7 +21,7 @@ The first derivative of \eqn{g^{-1}(\eta)} with respect to \eqn{\eta}.
 \details{
 This and its higher-order siblings are the generics a modeling routine
 working on the unconstrained scale actually wants. Call them directly rather
-than through \code{\link{linkinvderiv}} in a hot loop: the router dispatches
+than through \code{\link[=linkinvderiv]{linkinvderiv()}} in a hot loop: the router dispatches
 once on itself and then again on the order-specific generic, which is about a
 third of the cost of the call.
 }
@@ -30,5 +30,5 @@ dlinkinv(logit_link(), 0)      # p(1 - p) at p = 0.5
 dlinkinv(log_link(), c(0, 1))
 }
 \seealso{
-\code{\link{linkinvderiv}}, which routes to this generic by order.
+\code{\link[=linkinvderiv]{linkinvderiv()}}, which routes to this generic by order.
 }

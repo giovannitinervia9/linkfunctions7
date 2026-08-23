@@ -12,12 +12,12 @@ CauchitLink(
 }
 \value{
 An S7 object of class \code{CauchitLink}, inheriting from
-\code{\link{link}}.
+\code{\link[=link]{link()}}.
 }
 \description{
-The class \code{\link{cauchit_link}} instantiates.
+The class \code{\link[=cauchit_link]{cauchit_link()}} instantiates.
 }
 \seealso{
-\code{\link{cauchit_link}}, the constructor users call.
+\code{\link[=cauchit_link]{cauchit_link()}}, the constructor users call.
 }
 \keyword{internal}

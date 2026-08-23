@@ -12,12 +12,12 @@ ProbitLink(
 }
 \value{
 An S7 object of class \code{ProbitLink}, inheriting from
-\code{\link{link}}.
+\code{\link[=link]{link()}}.
 }
 \description{
-The class \code{\link{probit_link}} instantiates.
+The class \code{\link[=probit_link]{probit_link()}} instantiates.
 }
 \seealso{
-\code{\link{probit_link}}, the constructor users call.
+\code{\link[=probit_link]{probit_link()}}, the constructor users call.
 }
 \keyword{internal}

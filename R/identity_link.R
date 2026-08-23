@@ -1,13 +1,13 @@
 #' @title S7 Class for the Identity Link
 #'
 #' @description
-#' The class \code{\link{identity_link}} instantiates. Also what
-#' \code{\link{bounded_link}} returns when neither endpoint is given.
+#' The class [identity_link()] instantiates. Also what
+#' [bounded_link()] returns when neither endpoint is given.
 #'
-#' @return An S7 object of class \code{IdentityLink}, inheriting from
-#'   \code{\link{link}}.
+#' @return An S7 object of class `IdentityLink`, inheriting from
+#'   [link()].
 #'
-#' @seealso \code{\link{identity_link}}, the constructor users call.
+#' @seealso [identity_link()], the constructor users call.
 #' @keywords internal
 IdentityLink <- S7::new_class(
   name = "IdentityLink",
@@ -46,9 +46,9 @@ S7::method(d4linkinv, IdentityLink) <- function(x, eta) const_like(eta, 0)
 #' All first derivatives are constant (equal to 1), and all higher-order derivatives
 #' up to the fourth order are exactly zero.
 #'
-#' The domain of \eqn{\theta} is unbounded, meaning the valid domain is \code{c(-Inf, Inf)}.
+#' The domain of \eqn{\theta} is unbounded, meaning the valid domain is `c(-Inf, Inf)`.
 #'
-#' @return An S7 object of class \code{IdentityLink} (inheriting from \code{link}) containing the transformation functions
+#' @return An S7 object of class `IdentityLink` (inheriting from `link`) containing the transformation functions
 #' and their exact analytical derivatives up to the fourth order.
 #'
 #' @examples
@@ -65,7 +65,7 @@ S7::method(d4linkinv, IdentityLink) <- function(x, eta) const_like(eta, 0)
 #' # ... but missingness is still propagated, not swallowed by the constant
 #' dlinkfun(lk, c(1, NA))
 #'
-#' @seealso \code{\link{link}}
+#' @seealso [link()]
 #' @export
 identity_link <- function() {
   IdentityLink(

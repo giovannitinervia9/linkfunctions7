@@ -1,12 +1,12 @@
 #' @title S7 Class for the Cauchit Link
 #'
 #' @description
-#' The class \code{\link{cauchit_link}} instantiates.
+#' The class [cauchit_link()] instantiates.
 #'
-#' @return An S7 object of class \code{CauchitLink}, inheriting from
-#'   \code{\link{link}}.
+#' @return An S7 object of class `CauchitLink`, inheriting from
+#'   [link()].
 #'
-#' @seealso \code{\link{cauchit_link}}, the constructor users call.
+#' @seealso [cauchit_link()], the constructor users call.
 #' @keywords internal
 CauchitLink <- S7::new_class(
   name = "CauchitLink",
@@ -44,19 +44,19 @@ S7::method(d4linkinv, CauchitLink) <- function(x, eta) lk_cauchit_inv_cpp(eta, 4
 #' logit or the probit.
 #' @details
 #' The Cauchit link is defined mathematically as \eqn{\eta = \tan(\pi(\theta - 0.5))}, 
-#' which corresponds perfectly to \code{qcauchy(theta)}.
+#' which corresponds perfectly to `qcauchy(theta)`.
 #' The inverse link is the standard Cauchy CDF \eqn{\theta = \frac{1}{\pi} \arctan(\eta) + 0.5},
-#' computed via \code{pcauchy(eta)}.
+#' computed via `pcauchy(eta)`.
 #'
-#' \strong{Heavy Tails:} Unlike the Logit or Probit links, the Cauchit link has 
+#' **Heavy Tails:** Unlike the Logit or Probit links, the Cauchit link has 
 #' exceedingly heavier tails. This makes it particularly robust and useful for modeling 
 #' binary data where the probability approaches 0 or 1 very slowly, or when the dataset 
 #' contains severe outliers that might disproportionately influence the fit of 
 #' light-tailed link functions.
 #'
-#' The strictly valid mathematical domain for \eqn{\theta} is \code{c(0, 1)}.
+#' The strictly valid mathematical domain for \eqn{\theta} is `c(0, 1)`.
 #'
-#' @return An S7 object of class \code{CauchitLink} (inheriting from \code{link}) containing the transformation functions
+#' @return An S7 object of class `CauchitLink` (inheriting from `link`) containing the transformation functions
 #' and their exact analytical derivatives up to the fourth order.
 #'
 #' @examples
@@ -74,7 +74,7 @@ S7::method(d4linkinv, CauchitLink) <- function(x, eta) lk_cauchit_inv_cpp(eta, 4
 #'
 #' dlinkinv(lk, 0)            # 1 / pi
 #'
-#' @seealso \code{\link{link}}, \code{\link{logit_link}}, \code{\link{probit_link}}
+#' @seealso [link()], [logit_link()], [probit_link()]
 #' @importFrom stats qcauchy pcauchy
 #' @export
 cauchit_link <- function() {

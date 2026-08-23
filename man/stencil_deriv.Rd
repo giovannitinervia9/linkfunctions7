@@ -13,7 +13,7 @@ stencil_deriv(f, x, order, h)
 
 \item{order}{The derivative order, 1 to 4.}
 
-\item{h}{A numeric vector of steps, from \code{\link{fd_step}}.}
+\item{h}{A numeric vector of steps, from \code{\link[=fd_step]{fd_step()}}.}
 }
 \value{
 A numeric vector of the same length as \code{x}.

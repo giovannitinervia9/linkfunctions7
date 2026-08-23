@@ -16,7 +16,7 @@ link(link_name = character(0), link_bounds = integer(0), link_params = NULL)
 \value{
 An S7 object of class \code{link}. In practice this class is not
 instantiated directly: each link is a subclass created by one of the
-constructors (\code{\link{logit_link}}, \code{\link{power_link}}, ...), and
+constructors (\code{\link[=logit_link]{logit_link()}}, \code{\link[=power_link]{power_link()}}, ...), and
 \code{link} is what they all inherit from and what methods dispatch on.
 }
 \description{
@@ -47,5 +47,5 @@ lk@link_bounds
 
 }
 \seealso{
-\code{\link{linkfun}}, \code{\link{linkinv}}, \code{\link{linkderiv}}, \code{\link{linkinvderiv}}, \code{\link{check_link}}
+\code{\link[=linkfun]{linkfun()}}, \code{\link[=linkinv]{linkinv()}}, \code{\link[=linkderiv]{linkderiv()}}, \code{\link[=linkinvderiv]{linkinvderiv()}}, \code{\link[=check_link]{check_link()}}
 }

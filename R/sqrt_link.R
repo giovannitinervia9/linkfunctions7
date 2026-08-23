@@ -1,12 +1,12 @@
 #' @title S7 Class for the Sqrt Link
 #'
 #' @description
-#' The class \code{\link{sqrt_link}} instantiates.
+#' The class [sqrt_link()] instantiates.
 #'
-#' @return An S7 object of class \code{SqrtLink}, inheriting from
-#'   \code{\link{link}}.
+#' @return An S7 object of class `SqrtLink`, inheriting from
+#'   [link()].
 #'
-#' @seealso \code{\link{sqrt_link}}, the constructor users call.
+#' @seealso [sqrt_link()], the constructor users call.
 #' @keywords internal
 SqrtLink <- S7::new_class(
   name = "SqrtLink",
@@ -57,9 +57,9 @@ S7::method(d4linkinv, SqrtLink) <- function(x, eta) const_like(eta, 0)
 #' predictor \eqn{\eta} is typically constrained to be non-negative. This restriction 
 #' preserves a strictly one-to-one mapping with \eqn{\theta}.
 #'
-#' The strict mathematical domain for \eqn{\theta} is \code{c(0, Inf)}.
+#' The strict mathematical domain for \eqn{\theta} is `c(0, Inf)`.
 #'
-#' @return An S7 object of class \code{SqrtLink} (inheriting from \code{link}) containing the transformation functions
+#' @return An S7 object of class `SqrtLink` (inheriting from `link`) containing the transformation functions
 #' and their exact analytical derivatives up to the fourth order.
 #'
 #' @examples
@@ -78,7 +78,7 @@ S7::method(d4linkinv, SqrtLink) <- function(x, eta) const_like(eta, 0)
 #' # the same link as the power family at lambda = 1/2
 #' linkfun(power_link(0.5), 4)
 #'
-#' @seealso \code{\link{link}}, \code{\link{power_link}}, \code{\link{log_link}}
+#' @seealso [link()], [power_link()], [log_link()]
 #' @export
 sqrt_link <- function() {
   SqrtLink(

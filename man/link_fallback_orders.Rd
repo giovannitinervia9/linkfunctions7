@@ -21,7 +21,7 @@ analytically and which are therefore obtained by finite differences.
 Every link can answer every derivative generic, because the base class
 supplies numerical fallbacks for the orders a link does not implement. That
 convenience requires a way of asking which is which — a fallback is
-correct but not exact, and it is the reason \code{\link{check_link}} reports
+correct but not exact, and it is the reason \code{\link[=check_link]{check_link()}} reports
 such orders separately rather than passing them.
 }
 \examples{
@@ -30,5 +30,5 @@ link_fallback_orders(logit_link())
 
 }
 \seealso{
-\code{\link{check_link}}
+\code{\link[=check_link]{check_link()}}
 }

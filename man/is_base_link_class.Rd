@@ -13,7 +13,7 @@ is_base_link_class(cls)
 \code{TRUE} or \code{FALSE}.
 }
 \description{
-Answers whether an S7 class is this package's own \code{\link{link}} class,
+Answers whether an S7 class is this package's own \code{\link[=link]{link()}} class,
 which is how a method inherited from the base class is told from one a link
 registered for itself.
 }
@@ -28,6 +28,6 @@ method makes every fallback differentiate the order below it, which is the
 nested differencing the design exists to forbid.
 }
 \seealso{
-\code{\link{link_fallback_orders}}
+\code{\link[=link_fallback_orders]{link_fallback_orders()}}
 }
 \keyword{internal}

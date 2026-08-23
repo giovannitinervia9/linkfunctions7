@@ -28,6 +28,6 @@ that returns a constant (the identity link's, the square root link's third and
 fourth inverse derivatives) goes through this helper instead of \code{rep()}.
 }
 \seealso{
-\code{\link{na_from}}, the same idea for a computed result.
+\code{\link[=na_from]{na_from()}}, the same idea for a computed result.
 }
 \keyword{internal}

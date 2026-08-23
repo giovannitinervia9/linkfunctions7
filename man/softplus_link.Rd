@@ -62,5 +62,5 @@ linkinv(softplus_link(), c(1, 10, 100))
 
 }
 \seealso{
-\code{\link{link}}, \code{\link{log_link}}, \code{\link{identity_link}}
+\code{\link[=link]{link()}}, \code{\link[=log_link]{log_link()}}, \code{\link[=identity_link]{identity_link()}}
 }

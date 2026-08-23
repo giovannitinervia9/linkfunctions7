@@ -9,7 +9,7 @@
 \arguments{
 \item{x}{An object of class \code{link}.}
 
-\item{...}{Additional graphical parameters passed to \code{\link[graphics]{plot}}.}
+\item{...}{Additional graphical parameters passed to \code{\link[graphics:plot.default]{graphics::plot()}}.}
 }
 \value{
 No return value, called for side effects (plotting).

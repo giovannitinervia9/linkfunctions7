@@ -1,12 +1,12 @@
 #' @title S7 Class for the Logarithmic Link
 #'
 #' @description
-#' The class \code{\link{log_link}} instantiates.
+#' The class [log_link()] instantiates.
 #'
-#' @return An S7 object of class \code{LogLink}, inheriting from
-#'   \code{\link{link}}.
+#' @return An S7 object of class `LogLink`, inheriting from
+#'   [link()].
 #'
-#' @seealso \code{\link{log_link}}, the constructor users call.
+#' @seealso [log_link()], the constructor users call.
 #' @keywords internal
 LogLink <- S7::new_class(
   name = "LogLink",
@@ -48,17 +48,17 @@ S7::method(d4linkinv, LogLink) <- function(x, eta) exp_floored(eta)
 #' own derivative. Therefore, the parameter \eqn{\theta} and all its derivatives with 
 #' respect to \eqn{\eta} are equal to \eqn{\exp(\eta)}.
 #'
-#' The valid mathematical domain of \eqn{\theta} is \code{c(0, Inf)}. 
+#' The valid mathematical domain of \eqn{\theta} is `c(0, Inf)`. 
 #'
-#' \strong{Numerical Stability:}
-#' The inverse link and its derivatives are bounded below by \code{exp_floor},
-#' which is \code{.Machine$double.xmin^0.25}, about \code{1.2e-77}. This prevents
+#' **Numerical Stability:**
+#' The inverse link and its derivatives are bounded below by `exp_floor`,
+#' which is `.Machine$double.xmin^0.25`, about `1.2e-77`. This prevents
 #' underflow to exactly zero for large negative \eqn{\eta}, which would produce
-#' \code{Inf} when the forward derivatives divide by \eqn{\theta}; the fourth of
+#' `Inf` when the forward derivatives divide by \eqn{\theta}; the fourth of
 #' them divides by \eqn{\theta^4}, and that is what sets the value. The floor is
 #' low enough that \eqn{\theta} is exact down to \eqn{\eta \approx -177}.
 #'
-#' @return An S7 object of class \code{LogLink} (inheriting from \code{link}) containing the transformation functions
+#' @return An S7 object of class `LogLink` (inheriting from `link`) containing the transformation functions
 #' and their exact analytical derivatives up to the fourth order.
 #'
 #' @examples
@@ -77,7 +77,7 @@ S7::method(d4linkinv, LogLink) <- function(x, eta) exp_floored(eta)
 #' # forward derivatives to fourth order
 #' linkderiv(lk, theta, order = 4)
 #'
-#' @seealso \code{\link{link}}, \code{\link{inverse_link}}
+#' @seealso [link()], [inverse_link()]
 #' @export
 log_link <- function() {
   LogLink(

@@ -1,12 +1,12 @@
 #' @title S7 Class for the Inverse Link
 #'
 #' @description
-#' The class \code{\link{inverse_link}} instantiates.
+#' The class [inverse_link()] instantiates.
 #'
-#' @return An S7 object of class \code{InverseLink}, inheriting from
-#'   \code{\link{link}}.
+#' @return An S7 object of class `InverseLink`, inheriting from
+#'   [link()].
 #'
-#' @seealso \code{\link{inverse_link}}, the constructor users call.
+#' @seealso [inverse_link()], the constructor users call.
 #' @keywords internal
 InverseLink <- S7::new_class(
   name = "InverseLink",
@@ -48,12 +48,12 @@ S7::method(d4linkinv, InverseLink) <- function(x, eta) 24 / (eta^5)
 #' This link is typically used for modeling positive continuous data where the mean is 
 #' inversely proportional to the linear predictor (e.g., in Gamma regression).
 #'
-#' The domain of \eqn{\theta} is conventionally \code{c(0, Inf)}. Care must be taken 
+#' The domain of \eqn{\theta} is conventionally `c(0, Inf)`. Care must be taken 
 #' to ensure the linear predictor \eqn{\eta} remains strictly positive (or strictly 
 #' negative) during optimization to avoid division by zero or mapping to invalid 
 #' negative parameter values.
 #'
-#' @return An S7 object of class \code{InverseLink} (inheriting from \code{link}) containing the transformation functions
+#' @return An S7 object of class `InverseLink` (inheriting from `link`) containing the transformation functions
 #' and their exact analytical derivatives up to the fourth order.
 #'
 #' @examples
@@ -70,7 +70,7 @@ S7::method(d4linkinv, InverseLink) <- function(x, eta) 24 / (eta^5)
 #' # the canonical link for a Gamma mean; note eta must keep one sign
 #' linkinv(lk, c(0.5, 2))
 #'
-#' @seealso \code{\link{link}}, \code{\link{identity_link}}
+#' @seealso [link()], [identity_link()]
 #' @export
 inverse_link <- function() {
   InverseLink(

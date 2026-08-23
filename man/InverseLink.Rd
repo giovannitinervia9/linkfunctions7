@@ -12,12 +12,12 @@ InverseLink(
 }
 \value{
 An S7 object of class \code{InverseLink}, inheriting from
-\code{\link{link}}.
+\code{\link[=link]{link()}}.
 }
 \description{
-The class \code{\link{inverse_link}} instantiates.
+The class \code{\link[=inverse_link]{inverse_link()}} instantiates.
 }
 \seealso{
-\code{\link{inverse_link}}, the constructor users call.
+\code{\link[=inverse_link]{inverse_link()}}, the constructor users call.
 }
 \keyword{internal}

@@ -13,7 +13,7 @@ and their exact analytical derivatives up to the fourth order.
 \description{
 The log-log link \eqn{\eta = -\log(-\log\theta)} on \eqn{(0, 1)},
 with inverse \eqn{\theta = \exp(-e^{-\eta})}; the mirror image of
-\code{\link{cloglog_link}}.
+\code{\link[=cloglog_link]{cloglog_link()}}.
 }
 \details{
 The Log-Log link is mathematically defined as \eqn{\eta = -\log(-\log(\theta))}.
@@ -21,7 +21,7 @@ Consequently, the inverse link is derived as \eqn{\theta = \exp(-\exp(-\eta))}.
 
 Unlike the logit and the probit the link is asymmetric: the probability
 approaches 0 slowly and 1 sharply, the mirror image of
-\code{\link{cloglog_link}}. The domain of \eqn{\theta} is \eqn{(0, 1)}.
+\code{\link[=cloglog_link]{cloglog_link()}}. The domain of \eqn{\theta} is \eqn{(0, 1)}.
 }
 \examples{
 lk <- loglog_link()
@@ -40,5 +40,5 @@ linkderiv(lk, 0.5, order = 3)
 
 }
 \seealso{
-\code{\link{link}}, \code{\link{cloglog_link}}, \code{\link{logit_link}}
+\code{\link[=link]{link()}}, \code{\link[=cloglog_link]{cloglog_link()}}, \code{\link[=logit_link]{logit_link()}}
 }

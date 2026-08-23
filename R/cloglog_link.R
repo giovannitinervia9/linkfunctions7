@@ -1,12 +1,12 @@
 #' @title S7 Class for the Complementary Log-Log Link
 #'
 #' @description
-#' The class \code{\link{cloglog_link}} instantiates.
+#' The class [cloglog_link()] instantiates.
 #'
-#' @return An S7 object of class \code{ClogLogLink}, inheriting from
-#'   \code{\link{link}}.
+#' @return An S7 object of class `ClogLogLink`, inheriting from
+#'   [link()].
 #'
-#' @seealso \code{\link{cloglog_link}}, the constructor users call.
+#' @seealso [cloglog_link()], the constructor users call.
 #' @keywords internal
 ClogLogLink <- S7::new_class(
   name = "ClogLogLink",
@@ -67,9 +67,9 @@ S7::method(d4linkinv, ClogLogLink) <- function(x, eta) lk_cloglog_inv_cpp(eta, 4
 #' frequently utilized in discrete-time survival analysis (proportional hazards models) 
 #' as well as for modeling rare events.
 #'
-#' The strictly valid mathematical domain for \eqn{\theta} is \code{c(0, 1)}.
+#' The strictly valid mathematical domain for \eqn{\theta} is `c(0, 1)`.
 #'
-#' @return An S7 object of class \code{ClogLogLink} (inheriting from \code{link})
+#' @return An S7 object of class `ClogLogLink` (inheriting from `link`)
 #' containing the transformation functions and their exact analytical derivatives
 #' up to the fourth order.
 #'
@@ -88,7 +88,7 @@ S7::method(d4linkinv, ClogLogLink) <- function(x, eta) lk_cloglog_inv_cpp(eta, 4
 #'
 #' d2linkinv(lk, 0)
 #'
-#' @seealso \code{\link{link}}, \code{\link{logit_link}}, \code{\link{loglog_link}}
+#' @seealso [link()], [logit_link()], [loglog_link()]
 #' @export
 cloglog_link <- function() {
   ClogLogLink(

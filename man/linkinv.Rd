@@ -21,7 +21,7 @@ Maps a linear predictor back onto the parameter's domain.
 \strong{The result is always strictly inside \code{link_bounds}}, and that is
 enforced here rather than left to each method. A link is a bijection onto an
 \emph{open} interval, which is exactly what makes it useful — a value it
-returns can be handed to \code{\link{linkfun}} and come back, or to a density
+returns can be handed to \code{\link[=linkfun]{linkfun()}} and come back, or to a density
 that validates its parameters against open intervals. In double precision the
 bijection is not quite onto: \code{plogis} is exactly 1 above about
 \eqn{\eta = 37}, \code{lwr + exp(eta)} rounds to \code{lwr} once the
@@ -51,5 +51,5 @@ linkfun(logit_link(), linkinv(logit_link(), 40))
 
 }
 \seealso{
-\code{\link{linkfun}}, \code{\link{link_bounds_clamp}}
+\code{\link[=linkfun]{linkfun()}}, \code{\link[=link_bounds_clamp]{link_bounds_clamp()}}
 }

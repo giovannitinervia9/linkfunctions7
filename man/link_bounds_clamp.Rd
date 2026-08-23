@@ -21,7 +21,7 @@ rather than fix it.
 \description{
 Moves a value that has reached or passed a bound to the nearest double
 strictly inside it, and a non-finite value to the largest finite double of
-that sign. Applied by \code{\link{linkinv}} to every link.
+that sign. Applied by \code{\link[=linkinv]{linkinv()}} to every link.
 }
 \details{
 A link is documented as a bijection onto an \strong{open} interval, and in
@@ -39,14 +39,14 @@ largest finite one.
 R has no \code{nextafter}, and the arithmetic substitute has to respect that
 \strong{the spacing of doubles is absolute near a non-zero bound}. One ulp at
 2 is about 4.4e-16 while one ulp at 1e-300 is about 1e-316, so a single
-additive constant cannot serve both. \code{b + |b| * eps} is one to two ulps
+additive constant cannot serve both. \verb{b + |b| * eps} is one to two ulps
 from \code{b} at any magnitude, which is strictly inside and as close as
 arithmetic reliably gets.
 
 A bound at zero is the exception and needs no bump, since there the spacing
 is relative all the way down to 1e-308 and the exponential links already
-floor at \code{\link{exp_floor}}. The clamp therefore leaves an exact zero
-bound to \code{\link{exp_floor}} and uses the smallest positive normal only
+floor at \code{\link[=exp_floor]{exp_floor()}}. The clamp therefore leaves an exact zero
+bound to \code{\link[=exp_floor]{exp_floor()}} and uses the smallest positive normal only
 if something has still landed on it.
 }
 }
@@ -56,5 +56,5 @@ link_bounds_clamp(c(2, 3, Inf), c(2, Inf))
 
 }
 \seealso{
-\code{\link{linkinv}}
+\code{\link[=linkinv]{linkinv()}}
 }

@@ -23,14 +23,14 @@ derivative of \eqn{g} evaluated there.
 A numeric vector of the same length as \code{theta}.
 }
 \description{
-A convenience router over \code{\link{linkfun}} and the four
+A convenience router over \code{\link[=linkfun]{linkfun()}} and the four
 \code{d*linkfun} generics.
 
 Routes to the correct forward derivative generic based on order.
 }
 \details{
 This dispatches twice, once on itself and once on the order-specific generic.
-Where that matters, call \code{\link{dlinkfun}} and its siblings directly.
+Where that matters, call \code{\link[=dlinkfun]{dlinkfun()}} and its siblings directly.
 }
 \examples{
 lk <- logit_link()
@@ -41,6 +41,6 @@ linkderiv(lk, 0.5, order = 1)
 vapply(0:4, function(k) linkderiv(lk, 0.25, order = k), numeric(1))
 }
 \seealso{
-\code{\link{linkfun}}, \code{\link{linkinv}}, \code{\link{linkinvderiv}}, \code{\link{check_link}}, \code{\link{link}}
+\code{\link[=linkfun]{linkfun()}}, \code{\link[=linkinv]{linkinv()}}, \code{\link[=linkinvderiv]{linkinvderiv()}}, \code{\link[=check_link]{check_link()}}, \code{\link[=link]{link()}}
 }
 \keyword{internal}

@@ -23,7 +23,7 @@ A link is a strictly monotone differentiable bijection
 \eqn{g : \Theta \to \mathbb{R}} from the parameter's open domain
 \code{x@link_bounds} onto the whole line, so that an unconstrained
 optimizer may work in \eqn{\eta} while \eqn{\theta = g^{-1}(\eta)} stays
-admissible at every point. \code{\link{linkinv}} evaluates that inverse
+admissible at every point. \code{\link[=linkinv]{linkinv()}} evaluates that inverse
 and is the only other method a link has to supply; the eight derivative
 generics have numerical fallbacks derived from the pair.
 }
@@ -32,5 +32,5 @@ linkfun(logit_link(), c(0.25, 0.5, 0.75))
 linkfun(log_link(), c(1, exp(1)))
 }
 \seealso{
-\code{\link{linkinv}}, \code{\link{linkderiv}}, \code{\link{linkinvderiv}}, \code{\link{check_link}}, \code{\link{link}}
+\code{\link[=linkinv]{linkinv()}}, \code{\link[=linkderiv]{linkderiv()}}, \code{\link[=linkinvderiv]{linkinvderiv()}}, \code{\link[=check_link]{check_link()}}, \code{\link[=link]{link()}}
 }

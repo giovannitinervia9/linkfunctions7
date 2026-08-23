@@ -16,14 +16,14 @@ UpperBoundedLink(
 }
 \value{
 An S7 object of class \code{UpperBoundedLink}, inheriting from
-\code{\link{link}}.
+\code{\link[=link]{link()}}.
 }
 \description{
-The class \code{\link{bounded_link}} instantiates when given only an upper
-endpoint. It is the mirror image of \code{\link{LowerBoundedLink}}, the log of
+The class \code{\link[=bounded_link]{bounded_link()}} instantiates when given only an upper
+endpoint. It is the mirror image of \code{\link[=LowerBoundedLink]{LowerBoundedLink()}}, the log of
 the distance below \code{upr}.
 }
 \seealso{
-\code{\link{bounded_link}}, the constructor users call.
+\code{\link[=bounded_link]{bounded_link()}}, the constructor users call.
 }
 \keyword{internal}

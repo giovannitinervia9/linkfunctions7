@@ -12,12 +12,12 @@ RhobitLink(
 }
 \value{
 An S7 object of class \code{RhobitLink}, inheriting from
-\code{\link{link}}.
+\code{\link[=link]{link()}}.
 }
 \description{
-The class \code{\link{rhobit_link}} instantiates.
+The class \code{\link[=rhobit_link]{rhobit_link()}} instantiates.
 }
 \seealso{
-\code{\link{rhobit_link}}, the constructor users call.
+\code{\link[=rhobit_link]{rhobit_link()}}, the constructor users call.
 }
 \keyword{internal}

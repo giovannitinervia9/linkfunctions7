@@ -51,5 +51,5 @@ linkderiv(lk, theta, order = 4)
 
 }
 \seealso{
-\code{\link{link}}, \code{\link{inverse_link}}
+\code{\link[=link]{link()}}, \code{\link[=inverse_link]{inverse_link()}}
 }

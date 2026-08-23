@@ -44,5 +44,5 @@ d2linkinv(lk, 0)
 
 }
 \seealso{
-\code{\link{link}}, \code{\link{logit_link}}, \code{\link{loglog_link}}
+\code{\link[=link]{link()}}, \code{\link[=logit_link]{logit_link()}}, \code{\link[=loglog_link]{loglog_link()}}
 }

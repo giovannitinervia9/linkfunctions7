@@ -1,15 +1,15 @@
 #' @title S7 Class for the Softplus Link
 #'
 #' @description
-#' The class \code{\link{softplus_link}} instantiates. Carries the scale
-#' parameter \code{a} in a dedicated property.
+#' The class [softplus_link()] instantiates. Carries the scale
+#' parameter `a` in a dedicated property.
 #'
 #' @param a The scale parameter, strictly positive.
 #'
-#' @return An S7 object of class \code{SoftplusLink}, inheriting from
-#'   \code{\link{link}}.
+#' @return An S7 object of class `SoftplusLink`, inheriting from
+#'   [link()].
 #'
-#' @seealso \code{\link{softplus_link}}, the constructor users call.
+#' @seealso [softplus_link()], the constructor users call.
 #' @keywords internal
 SoftplusLink <- S7::new_class(
   name = "SoftplusLink",
@@ -98,12 +98,12 @@ S7::method(d4linkinv, SoftplusLink) <- function(x, eta) {
 #'   \item Link Function: \eqn{\eta = \frac{1}{a} \log(\exp(a \theta) - 1)}
 #' }
 #'
-#' \strong{Behavior:}
+#' **Behavior:**
 #' For large negative \eqn{\eta}, \eqn{\theta \approx 0}.
 #' For large positive \eqn{\eta}, \eqn{\theta \approx \eta} (linear behavior), whereas 
 #' a Log link would imply \eqn{\theta = \exp(\eta)} (exponential behavior).
 #'
-#' \strong{Numerical Stability:}
+#' **Numerical Stability:**
 #' Both directions are written so that no intermediate quantity grows with
 #' \eqn{a\theta} or \eqn{a\eta}. The inverse link uses the log-sum-exp form, and
 #' the forward link and its derivatives are expressed in
@@ -111,10 +111,10 @@ S7::method(d4linkinv, SoftplusLink) <- function(x, eta) {
 #' overflows once \eqn{a\theta} passes about 709 — and, because the derivatives
 #' divide by its fourth power, well before that at the higher orders.
 #'
-#' The mathematical domain of \eqn{\theta} is \code{c(0, Inf)}.
+#' The mathematical domain of \eqn{\theta} is `c(0, Inf)`.
 #'
-#' @return An S7 object of class \code{SoftplusLink} (inheriting from \code{link}) containing the transformation functions,
-#' their exact analytical derivatives up to the fourth order, and the parameter \code{a}.
+#' @return An S7 object of class `SoftplusLink` (inheriting from `link`) containing the transformation functions,
+#' their exact analytical derivatives up to the fourth order, and the parameter `a`.
 #'
 #' @examples
 #' lk <- softplus_link(a = 2)
@@ -132,7 +132,7 @@ S7::method(d4linkinv, SoftplusLink) <- function(x, eta) {
 #' # unlike the log link, softplus is asymptotically linear in eta
 #' linkinv(softplus_link(), c(1, 10, 100))
 #'
-#' @seealso \code{\link{link}}, \code{\link{log_link}}, \code{\link{identity_link}}
+#' @seealso [link()], [log_link()], [identity_link()]
 #' @importFrom stats plogis
 #' @export
 softplus_link <- function(a = 1) {

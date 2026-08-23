@@ -8,12 +8,12 @@ LogLink(link_name = character(0), link_bounds = integer(0), link_params = NULL)
 }
 \value{
 An S7 object of class \code{LogLink}, inheriting from
-\code{\link{link}}.
+\code{\link[=link]{link()}}.
 }
 \description{
-The class \code{\link{log_link}} instantiates.
+The class \code{\link[=log_link]{log_link()}} instantiates.
 }
 \seealso{
-\code{\link{log_link}}, the constructor users call.
+\code{\link[=log_link]{log_link()}}, the constructor users call.
 }
 \keyword{internal}

@@ -1,12 +1,12 @@
 #' @title S7 Class for the Rhobit Link
 #'
 #' @description
-#' The class \code{\link{rhobit_link}} instantiates.
+#' The class [rhobit_link()] instantiates.
 #'
-#' @return An S7 object of class \code{RhobitLink}, inheriting from
-#'   \code{\link{link}}.
+#' @return An S7 object of class `RhobitLink`, inheriting from
+#'   [link()].
 #'
-#' @seealso \code{\link{rhobit_link}}, the constructor users call.
+#' @seealso [rhobit_link()], the constructor users call.
 #' @keywords internal
 RhobitLink <- S7::new_class(
   name = "RhobitLink",
@@ -47,9 +47,9 @@ S7::method(d4linkinv, RhobitLink) <- function(x, eta) lk_rhobit_inv_cpp(eta, 4L)
 #' The inverse link is the hyperbolic tangent function:
 #' \eqn{\theta = \tanh(\eta) = \frac{\exp(2\eta) - 1}{\exp(2\eta) + 1}}.
 #'
-#' The valid mathematical domain of \eqn{\theta} is exactly \code{c(-1, 1)}.
+#' The valid mathematical domain of \eqn{\theta} is exactly `c(-1, 1)`.
 #'
-#' @return An S7 object of class \code{RhobitLink} (inheriting from \code{link}) containing the transformation functions
+#' @return An S7 object of class `RhobitLink` (inheriting from `link`) containing the transformation functions
 #' and their exact analytical derivatives up to the fourth order.
 #'
 #' @examples
@@ -67,7 +67,7 @@ S7::method(d4linkinv, RhobitLink) <- function(x, eta) lk_rhobit_inv_cpp(eta, 4L)
 #'
 #' check_link(lk)
 #'
-#' @seealso \code{\link{link}}, \code{\link{logit_link}}
+#' @seealso [link()], [logit_link()]
 #' @export
 rhobit_link <- function() {
   RhobitLink(

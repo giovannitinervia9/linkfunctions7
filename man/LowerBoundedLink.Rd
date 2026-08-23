@@ -16,13 +16,13 @@ LowerBoundedLink(
 }
 \value{
 An S7 object of class \code{LowerBoundedLink}, inheriting from
-\code{\link{link}}.
+\code{\link[=link]{link()}}.
 }
 \description{
-The class \code{\link{bounded_link}} instantiates when given only a lower
+The class \code{\link[=bounded_link]{bounded_link()}} instantiates when given only a lower
 endpoint. It is the log link shifted to start at \code{lwr}.
 }
 \seealso{
-\code{\link{bounded_link}}, the constructor users call.
+\code{\link[=bounded_link]{bounded_link()}}, the constructor users call.
 }
 \keyword{internal}

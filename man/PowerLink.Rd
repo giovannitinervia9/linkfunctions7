@@ -16,14 +16,14 @@ PowerLink(
 }
 \value{
 An S7 object of class \code{PowerLink}, inheriting from
-\code{\link{link}}.
+\code{\link[=link]{link()}}.
 }
 \description{
-The class \code{\link{power_link}} instantiates for a non-zero exponent.
+The class \code{\link[=power_link]{power_link()}} instantiates for a non-zero exponent.
 At \code{lambda = 0} the power link is the log link by continuity, and
-\code{\link{power_link}} returns a \code{\link{LogLink}} instead.
+\code{\link[=power_link]{power_link()}} returns a \code{\link[=LogLink]{LogLink()}} instead.
 }
 \seealso{
-\code{\link{power_link}}, the constructor users call.
+\code{\link[=power_link]{power_link()}}, the constructor users call.
 }
 \keyword{internal}

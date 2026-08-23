@@ -26,11 +26,11 @@ differentiating once the highest order the link supplies analytically.
 The whole design is in the two lines that pick \code{m} and \code{gap}: never
 differentiate numerically more than the number of orders actually missing.
 A link analytic to the second order asks for a first difference to reach the
-third, not three; a link supplying nothing but \code{\link{linkfun}} is the
+third, not three; a link supplying nothing but \code{\link[=linkfun]{linkfun()}} is the
 only case in which a fourth-order stencil is applied to the function itself.
 
 Note the recursion is only apparent. The base function is fetched through
-\code{\link{linkderiv}}, which dispatches to the link's own method for an
+\code{\link[=linkderiv]{linkderiv()}}, which dispatches to the link's own method for an
 order it implements — so the chain always terminates on analytic code, and
 never on another fallback.
 }

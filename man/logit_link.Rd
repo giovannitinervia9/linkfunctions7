@@ -48,5 +48,5 @@ check_link(lk)
 
 }
 \seealso{
-\code{\link{link}}, \code{\link{probit_link}}, \code{\link{cloglog_link}}
+\code{\link[=link]{link()}}, \code{\link[=probit_link]{probit_link()}}, \code{\link[=cloglog_link]{cloglog_link()}}
 }

@@ -1,12 +1,12 @@
 #' @title S7 Class for the LogLog Link
 #'
 #' @description
-#' The class \code{\link{loglog_link}} instantiates.
+#' The class [loglog_link()] instantiates.
 #'
-#' @return An S7 object of class \code{LogLogLink}, inheriting from
-#'   \code{\link{link}}.
+#' @return An S7 object of class `LogLogLink`, inheriting from
+#'   [link()].
 #'
-#' @seealso \code{\link{loglog_link}}, the constructor users call.
+#' @seealso [loglog_link()], the constructor users call.
 #' @keywords internal
 LogLogLink <- S7::new_class(
   name = "LogLogLink",
@@ -40,16 +40,16 @@ S7::method(d4linkinv, LogLogLink) <- function(x, eta) lk_loglog_inv_cpp(eta, 4L)
 #' @description
 #' The log-log link \eqn{\eta = -\log(-\log\theta)} on \eqn{(0, 1)},
 #' with inverse \eqn{\theta = \exp(-e^{-\eta})}; the mirror image of
-#' \code{\link{cloglog_link}}.
+#' [cloglog_link()].
 #' @details
 #' The Log-Log link is mathematically defined as \eqn{\eta = -\log(-\log(\theta))}.
 #' Consequently, the inverse link is derived as \eqn{\theta = \exp(-\exp(-\eta))}.
 #'
 #' Unlike the logit and the probit the link is asymmetric: the probability
 #' approaches 0 slowly and 1 sharply, the mirror image of
-#' \code{\link{cloglog_link}}. The domain of \eqn{\theta} is \eqn{(0, 1)}.
+#' [cloglog_link()]. The domain of \eqn{\theta} is \eqn{(0, 1)}.
 #'
-#' @return An S7 object of class \code{LogLogLink} (inheriting from \code{link}) containing the transformation functions
+#' @return An S7 object of class `LogLogLink` (inheriting from `link`) containing the transformation functions
 #' and their exact analytical derivatives up to the fourth order.
 #'
 #' @examples
@@ -67,7 +67,7 @@ S7::method(d4linkinv, LogLogLink) <- function(x, eta) lk_loglog_inv_cpp(eta, 4L)
 #'
 #' linkderiv(lk, 0.5, order = 3)
 #'
-#' @seealso \code{\link{link}}, \code{\link{cloglog_link}}, \code{\link{logit_link}}
+#' @seealso [link()], [cloglog_link()], [logit_link()]
 #' @export
 loglog_link <- function() {
   LogLogLink(

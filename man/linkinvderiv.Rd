@@ -23,14 +23,14 @@ derivative of \eqn{g^{-1}} evaluated there.
 A numeric vector of the same length as \code{eta}.
 }
 \description{
-A convenience router over \code{\link{linkinv}} and the four
+A convenience router over \code{\link[=linkinv]{linkinv()}} and the four
 \code{d*linkinv} generics.
 
 Routes to the correct inverse derivative generic based on order.
 }
 \details{
 This dispatches twice, once on itself and once on the order-specific generic.
-Where that matters, call \code{\link{dlinkinv}} and its siblings directly.
+Where that matters, call \code{\link[=dlinkinv]{dlinkinv()}} and its siblings directly.
 }
 \examples{
 lk <- logit_link()
@@ -40,6 +40,6 @@ linkinvderiv(lk, 0, order = 1)
 vapply(0:4, function(k) linkinvderiv(lk, 0.5, order = k), numeric(1))
 }
 \seealso{
-\code{\link{linkfun}}, \code{\link{linkinv}}, \code{\link{linkderiv}}, \code{\link{check_link}}, \code{\link{link}}
+\code{\link[=linkfun]{linkfun()}}, \code{\link[=linkinv]{linkinv()}}, \code{\link[=linkderiv]{linkderiv()}}, \code{\link[=check_link]{check_link()}}, \code{\link[=link]{link()}}
 }
 \keyword{internal}

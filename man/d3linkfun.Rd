@@ -23,5 +23,5 @@ d3linkfun(logit_link(), 0.5)
 d3linkfun(log_link(), c(1, 2))
 }
 \seealso{
-\code{\link{linkderiv}}, which routes to this generic by order.
+\code{\link[=linkderiv]{linkderiv()}}, which routes to this generic by order.
 }

@@ -1,23 +1,23 @@
 #' @title S7 Class for a Doubly Bounded Link
 #'
 #' @description
-#' The class \code{\link{bounded_link}} instantiates when given both endpoints.
+#' The class [bounded_link()] instantiates when given both endpoints.
 #' It is the logit of \eqn{p = (\theta - \mathrm{lwr})/W}, the position of
 #' \eqn{\theta} within the interval.
 #'
 #' @details
 #' The interval width \eqn{W = \mathrm{upr} - \mathrm{lwr}} is stored as its own
 #' property rather than recomputed. Every method needs it, and reading two S7
-#' properties and subtracting cost about a third of a call to \code{dlinkinv()};
+#' properties and subtracting cost about a third of a call to `dlinkinv()`;
 #' the constructor is the only place it can change.
 #'
 #' @param lwr,upr The interval endpoints.
-#' @param width The interval width, \code{upr - lwr}, set by the constructor.
+#' @param width The interval width, `upr - lwr`, set by the constructor.
 #'
-#' @return An S7 object of class \code{DoublyBoundedLink}, inheriting from
-#'   \code{\link{link}}.
+#' @return An S7 object of class `DoublyBoundedLink`, inheriting from
+#'   [link()].
 #'
-#' @seealso \code{\link{bounded_link}}, the constructor users call.
+#' @seealso [bounded_link()], the constructor users call.
 #' @keywords internal
 DoublyBoundedLink <- S7::new_class(
   name = "DoublyBoundedLink",
@@ -37,15 +37,15 @@ DoublyBoundedLink <- S7::new_class(
 #' @title S7 Class for a Lower Bounded Link
 #'
 #' @description
-#' The class \code{\link{bounded_link}} instantiates when given only a lower
-#' endpoint. It is the log link shifted to start at \code{lwr}.
+#' The class [bounded_link()] instantiates when given only a lower
+#' endpoint. It is the log link shifted to start at `lwr`.
 #'
 #' @param lwr The lower endpoint.
 #'
-#' @return An S7 object of class \code{LowerBoundedLink}, inheriting from
-#'   \code{\link{link}}.
+#' @return An S7 object of class `LowerBoundedLink`, inheriting from
+#'   [link()].
 #'
-#' @seealso \code{\link{bounded_link}}, the constructor users call.
+#' @seealso [bounded_link()], the constructor users call.
 #' @keywords internal
 LowerBoundedLink <- S7::new_class(
   name = "LowerBoundedLink",
@@ -58,16 +58,16 @@ LowerBoundedLink <- S7::new_class(
 #' @title S7 Class for an Upper Bounded Link
 #'
 #' @description
-#' The class \code{\link{bounded_link}} instantiates when given only an upper
-#' endpoint. It is the mirror image of \code{\link{LowerBoundedLink}}, the log of
-#' the distance below \code{upr}.
+#' The class [bounded_link()] instantiates when given only an upper
+#' endpoint. It is the mirror image of [LowerBoundedLink()], the log of
+#' the distance below `upr`.
 #'
 #' @param upr The upper endpoint.
 #'
-#' @return An S7 object of class \code{UpperBoundedLink}, inheriting from
-#'   \code{\link{link}}.
+#' @return An S7 object of class `UpperBoundedLink`, inheriting from
+#'   [link()].
 #'
-#' @seealso \code{\link{bounded_link}}, the constructor users call.
+#' @seealso [bounded_link()], the constructor users call.
 #' @keywords internal
 UpperBoundedLink <- S7::new_class(
   name = "UpperBoundedLink",
@@ -166,28 +166,28 @@ S7::method(d4linkinv, UpperBoundedLink) <- function(x, eta) -exp_floored(eta)
 #' when only the lower is, its mirror image \eqn{\eta = \log(upr - \theta)}
 #' when only the upper is, and the identity when neither is given.
 #'
-#' @param lwr Numeric or \code{NULL}. The lower bound of the interval.
-#' @param upr Numeric or \code{NULL}. The upper bound of the interval.
+#' @param lwr Numeric or `NULL`. The lower bound of the interval.
+#' @param upr Numeric or `NULL`. The upper bound of the interval.
 #'
 #' @details
-#' \strong{Doubly Bounded (\code{lwr} and \code{upr} provided):}
-#' Transforms \eqn{\theta} by normalizing it to \code{c(0, 1)} via
+#' **Doubly Bounded (`lwr` and `upr` provided):**
+#' Transforms \eqn{\theta} by normalizing it to `c(0, 1)` via
 #' \eqn{p = \frac{\theta - \text{lwr}}{\text{upr} - \text{lwr}}}, and then applying the logit function.
 #'
-#' \strong{Lower Bounded (\code{lwr} provided, \code{upr = NULL}):}
+#' **Lower Bounded (`lwr` provided, `upr = NULL`):**
 #' Defined as \eqn{\eta = \log(\theta - \text{lwr})}, with inverse \eqn{\theta = \exp(\eta) + \text{lwr}}.
 #'
-#' \strong{Upper Bounded (\code{lwr = NULL}, \code{upr} provided):}
+#' **Upper Bounded (`lwr = NULL`, `upr` provided):**
 #' Defined as \eqn{\eta = \log(\text{upr} - \theta)}, with inverse \eqn{\theta = \text{upr} - \exp(\eta)}.
 #'
-#' \strong{Unbounded (\code{lwr = NULL}, \code{upr = NULL}):}
-#' Returns the standard \code{\link{identity_link}}.
+#' **Unbounded (`lwr = NULL`, `upr = NULL`):**
+#' Returns the standard [identity_link()].
 #'
-#' @return An S7 object of class \code{link} containing the transformation functions
+#' @return An S7 object of class `link` containing the transformation functions
 #' and their exact analytical derivatives up to the fourth order. Which class
-#' exactly depends on the endpoints given: \code{\link{DoublyBoundedLink}},
-#' \code{\link{LowerBoundedLink}}, \code{\link{UpperBoundedLink}}, or an
-#' \code{\link{IdentityLink}} when neither endpoint is supplied.
+#' exactly depends on the endpoints given: [DoublyBoundedLink()],
+#' [LowerBoundedLink()], [UpperBoundedLink()], or an
+#' [IdentityLink()] when neither endpoint is supplied.
 #'
 #' @examples
 #' # a parameter known to lie in (0, 10)
@@ -205,7 +205,7 @@ S7::method(d4linkinv, UpperBoundedLink) <- function(x, eta) -exp_floored(eta)
 #' # derivatives, as for any other link
 #' dlinkinv(lk, 0)
 #'
-#' @seealso \code{\link{link}}, \code{\link{logit_link}}, \code{\link{log_link}}
+#' @seealso [link()], [logit_link()], [log_link()]
 #' @importFrom stats qlogis plogis
 #' @export
 bounded_link <- function(lwr = NULL, upr = NULL) {

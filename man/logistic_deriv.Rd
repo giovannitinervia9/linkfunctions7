@@ -22,10 +22,10 @@ polynomial in \eqn{p = \sigma(z)} itself.
 Three separate links need these same four polynomials, which is why they live
 in one place rather than being written out three times:
 \itemize{
-\item \code{\link{logit_link}} uses them directly, \eqn{h^{(k)} = \sigma^{(k)}};
-\item \code{\link{bounded_link}} with both endpoints scales them by the
+\item \code{\link[=logit_link]{logit_link()}} uses them directly, \eqn{h^{(k)} = \sigma^{(k)}};
+\item \code{\link[=bounded_link]{bounded_link()}} with both endpoints scales them by the
 interval width, \eqn{h^{(k)} = W \sigma^{(k)}};
-\item \code{\link{softplus_link}} uses them shifted one order down, since the
+\item \code{\link[=softplus_link]{softplus_link()}} uses them shifted one order down, since the
 softplus is an antiderivative of the logistic: \eqn{h^{(k+1)} = a^k \sigma^{(k)}}.
 }
 The polynomials are

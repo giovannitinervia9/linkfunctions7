@@ -23,5 +23,5 @@ d2linkinv(logit_link(), 0)     # zero, by symmetry about eta = 0
 d2linkinv(probit_link(), 1)
 }
 \seealso{
-\code{\link{linkinvderiv}}, which routes to this generic by order.
+\code{\link[=linkinvderiv]{linkinvderiv()}}, which routes to this generic by order.
 }

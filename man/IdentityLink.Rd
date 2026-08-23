@@ -12,13 +12,13 @@ IdentityLink(
 }
 \value{
 An S7 object of class \code{IdentityLink}, inheriting from
-\code{\link{link}}.
+\code{\link[=link]{link()}}.
 }
 \description{
-The class \code{\link{identity_link}} instantiates. Also what
-\code{\link{bounded_link}} returns when neither endpoint is given.
+The class \code{\link[=identity_link]{identity_link()}} instantiates. Also what
+\code{\link[=bounded_link]{bounded_link()}} returns when neither endpoint is given.
 }
 \seealso{
-\code{\link{identity_link}}, the constructor users call.
+\code{\link[=identity_link]{identity_link()}}, the constructor users call.
 }
 \keyword{internal}

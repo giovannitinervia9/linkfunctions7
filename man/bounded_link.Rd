@@ -14,9 +14,9 @@ bounded_link(lwr = NULL, upr = NULL)
 \value{
 An S7 object of class \code{link} containing the transformation functions
 and their exact analytical derivatives up to the fourth order. Which class
-exactly depends on the endpoints given: \code{\link{DoublyBoundedLink}},
-\code{\link{LowerBoundedLink}}, \code{\link{UpperBoundedLink}}, or an
-\code{\link{IdentityLink}} when neither endpoint is supplied.
+exactly depends on the endpoints given: \code{\link[=DoublyBoundedLink]{DoublyBoundedLink()}},
+\code{\link[=LowerBoundedLink]{LowerBoundedLink()}}, \code{\link[=UpperBoundedLink]{UpperBoundedLink()}}, or an
+\code{\link[=IdentityLink]{IdentityLink()}} when neither endpoint is supplied.
 }
 \description{
 The link for a parameter confined to \eqn{(lwr, upr)}: a scaled logit when
@@ -36,7 +36,7 @@ Defined as \eqn{\eta = \log(\theta - \text{lwr})}, with inverse \eqn{\theta = \e
 Defined as \eqn{\eta = \log(\text{upr} - \theta)}, with inverse \eqn{\theta = \text{upr} - \exp(\eta)}.
 
 \strong{Unbounded (\code{lwr = NULL}, \code{upr = NULL}):}
-Returns the standard \code{\link{identity_link}}.
+Returns the standard \code{\link[=identity_link]{identity_link()}}.
 }
 \examples{
 # a parameter known to lie in (0, 10)
@@ -56,5 +56,5 @@ dlinkinv(lk, 0)
 
 }
 \seealso{
-\code{\link{link}}, \code{\link{logit_link}}, \code{\link{log_link}}
+\code{\link[=link]{link()}}, \code{\link[=logit_link]{logit_link()}}, \code{\link[=log_link]{log_link()}}
 }

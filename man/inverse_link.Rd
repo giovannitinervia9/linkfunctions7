@@ -43,5 +43,5 @@ linkinv(lk, c(0.5, 2))
 
 }
 \seealso{
-\code{\link{link}}, \code{\link{identity_link}}
+\code{\link[=link]{link()}}, \code{\link[=identity_link]{identity_link()}}
 }

@@ -1,16 +1,16 @@
 #' @title S7 Class for the Power Link
 #'
 #' @description
-#' The class \code{\link{power_link}} instantiates for a non-zero exponent.
-#' At \code{lambda = 0} the power link is the log link by continuity, and
-#' \code{\link{power_link}} returns a \code{\link{LogLink}} instead.
+#' The class [power_link()] instantiates for a non-zero exponent.
+#' At `lambda = 0` the power link is the log link by continuity, and
+#' [power_link()] returns a [LogLink()] instead.
 #'
 #' @param lambda The exponent of the transformation.
 #'
-#' @return An S7 object of class \code{PowerLink}, inheriting from
-#'   \code{\link{link}}.
+#' @return An S7 object of class `PowerLink`, inheriting from
+#'   [link()].
 #'
-#' @seealso \code{\link{power_link}}, the constructor users call.
+#' @seealso [power_link()], the constructor users call.
 #' @keywords internal
 PowerLink <- S7::new_class(
   name = "PowerLink",
@@ -48,25 +48,25 @@ S7::method(d4linkinv, PowerLink) <- function(x, eta) { k <- 1 / x@lambda; na_fro
 #' The Power link is defined mathematically as \eqn{\eta = \theta^\lambda}.
 #' Consequently, the inverse link is derived as \eqn{\theta = \eta^{1/\lambda}}.
 #'
-#' \strong{Special Case (Box-Cox continuity):}
-#' If \code{lambda = 0}, the function mathematically approaches \eqn{\log(\theta)}. 
-#' In this scenario, the function automatically instantiates and returns a \code{\link{log_link}} 
-#' object, modifying its internal state to reflect the \code{lambda = 0} parameter.
+#' **Special Case (Box-Cox continuity):**
+#' If `lambda = 0`, the function mathematically approaches \eqn{\log(\theta)}. 
+#' In this scenario, the function automatically instantiates and returns a [log_link()] 
+#' object, modifying its internal state to reflect the `lambda = 0` parameter.
 #'
 #' Common special cases include:
 #' \itemize{
-#'   \item \code{lambda = 1}: Identity link.
-#'   \item \code{lambda = 0.5}: Square-root link.
-#'   \item \code{lambda = -1}: Inverse link.
-#'   \item \code{lambda = 0}: Log link.
+#'   \item `lambda = 1`: Identity link.
+#'   \item `lambda = 0.5`: Square-root link.
+#'   \item `lambda = -1`: Inverse link.
+#'   \item `lambda = 0`: Log link.
 #' }
 #'
-#' The mathematical domain of \eqn{\theta} is \code{c(0, Inf)}. Depending on the value 
-#' of \code{lambda}, extreme care must be taken during numerical optimization to guarantee 
-#' that \eqn{\eta} remains strictly positive to avoid \code{NaN}s from fractional exponents.
+#' The mathematical domain of \eqn{\theta} is `c(0, Inf)`. Depending on the value 
+#' of `lambda`, extreme care must be taken during numerical optimization to guarantee 
+#' that \eqn{\eta} remains strictly positive to avoid `NaN`s from fractional exponents.
 #'
-#' @return An S7 object of class \code{PowerLink} (inheriting from \code{link}), 
-#' or an object of class \code{LogLink} if \code{lambda = 0}.
+#' @return An S7 object of class `PowerLink` (inheriting from `link`), 
+#' or an object of class `LogLink` if `lambda = 0`.
 #'
 #' @examples
 #' lk <- power_link(2)
@@ -86,7 +86,7 @@ S7::method(d4linkinv, PowerLink) <- function(x, eta) { k <- 1 / x@lambda; na_fro
 #' power_link(0)
 #' linkfun(power_link(0), exp(1))
 #'
-#' @seealso \code{\link{link}}, \code{\link{log_link}}, \code{\link{identity_link}}
+#' @seealso [link()], [log_link()], [identity_link()]
 #' @export
 power_link <- function(lambda = 1) {
   # Without this the `if` below is what fails, on a missing or vector lambda,

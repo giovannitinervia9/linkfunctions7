@@ -1,12 +1,12 @@
 #' @title S7 Class for the Logit Link
 #'
 #' @description
-#' The class \code{\link{logit_link}} instantiates.
+#' The class [logit_link()] instantiates.
 #'
-#' @return An S7 object of class \code{LogitLink}, inheriting from
-#'   \code{\link{link}}.
+#' @return An S7 object of class `LogitLink`, inheriting from
+#'   [link()].
 #'
-#' @seealso \code{\link{logit_link}}, the constructor users call.
+#' @seealso [logit_link()], the constructor users call.
 #' @keywords internal
 LogitLink <- S7::new_class(
   name = "LogitLink",
@@ -52,10 +52,10 @@ S7::method(d4linkinv, LogitLink) <- function(x, eta) lk_logit_inv_cpp(eta, 4L)
 #' the linear predictor is the log-odds of the event probability. The domain of
 #' \eqn{\theta} is \eqn{(0, 1)}.
 #'
-#' The implementation delegates to \code{stats::qlogis} and
-#' \code{stats::plogis}, which remain accurate near both boundaries.
+#' The implementation delegates to `stats::qlogis` and
+#' `stats::plogis`, which remain accurate near both boundaries.
 #'
-#' @return An S7 object of class \code{LogitLink} (inheriting from \code{link}) containing the transformation functions
+#' @return An S7 object of class `LogitLink` (inheriting from `link`) containing the transformation functions
 #' and their exact analytical derivatives up to the fourth order.
 #'
 #' @examples
@@ -77,7 +77,7 @@ S7::method(d4linkinv, LogitLink) <- function(x, eta) lk_logit_inv_cpp(eta, 4L)
 #' # every mathematical property is checkable
 #' check_link(lk)
 #'
-#' @seealso \code{\link{link}}, \code{\link{probit_link}}, \code{\link{cloglog_link}}
+#' @seealso [link()], [probit_link()], [cloglog_link()]
 #' @importFrom stats qlogis plogis
 #' @export
 logit_link <- function() {

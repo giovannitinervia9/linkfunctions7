@@ -23,7 +23,7 @@ Consequently, the inverse link is derived as \eqn{\theta = \eta^{1/\lambda}}.
 
 \strong{Special Case (Box-Cox continuity):}
 If \code{lambda = 0}, the function mathematically approaches \eqn{\log(\theta)}.
-In this scenario, the function automatically instantiates and returns a \code{\link{log_link}}
+In this scenario, the function automatically instantiates and returns a \code{\link[=log_link]{log_link()}}
 object, modifying its internal state to reflect the \code{lambda = 0} parameter.
 
 Common special cases include:
@@ -58,5 +58,5 @@ linkfun(power_link(0), exp(1))
 
 }
 \seealso{
-\code{\link{link}}, \code{\link{log_link}}, \code{\link{identity_link}}
+\code{\link[=link]{link()}}, \code{\link[=log_link]{log_link()}}, \code{\link[=identity_link]{identity_link()}}
 }

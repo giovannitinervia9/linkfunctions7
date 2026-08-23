@@ -10,10 +10,10 @@ exp_floored(eta)
 \item{eta}{A numeric vector of linear predictors.}
 }
 \value{
-A numeric vector, never smaller than \code{\link{exp_floor}}.
+A numeric vector, never smaller than \code{\link[=exp_floor]{exp_floor()}}.
 }
 \description{
-\code{exp(eta)}, bounded below by \code{\link{exp_floor}}.
+\code{exp(eta)}, bounded below by \code{\link[=exp_floor]{exp_floor()}}.
 }
 \details{
 A profile of a plain gaussian fit puts this \code{pmax} above the QR

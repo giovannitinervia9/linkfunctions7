@@ -44,5 +44,5 @@ linkfun(power_link(0.5), 4)
 
 }
 \seealso{
-\code{\link{link}}, \code{\link{power_link}}, \code{\link{log_link}}
+\code{\link[=link]{link()}}, \code{\link[=power_link]{power_link()}}, \code{\link[=log_link]{log_link()}}
 }
