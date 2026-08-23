@@ -93,10 +93,9 @@ S7::method(d4linkinv, SoftplusLink) <- function(x, eta) {
 #' is the Softplus of the linear predictor \eqn{\eta}.
 #'
 #' Mathematically:
-#' \itemize{
-#'   \item Inverse Link (Softplus): \eqn{\theta = \frac{1}{a} \log(1 + \exp(a \eta))}
-#'   \item Link Function: \eqn{\eta = \frac{1}{a} \log(\exp(a \theta) - 1)}
-#' }
+#'
+#' - Inverse Link (Softplus): \eqn{\theta = \frac{1}{a} \log(1 + \exp(a \eta))}
+#' - Link Function: \eqn{\eta = \frac{1}{a} \log(\exp(a \theta) - 1)}
 #'
 #' **Behavior:**
 #' For large negative \eqn{\eta}, \eqn{\theta \approx 0}.

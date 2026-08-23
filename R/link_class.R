@@ -11,10 +11,10 @@
 #' Objects of class `link` are instantiated using the S7 object system.
 #'
 #' The object assumes the following mathematical notation:
-#' \itemize{
-#'   \item \eqn{\theta}: The response parameter (e.g., probability, mean, dispersion).
-#'   \item \eqn{\eta}: The linear predictor (unconstrained scale).
-#' }
+#'
+#' - \eqn{\theta}: The response parameter (e.g., probability, mean, dispersion).
+#' - \eqn{\eta}: The linear predictor (unconstrained scale).
+#'
 #' The relationship is defined as \eqn{\eta = g(\theta)} (link function) and
 #' \eqn{\theta = g^{-1}(\eta)} (inverse link function).
 #'
@@ -121,13 +121,13 @@ na_from <- function(r, v) {
 #' @details
 #' Three separate links need these same four polynomials, which is why they live
 #' in one place rather than being written out three times:
-#' \itemize{
-#'   \item [logit_link()] uses them directly, \eqn{h^{(k)} = \sigma^{(k)}};
-#'   \item [bounded_link()] with both endpoints scales them by the
-#'     interval width, \eqn{h^{(k)} = W \sigma^{(k)}};
-#'   \item [softplus_link()] uses them shifted one order down, since the
-#'     softplus is an antiderivative of the logistic: \eqn{h^{(k+1)} = a^k \sigma^{(k)}}.
-#' }
+#'
+#' - [logit_link()] uses them directly, \eqn{h^{(k)} = \sigma^{(k)}};
+#' - [bounded_link()] with both endpoints scales them by the
+#'   interval width, \eqn{h^{(k)} = W \sigma^{(k)}};
+#' - [softplus_link()] uses them shifted one order down, since the
+#'   softplus is an antiderivative of the logistic: \eqn{h^{(k+1)} = a^k \sigma^{(k)}}.
+#'
 #' The polynomials are
 #' \deqn{\sigma' = p(1-p)}
 #' \deqn{\sigma'' = p(1-p)(1-2p)}

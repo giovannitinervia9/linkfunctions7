@@ -28,6 +28,7 @@ interval width, \eqn{h^{(k)} = W \sigma^{(k)}};
 \item \code{\link[=softplus_link]{softplus_link()}} uses them shifted one order down, since the
 softplus is an antiderivative of the logistic: \eqn{h^{(k+1)} = a^k \sigma^{(k)}}.
 }
+
 The polynomials are
 \deqn{\sigma' = p(1-p)}
 \deqn{\sigma'' = p(1-p)(1-2p)}

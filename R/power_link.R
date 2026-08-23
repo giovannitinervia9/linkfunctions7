@@ -54,12 +54,11 @@ S7::method(d4linkinv, PowerLink) <- function(x, eta) { k <- 1 / x@lambda; na_fro
 #' object, modifying its internal state to reflect the `lambda = 0` parameter.
 #'
 #' Common special cases include:
-#' \itemize{
-#'   \item `lambda = 1`: Identity link.
-#'   \item `lambda = 0.5`: Square-root link.
-#'   \item `lambda = -1`: Inverse link.
-#'   \item `lambda = 0`: Log link.
-#' }
+#'
+#' - `lambda = 1`: Identity link.
+#' - `lambda = 0.5`: Square-root link.
+#' - `lambda = -1`: Inverse link.
+#' - `lambda = 0`: Log link.
 #'
 #' The mathematical domain of \eqn{\theta} is `c(0, Inf)`. Depending on the value 
 #' of `lambda`, extreme care must be taken during numerical optimization to guarantee 

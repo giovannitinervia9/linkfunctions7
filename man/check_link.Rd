@@ -51,6 +51,7 @@ The function assumes the existence of S7 generics \code{linkfun}, \code{linkinv}
 \item \strong{Link Derivatives:} Validates the exact analytical forward derivatives of \eqn{g(\theta)} up to the 4th order by comparing them against numerical gradients.
 \item \strong{Inverse Link Derivatives:} Validates the exact analytical inverse derivatives of \eqn{g^{-1}(\eta)} up to the 4th order by comparing them against numerical gradients.
 }
+
 Both forward and inverse derivative testing avoids compounding numerical errors by applying
 first-order numerical differentiation iteratively to the exact lower-order analytical derivatives.
 }

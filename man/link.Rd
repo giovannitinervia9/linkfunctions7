@@ -33,6 +33,7 @@ The object assumes the following mathematical notation:
 \item \eqn{\theta}: The response parameter (e.g., probability, mean, dispersion).
 \item \eqn{\eta}: The linear predictor (unconstrained scale).
 }
+
 The relationship is defined as \eqn{\eta = g(\theta)} (link function) and
 \eqn{\theta = g^{-1}(\eta)} (inverse link function).
 }

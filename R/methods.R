@@ -47,10 +47,9 @@ S7::method(print, link) <- print.link
 #' @description
 #' Plot method for `link` objects.
 #' It generates a panel with two plots:
-#' \enumerate{
-#'   \item The link function \eqn{\eta = g(\theta)} over its valid domain.
-#'   \item The inverse link function \eqn{\theta = g^{-1}(\eta)} over a standard range of linear predictors.
-#' }
+#'
+#' 1. The link function \eqn{\eta = g(\theta)} over its valid domain.
+#' 2. The inverse link function \eqn{\theta = g^{-1}(\eta)} over a standard range of linear predictors.
 #'
 #' @param x An object of class `link`.
 #' @param ... Additional graphical parameters passed to [graphics::plot()].
@@ -230,14 +229,14 @@ S7::method(linkinvderiv, link) <- linkinvderiv.link
 #' @details
 #' The function assumes the existence of S7 generics `linkfun`, `linkinv`,
 #' `linkderiv`, and `linkinvderiv`. The method performs the following six diagnostic checks:
-#' \enumerate{
-#'   \item \strong{Invertibility (\eqn{\theta} space):} Verifies \eqn{g^{-1}(g(\theta)) = \theta}. Ensures that mapping from the parameter space to the linear predictor and back is lossless.
-#'   \item \strong{Invertibility (\eqn{\eta} space):} Verifies \eqn{g(g^{-1}(\eta)) = \eta}. Ensures that mapping from the linear predictor to the parameter space and back is lossless. Note that this test may fail intentionally and correctly for links that map to a restricted \eqn{\eta} domain (e.g., the square root link).
-#'   \item **Strict Monotonicity:** Checks if the first derivative \eqn{g'(\theta)} is strictly positive or strictly negative across the domain, guaranteeing a one-to-one mapping.
-#'   \item **Inverse Function Theorem:** Verifies the mathematical identity \eqn{g'(\theta) \cdot (g^{-1})'(\eta) = 1}, confirming the theoretical relationship between the link derivative and the inverse link derivative.
-#'   \item **Link Derivatives:** Validates the exact analytical forward derivatives of \eqn{g(\theta)} up to the 4th order by comparing them against numerical gradients.
-#'   \item **Inverse Link Derivatives:** Validates the exact analytical inverse derivatives of \eqn{g^{-1}(\eta)} up to the 4th order by comparing them against numerical gradients.
-#' }
+#'
+#' 1. **Invertibility (\eqn{\theta} space):** Verifies \eqn{g^{-1}(g(\theta)) = \theta}. Ensures that mapping from the parameter space to the linear predictor and back is lossless.
+#' 2. **Invertibility (\eqn{\eta} space):** Verifies \eqn{g(g^{-1}(\eta)) = \eta}. Ensures that mapping from the linear predictor to the parameter space and back is lossless. Note that this test may fail intentionally and correctly for links that map to a restricted \eqn{\eta} domain (e.g., the square root link).
+#' 3. **Strict Monotonicity:** Checks if the first derivative \eqn{g'(\theta)} is strictly positive or strictly negative across the domain, guaranteeing a one-to-one mapping.
+#' 4. **Inverse Function Theorem:** Verifies the mathematical identity \eqn{g'(\theta) \cdot (g^{-1})'(\eta) = 1}, confirming the theoretical relationship between the link derivative and the inverse link derivative.
+#' 5. **Link Derivatives:** Validates the exact analytical forward derivatives of \eqn{g(\theta)} up to the 4th order by comparing them against numerical gradients.
+#' 6. **Inverse Link Derivatives:** Validates the exact analytical inverse derivatives of \eqn{g^{-1}(\eta)} up to the 4th order by comparing them against numerical gradients.
+#'
 #' Both forward and inverse derivative testing avoids compounding numerical errors by applying
 #' first-order numerical differentiation iteratively to the exact lower-order analytical derivatives.
 #'
