@@ -12,15 +12,29 @@ LowerBoundedLink(
 )
 }
 \arguments{
+\item{link_name}{A character string naming the link, set by the
+constructor and shown by \code{print()}.}
+
+\item{link_bounds}{A length-two numeric vector, the open interval the
+parameter lives in. Set by the constructor; see Value for this link's.}
+
+\item{link_params}{A list of the link's own parameters, empty where it has
+none. Set by the constructor.}
+
 \item{lwr}{The lower endpoint.}
 }
 \value{
-An S7 object of class \code{LowerBoundedLink}, inheriting from
-\code{\link[=link]{link()}}.
+An S7 object of class \code{LowerBoundedLink}, inheriting from \code{\link[=link]{link()}} and
+carrying its three properties \code{link_name}, \code{link_bounds} and
+\code{link_params}. Its \code{link_bounds} are \code{c(lwr, Inf)}, and its \code{link_params} holds \code{lwr}.
 }
 \description{
-The class \code{\link[=bounded_link]{bounded_link()}} instantiates when given only a lower
-endpoint. It is the log link shifted to start at \code{lwr}.
+Carries the shifted log on \eqn{(l, \infty)}: \eqn{\eta = \log(\theta - l)},
+with inverse \eqn{\theta = l + e^{\eta}}.
+
+Every derivative is the log link's, the shift being a constant that
+differentiates away, and the exponential is floored at \code{\link[=exp_floor]{exp_floor()}} so the
+parameter never reaches the bound exactly. It is the log link shifted to start at \code{lwr}.
 }
 \seealso{
 \code{\link[=bounded_link]{bounded_link()}}, the constructor users call.

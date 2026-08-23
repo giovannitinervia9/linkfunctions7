@@ -19,8 +19,8 @@ The \code{k}-th derivative of \eqn{\sigma(z) = 1/(1 + e^{-z})}, written as a
 polynomial in \eqn{p = \sigma(z)} itself.
 }
 \details{
-Three separate links need these same four polynomials, which is why they live
-in one place rather than being written out three times:
+Three separate links need these same four polynomials, so they live in one
+place and are written out once:
 \itemize{
 \item \code{\link[=logit_link]{logit_link()}} uses them directly, \eqn{h^{(k)} = \sigma^{(k)}};
 \item \code{\link[=bounded_link]{bounded_link()}} with both endpoints scales them by the

@@ -31,8 +31,9 @@ linkfun <- S7::new_generic("linkfun", "x", fun = function(x, theta) S7::S7_dispa
 #'
 #' @details
 #' **The result is always strictly inside `link_bounds`**, and that is
-#' enforced here rather than left to each method. A link is a bijection onto an
-#' *open* interval, which is exactly what makes it useful — a value it
+#' enforced in the generic, so no method has to repeat it. A link is a
+#' bijection onto an
+#' *open* interval, which is exactly what makes it useful: a value it
 #' returns can be handed to [linkfun()] and come back, or to a density
 #' that validates its parameters against open intervals. In double precision the
 #' bijection is not quite onto: `plogis` is exactly 1 above about
@@ -43,8 +44,8 @@ linkfun <- S7::new_generic("linkfun", "x", fun = function(x, theta) S7::S7_dispa
 #'
 #' So the generic clamps: a result at or beyond a finite bound becomes the
 #' nearest double strictly inside it, and a non-finite result becomes the
-#' largest finite double of that sign. Both are derived rather than chosen —
-#' they are the extremes of what "strictly inside, and a usable number" permits,
+#' largest finite double of that sign. Both bounds are derived, being
+#' the extremes of what "strictly inside, and a usable number" permits,
 #' and no tolerance is invented. The clamp costs one comparison per bound and
 #' fires only in the tails.
 #'

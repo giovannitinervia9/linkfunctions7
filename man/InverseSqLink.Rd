@@ -10,12 +10,28 @@ InverseSqLink(
   link_params = NULL
 )
 }
+\arguments{
+\item{link_name}{A character string naming the link, set by the
+constructor and shown by \code{print()}.}
+
+\item{link_bounds}{A length-two numeric vector, the open interval the
+parameter lives in. Set by the constructor; see Value for this link's.}
+
+\item{link_params}{A list of the link's own parameters, empty where it has
+none. Set by the constructor.}
+}
 \value{
-An S7 object of class \code{InverseSqLink}, inheriting from
-\code{\link[=link]{link()}}.
+An S7 object of class \code{InverseSqLink}, inheriting from \code{\link[=link]{link()}} and
+carrying its three properties \code{link_name}, \code{link_bounds} and
+\code{link_params}. Its \code{link_bounds} are \code{c(0, Inf)} and it carries no link parameters.
 }
 \description{
-The class \code{\link[=inverse_sq_link]{inverse_sq_link()}} instantiates.
+Carries the inverse-square transformation \eqn{\eta = 1/\theta^2} on
+\eqn{(0, \infty)}, with inverse \eqn{\theta = 1/\sqrt{\eta}}.
+
+It is the canonical link of the inverse Gaussian family. Its image is
+\eqn{(0, \infty)}, so a negative linear predictor has no parameter behind
+it, and like \code{\link[=inverse_link]{inverse_link()}} the map is decreasing.
 }
 \seealso{
 \code{\link[=inverse_sq_link]{inverse_sq_link()}}, the constructor users call.

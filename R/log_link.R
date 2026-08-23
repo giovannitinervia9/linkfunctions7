@@ -1,10 +1,23 @@
 #' @title S7 Class for the Logarithmic Link
 #'
 #' @description
-#' The class [log_link()] instantiates.
+#' Carries the log transformation \eqn{\eta = \log\theta} on \eqn{(0, \infty)},
+#' with inverse \eqn{\theta = e^{\eta}}. It is the canonical link for a positive
+#' parameter, and the one a scale or a rate is almost always fitted on.
 #'
-#' @return An S7 object of class `LogLink`, inheriting from
-#'   [link()].
+#' The inverse is floored at [exp_floor()], so a parameter reported by this link
+#' is never exactly zero and can be divided into.
+#'
+#' @param link_name A character string naming the link, set by the
+#'   constructor and shown by `print()`.
+#' @param link_bounds A length-two numeric vector, the open interval the
+#'   parameter lives in. Set by the constructor; see Value for this link's.
+#' @param link_params A list of the link's own parameters, empty where it has
+#'   none. Set by the constructor.
+#'
+#' @return An S7 object of class `LogLink`, inheriting from [link()] and
+#'   carrying its three properties `link_name`, `link_bounds` and
+#'   `link_params`. Its `link_bounds` are `c(0, Inf)` and it carries no link parameters.
 #'
 #' @seealso [log_link()], the constructor users call.
 #' @keywords internal

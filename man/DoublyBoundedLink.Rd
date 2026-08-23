@@ -14,16 +14,33 @@ DoublyBoundedLink(
 )
 }
 \arguments{
+\item{link_name}{A character string naming the link, set by the
+constructor and shown by \code{print()}.}
+
+\item{link_bounds}{A length-two numeric vector, the open interval the
+parameter lives in. Set by the constructor; see Value for this link's.}
+
+\item{link_params}{A list of the link's own parameters, empty where it has
+none. Set by the constructor.}
+
 \item{lwr, upr}{The interval endpoints.}
 
 \item{width}{The interval width, \code{upr - lwr}, set by the constructor.}
 }
 \value{
-An S7 object of class \code{DoublyBoundedLink}, inheriting from
-\code{\link[=link]{link()}}.
+An S7 object of class \code{DoublyBoundedLink}, inheriting from \code{\link[=link]{link()}} and
+carrying its three properties \code{link_name}, \code{link_bounds} and
+\code{link_params}. Its \code{link_bounds} are the endpoints given, and its \code{link_params} holds
+\code{lwr} and \code{upr}.
 }
 \description{
-The class \code{\link[=bounded_link]{bounded_link()}} instantiates when given both endpoints.
+Carries the scaled logit on a finite interval \eqn{(l, u)}: the parameter is
+mapped to its position \eqn{p = (\theta - l)/(u - l)} within the interval and
+that position is carried by the logit, so
+\eqn{\eta = \log(p/(1-p))}.
+
+Its derivatives are the logistic polynomials of \code{\link[=logistic_deriv]{logistic_deriv()}} scaled by
+the width \eqn{u - l}, so a bounded link costs no more than a logit.
 It is the logit of \eqn{p = (\theta - \mathrm{lwr})/W}, the position of
 \eqn{\theta} within the interval.
 }

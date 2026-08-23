@@ -10,12 +10,28 @@ LogLogLink(
   link_params = NULL
 )
 }
+\arguments{
+\item{link_name}{A character string naming the link, set by the
+constructor and shown by \code{print()}.}
+
+\item{link_bounds}{A length-two numeric vector, the open interval the
+parameter lives in. Set by the constructor; see Value for this link's.}
+
+\item{link_params}{A list of the link's own parameters, empty where it has
+none. Set by the constructor.}
+}
 \value{
-An S7 object of class \code{LogLogLink}, inheriting from
-\code{\link[=link]{link()}}.
+An S7 object of class \code{LogLogLink}, inheriting from \code{\link[=link]{link()}} and
+carrying its three properties \code{link_name}, \code{link_bounds} and
+\code{link_params}. Its \code{link_bounds} are \code{c(0, 1)} and it carries no link parameters.
 }
 \description{
-The class \code{\link[=loglog_link]{loglog_link()}} instantiates.
+Carries the log-log transformation \eqn{\eta = -\log(-\log\theta)} on
+\eqn{(0, 1)}, with inverse \eqn{\theta = \exp(-e^{-\eta})}.
+
+It is the mirror image of \code{\link[=cloglog_link]{cloglog_link()}} about \eqn{\theta = 1/2}:
+reflecting one link's parameter gives the other's, so it approaches zero
+faster than one.
 }
 \seealso{
 \code{\link[=loglog_link]{loglog_link()}}, the constructor users call.

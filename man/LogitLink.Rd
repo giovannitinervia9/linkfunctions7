@@ -10,12 +10,28 @@ LogitLink(
   link_params = NULL
 )
 }
+\arguments{
+\item{link_name}{A character string naming the link, set by the
+constructor and shown by \code{print()}.}
+
+\item{link_bounds}{A length-two numeric vector, the open interval the
+parameter lives in. Set by the constructor; see Value for this link's.}
+
+\item{link_params}{A list of the link's own parameters, empty where it has
+none. Set by the constructor.}
+}
 \value{
-An S7 object of class \code{LogitLink}, inheriting from
-\code{\link[=link]{link()}}.
+An S7 object of class \code{LogitLink}, inheriting from \code{\link[=link]{link()}} and
+carrying its three properties \code{link_name}, \code{link_bounds} and
+\code{link_params}. Its \code{link_bounds} are \code{c(0, 1)} and it carries no link parameters.
 }
 \description{
-The class \code{\link[=logit_link]{logit_link()}} instantiates.
+Carries the logit transformation \eqn{\eta = \log(\theta/(1-\theta))} on
+\eqn{(0, 1)}, with inverse \eqn{\theta = 1/(1+e^{-\eta})}. It is the
+canonical link for a probability, and its linear predictor is the log-odds.
+
+Every inverse derivative is a polynomial in \eqn{\theta} itself, the first
+being \eqn{\theta(1-\theta)}, the variance of a Bernoulli.
 }
 \seealso{
 \code{\link[=logit_link]{logit_link()}}, the constructor users call.

@@ -10,12 +10,29 @@ CauchitLink(
   link_params = NULL
 )
 }
+\arguments{
+\item{link_name}{A character string naming the link, set by the
+constructor and shown by \code{print()}.}
+
+\item{link_bounds}{A length-two numeric vector, the open interval the
+parameter lives in. Set by the constructor; see Value for this link's.}
+
+\item{link_params}{A list of the link's own parameters, empty where it has
+none. Set by the constructor.}
+}
 \value{
-An S7 object of class \code{CauchitLink}, inheriting from
-\code{\link[=link]{link()}}.
+An S7 object of class \code{CauchitLink}, inheriting from \code{\link[=link]{link()}} and
+carrying its three properties \code{link_name}, \code{link_bounds} and
+\code{link_params}. Its \code{link_bounds} are \code{c(0, 1)} and it carries no link parameters.
 }
 \description{
-The class \code{\link[=cauchit_link]{cauchit_link()}} instantiates.
+Carries the cauchit transformation \eqn{\eta = \tan(\pi(\theta - 1/2))} on
+\eqn{(0, 1)}, the Cauchy quantile function, with inverse
+\eqn{\theta = 1/2 + \arctan(\eta)/\pi}.
+
+Its tails are far heavier than the logit's or the probit's, so an extreme
+linear predictor moves the probability much less. That makes it the choice
+when a few observations would otherwise drive the fit to a boundary.
 }
 \seealso{
 \code{\link[=cauchit_link]{cauchit_link()}}, the constructor users call.

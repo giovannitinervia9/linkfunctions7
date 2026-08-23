@@ -12,15 +12,32 @@ SoftplusLink(
 )
 }
 \arguments{
+\item{link_name}{A character string naming the link, set by the
+constructor and shown by \code{print()}.}
+
+\item{link_bounds}{A length-two numeric vector, the open interval the
+parameter lives in. Set by the constructor; see Value for this link's.}
+
+\item{link_params}{A list of the link's own parameters, empty where it has
+none. Set by the constructor.}
+
 \item{a}{The scale parameter, strictly positive.}
 }
 \value{
-An S7 object of class \code{SoftplusLink}, inheriting from
-\code{\link[=link]{link()}}.
+An S7 object of class \code{SoftplusLink}, inheriting from \code{\link[=link]{link()}} and
+carrying its three properties \code{link_name}, \code{link_bounds} and
+\code{link_params}. Its \code{link_bounds} are \code{c(0, Inf)} and its \code{link_params} holds \code{a}.
 }
 \description{
-The class \code{\link[=softplus_link]{softplus_link()}} instantiates. Carries the scale
-parameter \code{a} in a dedicated property.
+Carries the softplus transformation on \eqn{(0, \infty)}, whose inverse
+\eqn{\theta = \log(1 + e^{a\eta})/a} is a smooth approximation of
+\eqn{\max(0, \eta)} that sharpens as the scale \eqn{a} grows.
+
+It is the alternative to the log link for a positive parameter: the log link
+maps a large negative \eqn{\eta} to something indistinguishable from zero,
+while the softplus approaches zero linearly and stays numerically alive
+there. The scale is stored in \code{link_params}, so one class serves every
+\eqn{a}.
 }
 \seealso{
 \code{\link[=softplus_link]{softplus_link()}}, the constructor users call.

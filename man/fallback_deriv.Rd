@@ -31,7 +31,7 @@ only case in which a fourth-order stencil is applied to the function itself.
 
 Note the recursion is only apparent. The base function is fetched through
 \code{\link[=linkderiv]{linkderiv()}}, which dispatches to the link's own method for an
-order it implements — so the chain always terminates on analytic code, and
+order it implements, so the chain always terminates on analytic code, and
 never on another fallback.
 }
 \keyword{internal}

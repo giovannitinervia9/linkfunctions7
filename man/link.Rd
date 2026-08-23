@@ -21,9 +21,9 @@ constructors (\code{\link[=logit_link]{logit_link()}}, \code{\link[=power_link]{
 }
 \description{
 The base S7 class for link functions. It carries the name, the domain and
-any link parameters; the transformations themselves -- forward, inverse and
-their analytical derivatives to fourth order -- are methods that each
-subclass registers on the ten generics.
+any link parameters. The transformations themselves are methods that each
+subclass registers on the ten generics: the forward map, the inverse, and
+their analytical derivatives to fourth order in both directions.
 }
 \details{
 Objects of class \code{link} are instantiated using the S7 object system.

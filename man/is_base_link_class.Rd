@@ -20,10 +20,11 @@ registered for itself.
 \details{
 Object identity is tried first, since it is the usual case and costs
 nothing, and the class name and package are compared after. The second
-comparison is what makes the answer reliable: \code{identical()} on an S7
-class is object identity, so it is false for a class re-created from the
-same definition, which is what happens whenever a package's code is
-evaluated rather than loaded. A base fallback mistaken for an analytic
+comparison is the one that makes the answer reliable. \code{identical()} on an
+S7 class is object identity, so it is false for a class re-created from the
+same definition, which happens whenever a package's code is evaluated
+instead of loaded, as it is under coverage instrumentation. A base fallback
+mistaken for an analytic
 method makes every fallback differentiate the order below it, which is the
 nested differencing the design exists to forbid.
 }

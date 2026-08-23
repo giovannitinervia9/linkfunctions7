@@ -10,12 +10,29 @@ SqrtLink(
   link_params = NULL
 )
 }
+\arguments{
+\item{link_name}{A character string naming the link, set by the
+constructor and shown by \code{print()}.}
+
+\item{link_bounds}{A length-two numeric vector, the open interval the
+parameter lives in. Set by the constructor; see Value for this link's.}
+
+\item{link_params}{A list of the link's own parameters, empty where it has
+none. Set by the constructor.}
+}
 \value{
-An S7 object of class \code{SqrtLink}, inheriting from
-\code{\link[=link]{link()}}.
+An S7 object of class \code{SqrtLink}, inheriting from \code{\link[=link]{link()}} and
+carrying its three properties \code{link_name}, \code{link_bounds} and
+\code{link_params}. Its \code{link_bounds} are \code{c(0, Inf)} and it carries no link parameters.
 }
 \description{
-The class \code{\link[=sqrt_link]{sqrt_link()}} instantiates.
+Carries the square-root transformation \eqn{\eta = \sqrt{\theta}} on
+\eqn{(0, \infty)}, with inverse \eqn{\theta = \eta^2}.
+
+Its image is only \eqn{(0, \infty)}, so a negative linear predictor has no
+parameter behind it. That is a property of the link, and \code{\link[=check_link]{check_link()}}
+reports the failing invertibility check as expected for exactly this
+reason.
 }
 \seealso{
 \code{\link[=sqrt_link]{sqrt_link()}}, the constructor users call.

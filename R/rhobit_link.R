@@ -1,10 +1,24 @@
 #' @title S7 Class for the Rhobit Link
 #'
 #' @description
-#' The class [rhobit_link()] instantiates.
+#' Carries the rhobit transformation
+#' \eqn{\eta = \mathrm{atanh}(\theta) = \tfrac{1}{2}\log((1+\theta)/(1-\theta))}
+#' on \eqn{(-1, 1)}, with inverse \eqn{\theta = \tanh(\eta)}.
 #'
-#' @return An S7 object of class `RhobitLink`, inheriting from
-#'   [link()].
+#' This is Fisher's z, the natural chart for a correlation: it carries the open
+#' interval onto the whole line, so an optimizer moving freely in \eqn{\eta}
+#' never proposes a correlation outside its range.
+#'
+#' @param link_name A character string naming the link, set by the
+#'   constructor and shown by `print()`.
+#' @param link_bounds A length-two numeric vector, the open interval the
+#'   parameter lives in. Set by the constructor; see Value for this link's.
+#' @param link_params A list of the link's own parameters, empty where it has
+#'   none. Set by the constructor.
+#'
+#' @return An S7 object of class `RhobitLink`, inheriting from [link()] and
+#'   carrying its three properties `link_name`, `link_bounds` and
+#'   `link_params`. Its `link_bounds` are `c(-1, 1)` and it carries no link parameters.
 #'
 #' @seealso [rhobit_link()], the constructor users call.
 #' @keywords internal

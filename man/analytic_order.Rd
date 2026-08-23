@@ -26,8 +26,8 @@ the base \code{\link[=link]{link()}} class is a fallback, anything else is the l
 own. Comparing method objects with \code{identical()} does not work for this,
 because S7 wraps them.
 
-The recorded class is compared by name and package rather than with
-\code{identical()}, since \code{identical()} on S7 class objects tests
+The recorded class is compared by name and package, never with
+\code{identical()}: \code{identical()} on S7 class objects tests
 object identity and returns \code{FALSE} for a class re-created from the
 same definition, as happens when the package's code is re-evaluated under
 coverage instrumentation; identity is kept only as a fast path.

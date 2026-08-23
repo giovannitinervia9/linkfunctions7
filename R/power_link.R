@@ -1,14 +1,27 @@
 #' @title S7 Class for the Power Link
 #'
 #' @description
-#' The class [power_link()] instantiates for a non-zero exponent.
+#' Carries the power transformation \eqn{\eta = \theta^{\lambda}} on
+#' \eqn{(0, \infty)} for a non-zero exponent, with inverse
+#' \eqn{\theta = \eta^{1/\lambda}}. The exponent is stored in `link_params`, so
+#' one class serves every \eqn{\lambda}.
+#'
+#' At \eqn{\lambda = 0} the constructor returns a [LogLink] instead, that being
+#' the limit of the family by continuity.
 #' At `lambda = 0` the power link is the log link by continuity, and
 #' [power_link()] returns a [LogLink()] instead.
 #'
+#' @param link_name A character string naming the link, set by the
+#'   constructor and shown by `print()`.
+#' @param link_bounds A length-two numeric vector, the open interval the
+#'   parameter lives in. Set by the constructor; see Value for this link's.
+#' @param link_params A list of the link's own parameters, empty where it has
+#'   none. Set by the constructor.
 #' @param lambda The exponent of the transformation.
 #'
-#' @return An S7 object of class `PowerLink`, inheriting from
-#'   [link()].
+#' @return An S7 object of class `PowerLink`, inheriting from [link()] and
+#'   carrying its three properties `link_name`, `link_bounds` and
+#'   `link_params`. Its `link_bounds` are `c(0, Inf)` and its `link_params` holds `lambda`.
 #'
 #' @seealso [power_link()], the constructor users call.
 #' @keywords internal

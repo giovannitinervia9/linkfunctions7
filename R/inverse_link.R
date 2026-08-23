@@ -1,10 +1,23 @@
 #' @title S7 Class for the Inverse Link
 #'
 #' @description
-#' The class [inverse_link()] instantiates.
+#' Carries the reciprocal transformation \eqn{\eta = 1/\theta} on
+#' \eqn{(0, \infty)}, which is its own inverse.
 #'
-#' @return An S7 object of class `InverseLink`, inheriting from
-#'   [link()].
+#' It is the canonical link of the Gamma family. Its image is only
+#' \eqn{(0, \infty)}, so a negative linear predictor has no parameter behind it,
+#' and the map is decreasing: a larger parameter gives a smaller \eqn{\eta}.
+#'
+#' @param link_name A character string naming the link, set by the
+#'   constructor and shown by `print()`.
+#' @param link_bounds A length-two numeric vector, the open interval the
+#'   parameter lives in. Set by the constructor; see Value for this link's.
+#' @param link_params A list of the link's own parameters, empty where it has
+#'   none. Set by the constructor.
+#'
+#' @return An S7 object of class `InverseLink`, inheriting from [link()] and
+#'   carrying its three properties `link_name`, `link_bounds` and
+#'   `link_params`. Its `link_bounds` are `c(0, Inf)` and it carries no link parameters.
 #'
 #' @seealso [inverse_link()], the constructor users call.
 #' @keywords internal

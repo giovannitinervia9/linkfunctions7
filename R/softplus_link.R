@@ -1,13 +1,27 @@
 #' @title S7 Class for the Softplus Link
 #'
 #' @description
-#' The class [softplus_link()] instantiates. Carries the scale
-#' parameter `a` in a dedicated property.
+#' Carries the softplus transformation on \eqn{(0, \infty)}, whose inverse
+#' \eqn{\theta = \log(1 + e^{a\eta})/a} is a smooth approximation of
+#' \eqn{\max(0, \eta)} that sharpens as the scale \eqn{a} grows.
 #'
+#' It is the alternative to the log link for a positive parameter: the log link
+#' maps a large negative \eqn{\eta} to something indistinguishable from zero,
+#' while the softplus approaches zero linearly and stays numerically alive
+#' there. The scale is stored in `link_params`, so one class serves every
+#' \eqn{a}.
+#'
+#' @param link_name A character string naming the link, set by the
+#'   constructor and shown by `print()`.
+#' @param link_bounds A length-two numeric vector, the open interval the
+#'   parameter lives in. Set by the constructor; see Value for this link's.
+#' @param link_params A list of the link's own parameters, empty where it has
+#'   none. Set by the constructor.
 #' @param a The scale parameter, strictly positive.
 #'
-#' @return An S7 object of class `SoftplusLink`, inheriting from
-#'   [link()].
+#' @return An S7 object of class `SoftplusLink`, inheriting from [link()] and
+#'   carrying its three properties `link_name`, `link_bounds` and
+#'   `link_params`. Its `link_bounds` are `c(0, Inf)` and its `link_params` holds `a`.
 #'
 #' @seealso [softplus_link()], the constructor users call.
 #' @keywords internal
@@ -99,15 +113,15 @@ S7::method(d4linkinv, SoftplusLink) <- function(x, eta) {
 #'
 #' **Behavior:**
 #' For large negative \eqn{\eta}, \eqn{\theta \approx 0}.
-#' For large positive \eqn{\eta}, \eqn{\theta \approx \eta} (linear behavior), whereas 
-#' a Log link would imply \eqn{\theta = \exp(\eta)} (exponential behavior).
+#' For large positive \eqn{\eta}, \eqn{\theta \approx \eta}, growing linearly
+#' where a log link would grow as \eqn{\exp(\eta)}.
 #'
 #' **Numerical Stability:**
 #' Both directions are written so that no intermediate quantity grows with
 #' \eqn{a\theta} or \eqn{a\eta}. The inverse link uses the log-sum-exp form, and
 #' the forward link and its derivatives are expressed in
 #' \eqn{u = 1 - e^{-a\theta}} rather than in \eqn{e^{a\theta} - 1}, which
-#' overflows once \eqn{a\theta} passes about 709 — and, because the derivatives
+#' overflows once \eqn{a\theta} passes about 709, and because the derivatives
 #' divide by its fourth power, well before that at the higher orders.
 #'
 #' The mathematical domain of \eqn{\theta} is `c(0, Inf)`.

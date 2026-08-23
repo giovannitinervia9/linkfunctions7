@@ -1,10 +1,24 @@
 #' @title S7 Class for the Probit Link
 #'
 #' @description
-#' The class [probit_link()] instantiates.
+#' Carries the probit transformation \eqn{\eta = \Phi^{-1}(\theta)} on
+#' \eqn{(0, 1)}, with \eqn{\Phi} the standard normal distribution function and
+#' the inverse \eqn{\theta = \Phi(\eta)}.
 #'
-#' @return An S7 object of class `ProbitLink`, inheriting from
-#'   [link()].
+#' It is symmetric about \eqn{\theta = 1/2}, like the logit, and reaches its
+#' bounds faster: the same change in \eqn{\eta} moves a probability further in
+#' the tails.
+#'
+#' @param link_name A character string naming the link, set by the
+#'   constructor and shown by `print()`.
+#' @param link_bounds A length-two numeric vector, the open interval the
+#'   parameter lives in. Set by the constructor; see Value for this link's.
+#' @param link_params A list of the link's own parameters, empty where it has
+#'   none. Set by the constructor.
+#'
+#' @return An S7 object of class `ProbitLink`, inheriting from [link()] and
+#'   carrying its three properties `link_name`, `link_bounds` and
+#'   `link_params`. Its `link_bounds` are `c(0, 1)` and it carries no link parameters.
 #'
 #' @seealso [probit_link()], the constructor users call.
 #' @keywords internal

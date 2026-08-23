@@ -1,11 +1,24 @@
 #' @title S7 Class for the Identity Link
 #'
 #' @description
-#' The class [identity_link()] instantiates. Also what
-#' [bounded_link()] returns when neither endpoint is given.
+#' Carries the identity transformation \eqn{\eta = \theta} on the whole real
+#' line, for a parameter that needs no chart because it is already
+#' unconstrained. Every derivative is a constant: the first is one and the rest
+#' are zero, at both directions and every order.
 #'
-#' @return An S7 object of class `IdentityLink`, inheriting from
-#'   [link()].
+#' [bounded_link()] returns an object of this class when it is given neither
+#' endpoint, there being nothing then to constrain.
+#'
+#' @param link_name A character string naming the link, set by the
+#'   constructor and shown by `print()`.
+#' @param link_bounds A length-two numeric vector, the open interval the
+#'   parameter lives in. Set by the constructor; see Value for this link's.
+#' @param link_params A list of the link's own parameters, empty where it has
+#'   none. Set by the constructor.
+#'
+#' @return An S7 object of class `IdentityLink`, inheriting from [link()] and
+#'   carrying its three properties `link_name`, `link_bounds` and
+#'   `link_params`. Its `link_bounds` are `c(-Inf, Inf)` and it carries no link parameters.
 #'
 #' @seealso [identity_link()], the constructor users call.
 #' @keywords internal

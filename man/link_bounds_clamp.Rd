@@ -15,8 +15,8 @@ link_bounds_clamp(theta, bounds)
 \code{theta}, with any value that has landed exactly on a bound
 moved just inside it and any infinity brought back to the largest finite
 double. \code{NA} and \code{NaN} pass through untouched, as does a value
-strictly outside by a real margin: converting either would hide something
-rather than fix it.
+strictly outside by a real margin. Converting either would hide a
+defect, which is the caller's to see.
 }
 \description{
 Moves a value that has reached or passed a bound to the nearest double

@@ -11,10 +11,8 @@ A length-one numeric vector.
 exp_floor
 }
 \value{
-A length-one numeric vector, about \code{1.9e-77}. This is a constant
-and not a function, but a documented topic needs a return section either
-way: it is one of the two things a first CRAN submission is most often sent
-back for.
+A length-one numeric vector, about \code{1.9e-77}, at which
+\eqn{-6/\theta^4} evaluates to \code{-4.5e307}.
 }
 \description{
 The floor applied to \code{exp(eta)} by every link whose inverse is an

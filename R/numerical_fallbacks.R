@@ -33,8 +33,8 @@ NULL
 #' own. Comparing method objects with `identical()` does not work for this,
 #' because S7 wraps them.
 #'
-#' The recorded class is compared by name and package rather than with
-#' `identical()`, since `identical()` on S7 class objects tests
+#' The recorded class is compared by name and package, never with
+#' `identical()`: `identical()` on S7 class objects tests
 #' object identity and returns `FALSE` for a class re-created from the
 #' same definition, as happens when the package's code is re-evaluated under
 #' coverage instrumentation; identity is kept only as a fast path.
@@ -78,10 +78,11 @@ analytic_order <- function(x, inverse = FALSE) {
 #' @details
 #' Object identity is tried first, since it is the usual case and costs
 #' nothing, and the class name and package are compared after. The second
-#' comparison is what makes the answer reliable: `identical()` on an S7
-#' class is object identity, so it is false for a class re-created from the
-#' same definition, which is what happens whenever a package's code is
-#' evaluated rather than loaded. A base fallback mistaken for an analytic
+#' comparison is the one that makes the answer reliable. `identical()` on an
+#' S7 class is object identity, so it is false for a class re-created from the
+#' same definition, which happens whenever a package's code is evaluated
+#' instead of loaded, as it is under coverage instrumentation. A base fallback
+#' mistaken for an analytic
 #' method makes every fallback differentiate the order below it, which is the
 #' nested differencing the design exists to forbid.
 #'
@@ -150,9 +151,8 @@ fd_step <- function(x, order, bounds = NULL) {
 #' stencils of order one, and the difference is the whole reason this function
 #' exists: each numerical differentiation multiplies the error of the one before
 #' it, so a fourth derivative reached by four nested first differences is noise.
-#' The identity link illustrates the failure directly -- its third
-#' derivative is exactly zero, and nested differentiation returns a number of
-#' order one.
+#' The identity link shows the failure at its plainest. Its third derivative is
+#' exactly zero, and nested differentiation returns a number of order one.
 #'
 #' @param f A vectorized function of one numeric argument.
 #' @param x A numeric vector of evaluation points.
@@ -212,7 +212,7 @@ eta_bounds <- function(x) {
 #'
 #' Note the recursion is only apparent. The base function is fetched through
 #' [linkderiv()], which dispatches to the link's own method for an
-#' order it implements — so the chain always terminates on analytic code, and
+#' order it implements, so the chain always terminates on analytic code, and
 #' never on another fallback.
 #'
 #' @param x An object of class `link`.
@@ -261,9 +261,9 @@ S7::method(d4linkinv, link) <- function(x, eta) fallback_deriv(x, eta, 4L, TRUE)
 #' @details
 #' Every link can answer every derivative generic, because the base class
 #' supplies numerical fallbacks for the orders a link does not implement. That
-#' convenience requires a way of asking which is which — a fallback is
-#' correct but not exact, and it is the reason [check_link()] reports
-#' such orders separately rather than passing them.
+#' convenience requires a way of asking which is which. A fallback is correct
+#' but not exact, and that is why [check_link()] reports such orders
+#' separately instead of passing them.
 #'
 #' @param x An object of class `link`.
 #'

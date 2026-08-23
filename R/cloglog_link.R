@@ -1,10 +1,24 @@
 #' @title S7 Class for the Complementary Log-Log Link
 #'
 #' @description
-#' The class [cloglog_link()] instantiates.
+#' Carries the complementary log-log transformation
+#' \eqn{\eta = \log(-\log(1-\theta))} on \eqn{(0, 1)}, with inverse
+#' \eqn{\theta = 1 - \exp(-e^{\eta})}.
 #'
-#' @return An S7 object of class `ClogLogLink`, inheriting from
-#'   [link()].
+#' Unlike the logit and the probit it is asymmetric about \eqn{\theta = 1/2},
+#' approaching one faster than zero, so it is the link of a
+#' proportional-hazards model for a binary outcome.
+#'
+#' @param link_name A character string naming the link, set by the
+#'   constructor and shown by `print()`.
+#' @param link_bounds A length-two numeric vector, the open interval the
+#'   parameter lives in. Set by the constructor; see Value for this link's.
+#' @param link_params A list of the link's own parameters, empty where it has
+#'   none. Set by the constructor.
+#'
+#' @return An S7 object of class `ClogLogLink`, inheriting from [link()] and
+#'   carrying its three properties `link_name`, `link_bounds` and
+#'   `link_params`. Its `link_bounds` are `c(0, 1)` and it carries no link parameters.
 #'
 #' @seealso [cloglog_link()], the constructor users call.
 #' @keywords internal

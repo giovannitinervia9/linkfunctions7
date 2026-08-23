@@ -31,15 +31,15 @@ Mathematically:
 
 \strong{Behavior:}
 For large negative \eqn{\eta}, \eqn{\theta \approx 0}.
-For large positive \eqn{\eta}, \eqn{\theta \approx \eta} (linear behavior), whereas
-a Log link would imply \eqn{\theta = \exp(\eta)} (exponential behavior).
+For large positive \eqn{\eta}, \eqn{\theta \approx \eta}, growing linearly
+where a log link would grow as \eqn{\exp(\eta)}.
 
 \strong{Numerical Stability:}
 Both directions are written so that no intermediate quantity grows with
 \eqn{a\theta} or \eqn{a\eta}. The inverse link uses the log-sum-exp form, and
 the forward link and its derivatives are expressed in
 \eqn{u = 1 - e^{-a\theta}} rather than in \eqn{e^{a\theta} - 1}, which
-overflows once \eqn{a\theta} passes about 709 — and, because the derivatives
+overflows once \eqn{a\theta} passes about 709, and because the derivatives
 divide by its fourth power, well before that at the higher orders.
 
 The mathematical domain of \eqn{\theta} is \code{c(0, Inf)}.

@@ -1,7 +1,13 @@
 #' @title S7 Class for a Doubly Bounded Link
 #'
 #' @description
-#' The class [bounded_link()] instantiates when given both endpoints.
+#' Carries the scaled logit on a finite interval \eqn{(l, u)}: the parameter is
+#' mapped to its position \eqn{p = (\theta - l)/(u - l)} within the interval and
+#' that position is carried by the logit, so
+#' \eqn{\eta = \log(p/(1-p))}.
+#'
+#' Its derivatives are the logistic polynomials of [logistic_deriv()] scaled by
+#' the width \eqn{u - l}, so a bounded link costs no more than a logit.
 #' It is the logit of \eqn{p = (\theta - \mathrm{lwr})/W}, the position of
 #' \eqn{\theta} within the interval.
 #'
@@ -12,10 +18,18 @@
 #' the constructor is the only place it can change.
 #'
 #' @param lwr,upr The interval endpoints.
+#' @param link_name A character string naming the link, set by the
+#'   constructor and shown by `print()`.
+#' @param link_bounds A length-two numeric vector, the open interval the
+#'   parameter lives in. Set by the constructor; see Value for this link's.
+#' @param link_params A list of the link's own parameters, empty where it has
+#'   none. Set by the constructor.
 #' @param width The interval width, `upr - lwr`, set by the constructor.
 #'
-#' @return An S7 object of class `DoublyBoundedLink`, inheriting from
-#'   [link()].
+#' @return An S7 object of class `DoublyBoundedLink`, inheriting from [link()] and
+#'   carrying its three properties `link_name`, `link_bounds` and
+#'   `link_params`. Its `link_bounds` are the endpoints given, and its `link_params` holds
+#'   `lwr` and `upr`.
 #'
 #' @seealso [bounded_link()], the constructor users call.
 #' @keywords internal
@@ -37,13 +51,24 @@ DoublyBoundedLink <- S7::new_class(
 #' @title S7 Class for a Lower Bounded Link
 #'
 #' @description
-#' The class [bounded_link()] instantiates when given only a lower
-#' endpoint. It is the log link shifted to start at `lwr`.
+#' Carries the shifted log on \eqn{(l, \infty)}: \eqn{\eta = \log(\theta - l)},
+#' with inverse \eqn{\theta = l + e^{\eta}}.
 #'
+#' Every derivative is the log link's, the shift being a constant that
+#' differentiates away, and the exponential is floored at [exp_floor()] so the
+#' parameter never reaches the bound exactly. It is the log link shifted to start at `lwr`.
+#'
+#' @param link_name A character string naming the link, set by the
+#'   constructor and shown by `print()`.
+#' @param link_bounds A length-two numeric vector, the open interval the
+#'   parameter lives in. Set by the constructor; see Value for this link's.
+#' @param link_params A list of the link's own parameters, empty where it has
+#'   none. Set by the constructor.
 #' @param lwr The lower endpoint.
 #'
-#' @return An S7 object of class `LowerBoundedLink`, inheriting from
-#'   [link()].
+#' @return An S7 object of class `LowerBoundedLink`, inheriting from [link()] and
+#'   carrying its three properties `link_name`, `link_bounds` and
+#'   `link_params`. Its `link_bounds` are `c(lwr, Inf)`, and its `link_params` holds `lwr`.
 #'
 #' @seealso [bounded_link()], the constructor users call.
 #' @keywords internal
@@ -58,14 +83,24 @@ LowerBoundedLink <- S7::new_class(
 #' @title S7 Class for an Upper Bounded Link
 #'
 #' @description
-#' The class [bounded_link()] instantiates when given only an upper
-#' endpoint. It is the mirror image of [LowerBoundedLink()], the log of
+#' Carries the reflected log on \eqn{(-\infty, u)}: \eqn{\eta = \log(u - \theta)},
+#' with inverse \eqn{\theta = u - e^{\eta}}.
+#'
+#' The reflection makes the map decreasing, so the odd-order derivatives change
+#' sign against [LowerBoundedLink]'s while the even ones do not. It is the mirror image of [LowerBoundedLink()], the log of
 #' the distance below `upr`.
 #'
+#' @param link_name A character string naming the link, set by the
+#'   constructor and shown by `print()`.
+#' @param link_bounds A length-two numeric vector, the open interval the
+#'   parameter lives in. Set by the constructor; see Value for this link's.
+#' @param link_params A list of the link's own parameters, empty where it has
+#'   none. Set by the constructor.
 #' @param upr The upper endpoint.
 #'
-#' @return An S7 object of class `UpperBoundedLink`, inheriting from
-#'   [link()].
+#' @return An S7 object of class `UpperBoundedLink`, inheriting from [link()] and
+#'   carrying its three properties `link_name`, `link_bounds` and
+#'   `link_params`. Its `link_bounds` are `c(-Inf, upr)`, and its `link_params` holds `upr`.
 #'
 #' @seealso [bounded_link()], the constructor users call.
 #' @keywords internal

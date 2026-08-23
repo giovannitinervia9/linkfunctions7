@@ -3,9 +3,9 @@
 #' @import S7
 #' @description
 #' The base S7 class for link functions. It carries the name, the domain and
-#' any link parameters; the transformations themselves -- forward, inverse and
-#' their analytical derivatives to fourth order -- are methods that each
-#' subclass registers on the ten generics.
+#' any link parameters. The transformations themselves are methods that each
+#' subclass registers on the ten generics: the forward map, the inverse, and
+#' their analytical derivatives to fourth order in both directions.
 #'
 #' @details
 #' Objects of class `link` are instantiated using the S7 object system.
@@ -119,8 +119,8 @@ na_from <- function(r, v) {
 #' polynomial in \eqn{p = \sigma(z)} itself.
 #'
 #' @details
-#' Three separate links need these same four polynomials, which is why they live
-#' in one place rather than being written out three times:
+#' Three separate links need these same four polynomials, so they live in one
+#' place and are written out once:
 #'
 #' - [logit_link()] uses them directly, \eqn{h^{(k)} = \sigma^{(k)}};
 #' - [bounded_link()] with both endpoints scales them by the
@@ -179,10 +179,8 @@ logistic_deriv <- function(p, k) {
 #' before.
 #'
 #' @format A length-one numeric vector.
-#' @return A length-one numeric vector, about `1.9e-77`. This is a constant
-#'   and not a function, but a documented topic needs a return section either
-#'   way: it is one of the two things a first CRAN submission is most often sent
-#'   back for.
+#' @return A length-one numeric vector, about `1.9e-77`, at which
+#'   \eqn{-6/\theta^4} evaluates to `-4.5e307`.
 #' @seealso [exp_floored()]
 #' @keywords internal
 exp_floor <- (24 / .Machine$double.xmax)^0.25
@@ -249,8 +247,8 @@ exp_floored <- function(eta) pmax(exp(eta), exp_floor)
 #' @return `theta`, with any value that has landed exactly on a bound
 #'   moved just inside it and any infinity brought back to the largest finite
 #'   double. `NA` and `NaN` pass through untouched, as does a value
-#'   strictly outside by a real margin: converting either would hide something
-#'   rather than fix it.
+#'   strictly outside by a real margin. Converting either would hide a
+#'   defect, which is the caller's to see.
 #'
 #' @examples
 #' link_bounds_clamp(c(0, 0.5, 1), c(0, 1))

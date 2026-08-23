@@ -1,10 +1,24 @@
 #' @title S7 Class for the Cauchit Link
 #'
 #' @description
-#' The class [cauchit_link()] instantiates.
+#' Carries the cauchit transformation \eqn{\eta = \tan(\pi(\theta - 1/2))} on
+#' \eqn{(0, 1)}, the Cauchy quantile function, with inverse
+#' \eqn{\theta = 1/2 + \arctan(\eta)/\pi}.
 #'
-#' @return An S7 object of class `CauchitLink`, inheriting from
-#'   [link()].
+#' Its tails are far heavier than the logit's or the probit's, so an extreme
+#' linear predictor moves the probability much less. That makes it the choice
+#' when a few observations would otherwise drive the fit to a boundary.
+#'
+#' @param link_name A character string naming the link, set by the
+#'   constructor and shown by `print()`.
+#' @param link_bounds A length-two numeric vector, the open interval the
+#'   parameter lives in. Set by the constructor; see Value for this link's.
+#' @param link_params A list of the link's own parameters, empty where it has
+#'   none. Set by the constructor.
+#'
+#' @return An S7 object of class `CauchitLink`, inheriting from [link()] and
+#'   carrying its three properties `link_name`, `link_bounds` and
+#'   `link_params`. Its `link_bounds` are `c(0, 1)` and it carries no link parameters.
 #'
 #' @seealso [cauchit_link()], the constructor users call.
 #' @keywords internal

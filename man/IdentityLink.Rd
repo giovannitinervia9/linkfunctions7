@@ -10,13 +10,29 @@ IdentityLink(
   link_params = NULL
 )
 }
+\arguments{
+\item{link_name}{A character string naming the link, set by the
+constructor and shown by \code{print()}.}
+
+\item{link_bounds}{A length-two numeric vector, the open interval the
+parameter lives in. Set by the constructor; see Value for this link's.}
+
+\item{link_params}{A list of the link's own parameters, empty where it has
+none. Set by the constructor.}
+}
 \value{
-An S7 object of class \code{IdentityLink}, inheriting from
-\code{\link[=link]{link()}}.
+An S7 object of class \code{IdentityLink}, inheriting from \code{\link[=link]{link()}} and
+carrying its three properties \code{link_name}, \code{link_bounds} and
+\code{link_params}. Its \code{link_bounds} are \code{c(-Inf, Inf)} and it carries no link parameters.
 }
 \description{
-The class \code{\link[=identity_link]{identity_link()}} instantiates. Also what
-\code{\link[=bounded_link]{bounded_link()}} returns when neither endpoint is given.
+Carries the identity transformation \eqn{\eta = \theta} on the whole real
+line, for a parameter that needs no chart because it is already
+unconstrained. Every derivative is a constant: the first is one and the rest
+are zero, at both directions and every order.
+
+\code{\link[=bounded_link]{bounded_link()}} returns an object of this class when it is given neither
+endpoint, there being nothing then to constrain.
 }
 \seealso{
 \code{\link[=identity_link]{identity_link()}}, the constructor users call.

@@ -12,14 +12,30 @@ PowerLink(
 )
 }
 \arguments{
+\item{link_name}{A character string naming the link, set by the
+constructor and shown by \code{print()}.}
+
+\item{link_bounds}{A length-two numeric vector, the open interval the
+parameter lives in. Set by the constructor; see Value for this link's.}
+
+\item{link_params}{A list of the link's own parameters, empty where it has
+none. Set by the constructor.}
+
 \item{lambda}{The exponent of the transformation.}
 }
 \value{
-An S7 object of class \code{PowerLink}, inheriting from
-\code{\link[=link]{link()}}.
+An S7 object of class \code{PowerLink}, inheriting from \code{\link[=link]{link()}} and
+carrying its three properties \code{link_name}, \code{link_bounds} and
+\code{link_params}. Its \code{link_bounds} are \code{c(0, Inf)} and its \code{link_params} holds \code{lambda}.
 }
 \description{
-The class \code{\link[=power_link]{power_link()}} instantiates for a non-zero exponent.
+Carries the power transformation \eqn{\eta = \theta^{\lambda}} on
+\eqn{(0, \infty)} for a non-zero exponent, with inverse
+\eqn{\theta = \eta^{1/\lambda}}. The exponent is stored in \code{link_params}, so
+one class serves every \eqn{\lambda}.
+
+At \eqn{\lambda = 0} the constructor returns a \link{LogLink} instead, that being
+the limit of the family by continuity.
 At \code{lambda = 0} the power link is the log link by continuity, and
 \code{\link[=power_link]{power_link()}} returns a \code{\link[=LogLink]{LogLink()}} instead.
 }

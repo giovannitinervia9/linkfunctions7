@@ -1,10 +1,23 @@
 #' @title S7 Class for the Logit Link
 #'
 #' @description
-#' The class [logit_link()] instantiates.
+#' Carries the logit transformation \eqn{\eta = \log(\theta/(1-\theta))} on
+#' \eqn{(0, 1)}, with inverse \eqn{\theta = 1/(1+e^{-\eta})}. It is the
+#' canonical link for a probability, and its linear predictor is the log-odds.
 #'
-#' @return An S7 object of class `LogitLink`, inheriting from
-#'   [link()].
+#' Every inverse derivative is a polynomial in \eqn{\theta} itself, the first
+#' being \eqn{\theta(1-\theta)}, the variance of a Bernoulli.
+#'
+#' @param link_name A character string naming the link, set by the
+#'   constructor and shown by `print()`.
+#' @param link_bounds A length-two numeric vector, the open interval the
+#'   parameter lives in. Set by the constructor; see Value for this link's.
+#' @param link_params A list of the link's own parameters, empty where it has
+#'   none. Set by the constructor.
+#'
+#' @return An S7 object of class `LogitLink`, inheriting from [link()] and
+#'   carrying its three properties `link_name`, `link_bounds` and
+#'   `link_params`. Its `link_bounds` are `c(0, 1)` and it carries no link parameters.
 #'
 #' @seealso [logit_link()], the constructor users call.
 #' @keywords internal

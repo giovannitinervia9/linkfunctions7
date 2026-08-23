@@ -12,15 +12,28 @@ UpperBoundedLink(
 )
 }
 \arguments{
+\item{link_name}{A character string naming the link, set by the
+constructor and shown by \code{print()}.}
+
+\item{link_bounds}{A length-two numeric vector, the open interval the
+parameter lives in. Set by the constructor; see Value for this link's.}
+
+\item{link_params}{A list of the link's own parameters, empty where it has
+none. Set by the constructor.}
+
 \item{upr}{The upper endpoint.}
 }
 \value{
-An S7 object of class \code{UpperBoundedLink}, inheriting from
-\code{\link[=link]{link()}}.
+An S7 object of class \code{UpperBoundedLink}, inheriting from \code{\link[=link]{link()}} and
+carrying its three properties \code{link_name}, \code{link_bounds} and
+\code{link_params}. Its \code{link_bounds} are \code{c(-Inf, upr)}, and its \code{link_params} holds \code{upr}.
 }
 \description{
-The class \code{\link[=bounded_link]{bounded_link()}} instantiates when given only an upper
-endpoint. It is the mirror image of \code{\link[=LowerBoundedLink]{LowerBoundedLink()}}, the log of
+Carries the reflected log on \eqn{(-\infty, u)}: \eqn{\eta = \log(u - \theta)},
+with inverse \eqn{\theta = u - e^{\eta}}.
+
+The reflection makes the map decreasing, so the odd-order derivatives change
+sign against \link{LowerBoundedLink}'s while the even ones do not. It is the mirror image of \code{\link[=LowerBoundedLink]{LowerBoundedLink()}}, the log of
 the distance below \code{upr}.
 }
 \seealso{

@@ -1,8 +1,8 @@
 #' Register the Package's S7 Methods on Load
 #'
 #' @description
-#' Calls `S7::methods_register()`, which is what makes methods registered
-#' on generics from other packages take effect.
+#' Calls `S7::methods_register()`, without which a method this package
+#' registers on another package's generic never takes effect.
 #'
 #' @details
 #' It matters here for `print` and `plot`: those are S3 generics owned
