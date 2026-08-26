@@ -1,3 +1,21 @@
+# linkfunctions7 0.3.0
+
+* `eta_bounds()` is exported. It answers what a link maps **from**, where
+  `link_bounds` says what it maps **onto**, and the two are different
+  questions: `sqrt_link()`, `inverse_link()`, `inverse_sq_link()` and
+  `power_link()` at a positive exponent all reach the positive half of the
+  theta axis from the positive half of the eta axis alone. A consumer that
+  carries an unconstrained vector and applies an inverse link to each
+  coordinate needs the second question answered, the map being neither
+  defined nor injective outside those bounds -- `linkinv(sqrt_link(), -2)`
+  and `linkinv(sqrt_link(), 2)` are both 4 and the round trip returns the
+  absolute value.
+
+  Nothing about the function changes. It was already documented and
+  reachable through `:::`; what changes is that a package depending on this
+  one can now ask the question at construction, where the message can name
+  the link, instead of discovering the fold in a fitted number.
+
 # linkfunctions7 0.2.0
 
 * Scalar C entry points for the fast route of a score-driven filter

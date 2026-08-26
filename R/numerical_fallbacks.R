@@ -170,27 +170,61 @@ stencil_deriv <- function(f, x, order, h) {
 }
 
 
-#' The Range a Stencil May Evaluate the Inverse Link On
+#' The Range of Predictors a Link Admits
 #'
 #' @description
-#' The image of the link's parameter bounds under [linkfun()], used
-#' to keep a finite-difference grid inside the set the inverse link is defined
-#' on.
+#' The image of the link's parameter bounds under [linkfun()], which is the set
+#' of predictors the inverse link is defined on. Where a link maps onto the
+#' whole real line the answer is `c(-Inf, Inf)`; where it does not, the two
+#' finite ends are the boundary of what a caller may hand to [linkinv()].
 #'
 #' @details
 #' A link need not map onto the whole real line: the square root reaches only
-#' the positive half, and a stencil straying outside returns `NaN`, which
-#' would make a numerical derivative missing rather than inaccurate. The
-#' bounds are returned sorted, since a decreasing link reverses them, and are
-#' infinite in the directions where they cannot be established.
+#' the positive half, and so do [inverse_link()], [inverse_sq_link()] and
+#' [power_link()] at a positive exponent. The bounds are returned sorted, since
+#' a decreasing link reverses them, and are infinite in the directions where
+#' they cannot be established.
+#'
+#' # Why a caller outside this package asks
+#'
+#' The internal use is to keep a finite-difference grid inside the set the
+#' inverse link is defined on, a stencil straying outside returning `NaN` and
+#' so making a numerical derivative missing rather than inaccurate. The use
+#' from outside is a different question with the same answer:
+#' [link_bounds()][link] says what a link maps **onto**, and a consumer that
+#' carries an unconstrained vector needs to know what it maps **from**.
+#'
+#' Both ends matter, and only together. A family that reads a free vector in
+#' \eqn{\mathbb{R}^d} and applies an inverse link to each coordinate needs
+#' the map to be defined and injective there, and a link with finite eta bounds
+#' is neither: [linkinv()] of a square root link is even, so `-2` and `2` both
+#' give 4 and the round trip returns the absolute value. Asking
+#' `all(is.infinite(eta_bounds(link)))` is how such a family rejects one at
+#' construction, where the message can name the link.
 #'
 #' @param x A [link()] object.
 #'
-#' @return A numeric vector of length two.
+#' @return A numeric vector of length two, sorted, with `-Inf` or `Inf` in
+#'   either position where that end is unbounded.
 #'
-#' @seealso [link_bounds_clamp()]
+#' @seealso [link_bounds_clamp()], which keeps [linkinv()]'s result strictly
+#'   inside the parameter bounds, and [linkfun()], the map whose image this is.
 #'
-#' @keywords internal
+#' @examples
+#' # A link from the whole real line onto the positive half of the theta axis.
+#' eta_bounds(log_link())
+#'
+#' # The square root reaches only the positive half of the eta axis, so its
+#' # inverse is even there and the round trip returns the absolute value.
+#' eta_bounds(sqrt_link())
+#' linkfun(sqrt_link(), linkinv(sqrt_link(), -2))
+#'
+#' # Which is the question a consumer carrying an unconstrained vector asks.
+#' links <- list(log_link(), softplus_link(), logit_link(), sqrt_link(),
+#'               inverse_link(), inverse_sq_link(), power_link(0.5))
+#' vapply(links, function(l) all(is.infinite(eta_bounds(l))), logical(1))
+#'
+#' @export
 eta_bounds <- function(x) {
   b <- tryCatch(sort(linkfun(x, x@link_bounds)), error = function(e) NULL)
   if (is.null(b) || length(b) != 2L || anyNA(b)) c(-Inf, Inf) else b
