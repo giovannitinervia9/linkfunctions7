@@ -19,8 +19,8 @@ The \code{k}-th derivative of \eqn{\sigma(z) = 1/(1 + e^{-z})}, written as a
 polynomial in \eqn{p = \sigma(z)} itself.
 }
 \details{
-Three separate links need these same four polynomials, so they live in one
-place and are written out once:
+Three separate links need these same four polynomials, and each reaches
+them the same way:
 \itemize{
 \item \code{\link[=logit_link]{logit_link()}} uses them directly, \eqn{h^{(k)} = \sigma^{(k)}};
 \item \code{\link[=bounded_link]{bounded_link()}} with both endpoints scales them by the
@@ -28,6 +28,12 @@ interval width, \eqn{h^{(k)} = W \sigma^{(k)}};
 \item \code{\link[=softplus_link]{softplus_link()}} uses them shifted one order down, since the
 softplus is an antiderivative of the logistic: \eqn{h^{(k+1)} = a^k \sigma^{(k)}}.
 }
+
+What the three call is not this function but its transcription in
+\code{src/link_kernels.cpp}, the compiled kernels having replaced the R bodies
+when the transcendental links were compiled. This function is the R
+statement of the same four polynomials, and the two agree to the bit at
+every order; \code{lk_logistic_poly_cpp()} reaches the compiled one directly.
 
 The polynomials are
 \deqn{\sigma' = p(1-p)}

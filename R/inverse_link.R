@@ -19,6 +19,25 @@
 #'   carrying its three properties `link_name`, `link_bounds` and
 #'   `link_params`. Its `link_bounds` are `c(0, Inf)` and it carries no link parameters.
 #'
+#' @section Methods:
+#' Ten methods are registered on this class: [linkfun()] and [linkinv()],
+#' and the four derivative orders in each direction, [dlinkfun()] through
+#' [d4linkfun()] going out and [dlinkinv()] through [d4linkinv()] coming
+#' back. The link is its own inverse, so the two directions carry the same
+#' expressions: \eqn{1/\theta} and \eqn{1/\eta}, with the four derivatives
+#' \eqn{(-1)^k k!\,z^{-(k+1)}} written out in both.
+#'
+#' @aliases linkfun.InverseLink
+#' @aliases linkinv.InverseLink
+#' @aliases dlinkfun.InverseLink
+#' @aliases d2linkfun.InverseLink
+#' @aliases d3linkfun.InverseLink
+#' @aliases d4linkfun.InverseLink
+#' @aliases dlinkinv.InverseLink
+#' @aliases d2linkinv.InverseLink
+#' @aliases d3linkinv.InverseLink
+#' @aliases d4linkinv.InverseLink
+#'
 #' @seealso [inverse_link()], the constructor users call.
 #' @keywords internal
 InverseLink <- S7::new_class(

@@ -20,6 +20,25 @@
 #'   carrying its three properties `link_name`, `link_bounds` and
 #'   `link_params`. Its `link_bounds` are `c(-1, 1)` and it carries no link parameters.
 #'
+#' @section Methods:
+#' Ten methods are registered on this class: [linkfun()] and [linkinv()],
+#' and the four derivative orders in each direction, [dlinkfun()] through
+#' [d4linkfun()] going out and [dlinkinv()] through [d4linkinv()] coming
+#' back. `linkfun()` and `linkinv()` are `atanh()` and `tanh()`. The eight
+#' derivatives come from a compiled kernel, one call per order and
+#' direction.
+#'
+#' @aliases linkfun.RhobitLink
+#' @aliases linkinv.RhobitLink
+#' @aliases dlinkfun.RhobitLink
+#' @aliases d2linkfun.RhobitLink
+#' @aliases d3linkfun.RhobitLink
+#' @aliases d4linkfun.RhobitLink
+#' @aliases dlinkinv.RhobitLink
+#' @aliases d2linkinv.RhobitLink
+#' @aliases d3linkinv.RhobitLink
+#' @aliases d4linkinv.RhobitLink
+#'
 #' @seealso [rhobit_link()], the constructor users call.
 #' @keywords internal
 RhobitLink <- S7::new_class(

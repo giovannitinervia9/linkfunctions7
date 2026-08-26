@@ -2,6 +2,16 @@
 % Please edit documentation in R/probit_link.R
 \name{ProbitLink}
 \alias{ProbitLink}
+\alias{linkfun.ProbitLink}
+\alias{linkinv.ProbitLink}
+\alias{dlinkfun.ProbitLink}
+\alias{d2linkfun.ProbitLink}
+\alias{d3linkfun.ProbitLink}
+\alias{d4linkfun.ProbitLink}
+\alias{dlinkinv.ProbitLink}
+\alias{d2linkinv.ProbitLink}
+\alias{d3linkinv.ProbitLink}
+\alias{d4linkinv.ProbitLink}
 \title{S7 Class for the Probit Link}
 \usage{
 ProbitLink(
@@ -34,6 +44,16 @@ It is symmetric about \eqn{\theta = 1/2}, like the logit, and reaches its
 bounds faster: the same change in \eqn{\eta} moves a probability further in
 the tails.
 }
+\section{Methods}{
+
+Ten methods are registered on this class: \code{\link[=linkfun]{linkfun()}} and \code{\link[=linkinv]{linkinv()}},
+and the four derivative orders in each direction, \code{\link[=dlinkfun]{dlinkfun()}} through
+\code{\link[=d4linkfun]{d4linkfun()}} going out and \code{\link[=dlinkinv]{dlinkinv()}} through \code{\link[=d4linkinv]{d4linkinv()}} coming
+back. \code{linkfun()} and \code{linkinv()} delegate to \code{stats::qnorm()} and
+\code{stats::pnorm()}. The eight derivatives come from a compiled kernel, one
+call per order and direction.
+}
+
 \seealso{
 \code{\link[=probit_link]{probit_link()}}, the constructor users call.
 }

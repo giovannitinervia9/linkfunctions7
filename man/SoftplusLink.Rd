@@ -2,6 +2,16 @@
 % Please edit documentation in R/softplus_link.R
 \name{SoftplusLink}
 \alias{SoftplusLink}
+\alias{linkfun.SoftplusLink}
+\alias{linkinv.SoftplusLink}
+\alias{dlinkfun.SoftplusLink}
+\alias{d2linkfun.SoftplusLink}
+\alias{d3linkfun.SoftplusLink}
+\alias{d4linkfun.SoftplusLink}
+\alias{dlinkinv.SoftplusLink}
+\alias{d2linkinv.SoftplusLink}
+\alias{d3linkinv.SoftplusLink}
+\alias{d4linkinv.SoftplusLink}
 \title{S7 Class for the Softplus Link}
 \usage{
 SoftplusLink(
@@ -39,6 +49,19 @@ while the softplus approaches zero linearly and stays numerically alive
 there. The scale is stored in \code{link_params}, so one class serves every
 \eqn{a}.
 }
+\section{Methods}{
+
+Ten methods are registered on this class: \code{\link[=linkfun]{linkfun()}} and \code{\link[=linkinv]{linkinv()}},
+and the four derivative orders in each direction, \code{\link[=dlinkfun]{dlinkfun()}} through
+\code{\link[=d4linkfun]{d4linkfun()}} going out and \code{\link[=dlinkinv]{dlinkinv()}} through \code{\link[=d4linkinv]{d4linkinv()}} coming
+back. The softplus is an antiderivative of the logistic, so its
+inverse-link derivatives are the logistic ones shifted a place,
+\eqn{h^{(k+1)} = a^k \sigma^{(k)}}, and they reuse the same polynomials
+the logit does. The forward set comes from a compiled kernel written in
+\eqn{u = -\mathrm{expm1}(-a\theta)}, which is finite where the
+\eqn{\mathrm{expm1}(a\theta)} form overflows.
+}
+
 \seealso{
 \code{\link[=softplus_link]{softplus_link()}}, the constructor users call.
 }

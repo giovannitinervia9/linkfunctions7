@@ -2,6 +2,16 @@
 % Please edit documentation in R/bounded_link.R
 \name{LowerBoundedLink}
 \alias{LowerBoundedLink}
+\alias{linkfun.LowerBoundedLink}
+\alias{linkinv.LowerBoundedLink}
+\alias{dlinkfun.LowerBoundedLink}
+\alias{d2linkfun.LowerBoundedLink}
+\alias{d3linkfun.LowerBoundedLink}
+\alias{d4linkfun.LowerBoundedLink}
+\alias{dlinkinv.LowerBoundedLink}
+\alias{d2linkinv.LowerBoundedLink}
+\alias{d3linkinv.LowerBoundedLink}
+\alias{d4linkinv.LowerBoundedLink}
 \title{S7 Class for a Lower Bounded Link}
 \usage{
 LowerBoundedLink(
@@ -36,6 +46,17 @@ Every derivative is the log link's, the shift being a constant that
 differentiates away, and the exponential is floored at \code{\link[=exp_floor]{exp_floor()}} so the
 parameter never reaches the bound exactly. It is the log link shifted to start at \code{lwr}.
 }
+\section{Methods}{
+
+Ten methods are registered on this class: \code{\link[=linkfun]{linkfun()}} and \code{\link[=linkinv]{linkinv()}},
+and the four derivative orders in each direction, \code{\link[=dlinkfun]{dlinkfun()}} through
+\code{\link[=d4linkfun]{d4linkfun()}} going out and \code{\link[=dlinkinv]{dlinkinv()}} through \code{\link[=d4linkinv]{d4linkinv()}} coming
+back. The forward derivatives are the log link's read at \eqn{\theta -
+\mathrm{lwr}}, the shift being a constant that differentiates away. Every
+inverse derivative is \code{\link[=exp_floored]{exp_floored()}} of \eqn{\eta} itself, the
+exponential being its own derivative to every order.
+}
+
 \seealso{
 \code{\link[=bounded_link]{bounded_link()}}, the constructor users call.
 }

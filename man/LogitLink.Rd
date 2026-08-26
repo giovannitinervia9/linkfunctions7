@@ -2,6 +2,16 @@
 % Please edit documentation in R/logit_link.R
 \name{LogitLink}
 \alias{LogitLink}
+\alias{linkfun.LogitLink}
+\alias{linkinv.LogitLink}
+\alias{dlinkfun.LogitLink}
+\alias{d2linkfun.LogitLink}
+\alias{d3linkfun.LogitLink}
+\alias{d4linkfun.LogitLink}
+\alias{dlinkinv.LogitLink}
+\alias{d2linkinv.LogitLink}
+\alias{d3linkinv.LogitLink}
+\alias{d4linkinv.LogitLink}
 \title{S7 Class for the Logit Link}
 \usage{
 LogitLink(
@@ -33,6 +43,17 @@ canonical link for a probability, and its linear predictor is the log-odds.
 Every inverse derivative is a polynomial in \eqn{\theta} itself, the first
 being \eqn{\theta(1-\theta)}, the variance of a Bernoulli.
 }
+\section{Methods}{
+
+Ten methods are registered on this class: \code{\link[=linkfun]{linkfun()}} and \code{\link[=linkinv]{linkinv()}},
+and the four derivative orders in each direction, \code{\link[=dlinkfun]{dlinkfun()}} through
+\code{\link[=d4linkfun]{d4linkfun()}} going out and \code{\link[=dlinkinv]{dlinkinv()}} through \code{\link[=d4linkinv]{d4linkinv()}} coming
+back. \code{linkfun()} and \code{linkinv()} delegate to \code{stats::qlogis()} and
+\code{stats::plogis()}, which remain accurate near both boundaries. The eight
+derivatives come from a compiled kernel, one call per order and
+direction.
+}
+
 \seealso{
 \code{\link[=logit_link]{logit_link()}}, the constructor users call.
 }

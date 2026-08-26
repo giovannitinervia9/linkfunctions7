@@ -19,6 +19,26 @@
 #'   carrying its three properties `link_name`, `link_bounds` and
 #'   `link_params`. Its `link_bounds` are `c(0, 1)` and it carries no link parameters.
 #'
+#' @section Methods:
+#' Ten methods are registered on this class: [linkfun()] and [linkinv()],
+#' and the four derivative orders in each direction, [dlinkfun()] through
+#' [d4linkfun()] going out and [dlinkinv()] through [d4linkinv()] coming
+#' back. `linkfun()` and `linkinv()` delegate to `stats::qlogis()` and
+#' `stats::plogis()`, which remain accurate near both boundaries. The eight
+#' derivatives come from a compiled kernel, one call per order and
+#' direction.
+#'
+#' @aliases linkfun.LogitLink
+#' @aliases linkinv.LogitLink
+#' @aliases dlinkfun.LogitLink
+#' @aliases d2linkfun.LogitLink
+#' @aliases d3linkfun.LogitLink
+#' @aliases d4linkfun.LogitLink
+#' @aliases dlinkinv.LogitLink
+#' @aliases d2linkinv.LogitLink
+#' @aliases d3linkinv.LogitLink
+#' @aliases d4linkinv.LogitLink
+#'
 #' @seealso [logit_link()], the constructor users call.
 #' @keywords internal
 LogitLink <- S7::new_class(
@@ -40,9 +60,9 @@ S7::method(d4linkfun, LogitLink) <- function(x, theta) lk_logit_fwd_cpp(theta, 4
 
 # Exact analytical derivatives of the inverse link function (wrt eta).
 #
-# Polynomials in the probability p itself. They are shared with the doubly
-# bounded link, which scales them by the interval width, and with the softplus,
-# which uses them one order down; see logistic_deriv().
+# Polynomials in the probability p itself, evaluated by logistic_poly() inside
+# the kernel. They are shared with the doubly bounded link, which scales them by
+# the interval width, and with the softplus, which uses them one order down.
 S7::method(dlinkinv, LogitLink) <- function(x, eta) lk_logit_inv_cpp(eta, 1L)
 S7::method(d2linkinv, LogitLink) <- function(x, eta) lk_logit_inv_cpp(eta, 2L)
 S7::method(d3linkinv, LogitLink) <- function(x, eta) lk_logit_inv_cpp(eta, 3L)

@@ -23,6 +23,28 @@
 #'   carrying its three properties `link_name`, `link_bounds` and
 #'   `link_params`. Its `link_bounds` are `c(0, Inf)` and its `link_params` holds `a`.
 #'
+#' @section Methods:
+#' Ten methods are registered on this class: [linkfun()] and [linkinv()],
+#' and the four derivative orders in each direction, [dlinkfun()] through
+#' [d4linkfun()] going out and [dlinkinv()] through [d4linkinv()] coming
+#' back. The softplus is an antiderivative of the logistic, so its
+#' inverse-link derivatives are the logistic ones shifted a place,
+#' \eqn{h^{(k+1)} = a^k \sigma^{(k)}}, and they reuse the same polynomials
+#' the logit does. The forward set comes from a compiled kernel written in
+#' \eqn{u = -\mathrm{expm1}(-a\theta)}, which is finite where the
+#' \eqn{\mathrm{expm1}(a\theta)} form overflows.
+#'
+#' @aliases linkfun.SoftplusLink
+#' @aliases linkinv.SoftplusLink
+#' @aliases dlinkfun.SoftplusLink
+#' @aliases d2linkfun.SoftplusLink
+#' @aliases d3linkfun.SoftplusLink
+#' @aliases d4linkfun.SoftplusLink
+#' @aliases dlinkinv.SoftplusLink
+#' @aliases d2linkinv.SoftplusLink
+#' @aliases d3linkinv.SoftplusLink
+#' @aliases d4linkinv.SoftplusLink
+#'
 #' @seealso [softplus_link()], the constructor users call.
 #' @keywords internal
 SoftplusLink <- S7::new_class(

@@ -23,6 +23,26 @@
 #'   carrying its three properties `link_name`, `link_bounds` and
 #'   `link_params`. Its `link_bounds` are `c(0, Inf)` and its `link_params` holds `lambda`.
 #'
+#' @section Methods:
+#' Ten methods are registered on this class: [linkfun()] and [linkinv()],
+#' and the four derivative orders in each direction, [dlinkfun()] through
+#' [d4linkfun()] going out and [dlinkinv()] through [d4linkinv()] coming
+#' back. Both directions are a power, so all eight derivatives are falling
+#' factorials in the exponent. Each is wrapped in [na_from()] because `NA^0`
+#' is one in R, which would turn a missing parameter into a number as soon
+#' as an exponent reached zero.
+#'
+#' @aliases linkfun.PowerLink
+#' @aliases linkinv.PowerLink
+#' @aliases dlinkfun.PowerLink
+#' @aliases d2linkfun.PowerLink
+#' @aliases d3linkfun.PowerLink
+#' @aliases d4linkfun.PowerLink
+#' @aliases dlinkinv.PowerLink
+#' @aliases d2linkinv.PowerLink
+#' @aliases d3linkinv.PowerLink
+#' @aliases d4linkinv.PowerLink
+#'
 #' @seealso [power_link()], the constructor users call.
 #' @keywords internal
 PowerLink <- S7::new_class(

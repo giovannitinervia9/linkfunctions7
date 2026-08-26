@@ -2,6 +2,16 @@
 % Please edit documentation in R/identity_link.R
 \name{IdentityLink}
 \alias{IdentityLink}
+\alias{linkfun.IdentityLink}
+\alias{linkinv.IdentityLink}
+\alias{dlinkfun.IdentityLink}
+\alias{d2linkfun.IdentityLink}
+\alias{d3linkfun.IdentityLink}
+\alias{d4linkfun.IdentityLink}
+\alias{dlinkinv.IdentityLink}
+\alias{d2linkinv.IdentityLink}
+\alias{d3linkinv.IdentityLink}
+\alias{d4linkinv.IdentityLink}
 \title{S7 Class for the Identity Link}
 \usage{
 IdentityLink(
@@ -34,6 +44,18 @@ are zero, at both directions and every order.
 \code{\link[=bounded_link]{bounded_link()}} returns an object of this class when it is given neither
 endpoint, there being nothing then to constrain.
 }
+\section{Methods}{
+
+Ten methods are registered on this class: \code{\link[=linkfun]{linkfun()}} and \code{\link[=linkinv]{linkinv()}},
+and the four derivative orders in each direction, \code{\link[=dlinkfun]{dlinkfun()}} through
+\code{\link[=d4linkfun]{d4linkfun()}} going out and \code{\link[=dlinkinv]{dlinkinv()}} through \code{\link[=d4linkinv]{d4linkinv()}} coming
+back. \code{linkfun()} and \code{linkinv()} return their argument. The first
+derivative is one and every higher one is zero, each built by
+\code{\link[=const_like]{const_like()}} so that a missing value in the argument propagates to the
+result: a derivative that does not depend on \eqn{\theta} is still
+undefined where \eqn{\theta} is.
+}
+
 \seealso{
 \code{\link[=identity_link]{identity_link()}}, the constructor users call.
 }

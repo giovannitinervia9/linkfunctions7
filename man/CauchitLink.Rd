@@ -2,6 +2,16 @@
 % Please edit documentation in R/cauchit_link.R
 \name{CauchitLink}
 \alias{CauchitLink}
+\alias{linkfun.CauchitLink}
+\alias{linkinv.CauchitLink}
+\alias{dlinkfun.CauchitLink}
+\alias{d2linkfun.CauchitLink}
+\alias{d3linkfun.CauchitLink}
+\alias{d4linkfun.CauchitLink}
+\alias{dlinkinv.CauchitLink}
+\alias{d2linkinv.CauchitLink}
+\alias{d3linkinv.CauchitLink}
+\alias{d4linkinv.CauchitLink}
 \title{S7 Class for the Cauchit Link}
 \usage{
 CauchitLink(
@@ -34,6 +44,17 @@ Its tails are far heavier than the logit's or the probit's, so an extreme
 linear predictor moves the probability much less. That makes it the choice
 when a few observations would otherwise drive the fit to a boundary.
 }
+\section{Methods}{
+
+Ten methods are registered on this class: \code{\link[=linkfun]{linkfun()}} and \code{\link[=linkinv]{linkinv()}},
+and the four derivative orders in each direction, \code{\link[=dlinkfun]{dlinkfun()}} through
+\code{\link[=d4linkfun]{d4linkfun()}} going out and \code{\link[=dlinkinv]{dlinkinv()}} through \code{\link[=d4linkinv]{d4linkinv()}} coming
+back. \code{linkfun()} and \code{linkinv()} delegate to \code{stats::qcauchy()} and
+\code{stats::pcauchy()}, which stay accurate in both tails. The eight
+derivatives come from a compiled kernel, one call per order and
+direction.
+}
+
 \seealso{
 \code{\link[=cauchit_link]{cauchit_link()}}, the constructor users call.
 }

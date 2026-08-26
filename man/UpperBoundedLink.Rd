@@ -2,6 +2,16 @@
 % Please edit documentation in R/bounded_link.R
 \name{UpperBoundedLink}
 \alias{UpperBoundedLink}
+\alias{linkfun.UpperBoundedLink}
+\alias{linkinv.UpperBoundedLink}
+\alias{dlinkfun.UpperBoundedLink}
+\alias{d2linkfun.UpperBoundedLink}
+\alias{d3linkfun.UpperBoundedLink}
+\alias{d4linkfun.UpperBoundedLink}
+\alias{dlinkinv.UpperBoundedLink}
+\alias{d2linkinv.UpperBoundedLink}
+\alias{d3linkinv.UpperBoundedLink}
+\alias{d4linkinv.UpperBoundedLink}
 \title{S7 Class for an Upper Bounded Link}
 \usage{
 UpperBoundedLink(
@@ -36,6 +46,18 @@ The reflection makes the map decreasing, so the odd-order derivatives change
 sign against \link{LowerBoundedLink}'s while the even ones do not. It is the mirror image of \code{\link[=LowerBoundedLink]{LowerBoundedLink()}}, the log of
 the distance below \code{upr}.
 }
+\section{Methods}{
+
+Ten methods are registered on this class: \code{\link[=linkfun]{linkfun()}} and \code{\link[=linkinv]{linkinv()}},
+and the four derivative orders in each direction, \code{\link[=dlinkfun]{dlinkfun()}} through
+\code{\link[=d4linkfun]{d4linkfun()}} going out and \code{\link[=dlinkinv]{dlinkinv()}} through \code{\link[=d4linkinv]{d4linkinv()}} coming
+back. The reflection makes the map decreasing, so every inverse
+derivative is the negative of \code{\link[=exp_floored]{exp_floored()}} of \eqn{\eta}, and the
+forward ones
+are the log's read at \eqn{\mathrm{upr} - \theta}, the odd orders
+carrying the sign the reflection introduces and the even ones not.
+}
+
 \seealso{
 \code{\link[=bounded_link]{bounded_link()}}, the constructor users call.
 }

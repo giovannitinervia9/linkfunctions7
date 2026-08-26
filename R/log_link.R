@@ -19,6 +19,26 @@
 #'   carrying its three properties `link_name`, `link_bounds` and
 #'   `link_params`. Its `link_bounds` are `c(0, Inf)` and it carries no link parameters.
 #'
+#' @section Methods:
+#' Ten methods are registered on this class: [linkfun()] and [linkinv()],
+#' and the four derivative orders in each direction, [dlinkfun()] through
+#' [d4linkfun()] going out and [dlinkinv()] through [d4linkinv()] coming
+#' back. The forward derivatives are \eqn{(-1)^{k-1}(k-1)!\,\theta^{-k}},
+#' written out. Every inverse derivative is [exp_floored()] of \eqn{\eta},
+#' the exponential being its own derivative to every order, and the floor is
+#' what keeps \eqn{\theta} strictly inside \eqn{(0, \infty)}.
+#'
+#' @aliases linkfun.LogLink
+#' @aliases linkinv.LogLink
+#' @aliases dlinkfun.LogLink
+#' @aliases d2linkfun.LogLink
+#' @aliases d3linkfun.LogLink
+#' @aliases d4linkfun.LogLink
+#' @aliases dlinkinv.LogLink
+#' @aliases d2linkinv.LogLink
+#' @aliases d3linkinv.LogLink
+#' @aliases d4linkinv.LogLink
+#'
 #' @seealso [log_link()], the constructor users call.
 #' @keywords internal
 LogLink <- S7::new_class(

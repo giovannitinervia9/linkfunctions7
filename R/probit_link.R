@@ -20,6 +20,25 @@
 #'   carrying its three properties `link_name`, `link_bounds` and
 #'   `link_params`. Its `link_bounds` are `c(0, 1)` and it carries no link parameters.
 #'
+#' @section Methods:
+#' Ten methods are registered on this class: [linkfun()] and [linkinv()],
+#' and the four derivative orders in each direction, [dlinkfun()] through
+#' [d4linkfun()] going out and [dlinkinv()] through [d4linkinv()] coming
+#' back. `linkfun()` and `linkinv()` delegate to `stats::qnorm()` and
+#' `stats::pnorm()`. The eight derivatives come from a compiled kernel, one
+#' call per order and direction.
+#'
+#' @aliases linkfun.ProbitLink
+#' @aliases linkinv.ProbitLink
+#' @aliases dlinkfun.ProbitLink
+#' @aliases d2linkfun.ProbitLink
+#' @aliases d3linkfun.ProbitLink
+#' @aliases d4linkfun.ProbitLink
+#' @aliases dlinkinv.ProbitLink
+#' @aliases d2linkinv.ProbitLink
+#' @aliases d3linkinv.ProbitLink
+#' @aliases d4linkinv.ProbitLink
+#'
 #' @seealso [probit_link()], the constructor users call.
 #' @keywords internal
 ProbitLink <- S7::new_class(

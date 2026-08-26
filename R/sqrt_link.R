@@ -20,6 +20,26 @@
 #'   carrying its three properties `link_name`, `link_bounds` and
 #'   `link_params`. Its `link_bounds` are `c(0, Inf)` and it carries no link parameters.
 #'
+#' @section Methods:
+#' Ten methods are registered on this class: [linkfun()] and [linkinv()],
+#' and the four derivative orders in each direction, [dlinkfun()] through
+#' [d4linkfun()] going out and [dlinkinv()] through [d4linkinv()] coming
+#' back. The forward derivatives are half-integer falling factorials. The
+#' inverse map is \eqn{\eta^2}, so its derivatives terminate: the second is
+#' the constant two and the third and fourth are exactly zero, both built by
+#' [const_like()] so a missing value still propagates.
+#'
+#' @aliases linkfun.SqrtLink
+#' @aliases linkinv.SqrtLink
+#' @aliases dlinkfun.SqrtLink
+#' @aliases d2linkfun.SqrtLink
+#' @aliases d3linkfun.SqrtLink
+#' @aliases d4linkfun.SqrtLink
+#' @aliases dlinkinv.SqrtLink
+#' @aliases d2linkinv.SqrtLink
+#' @aliases d3linkinv.SqrtLink
+#' @aliases d4linkinv.SqrtLink
+#'
 #' @seealso [sqrt_link()], the constructor users call.
 #' @keywords internal
 SqrtLink <- S7::new_class(

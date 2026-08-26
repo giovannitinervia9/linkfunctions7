@@ -2,6 +2,16 @@
 % Please edit documentation in R/sqrt_link.R
 \name{SqrtLink}
 \alias{SqrtLink}
+\alias{linkfun.SqrtLink}
+\alias{linkinv.SqrtLink}
+\alias{dlinkfun.SqrtLink}
+\alias{d2linkfun.SqrtLink}
+\alias{d3linkfun.SqrtLink}
+\alias{d4linkfun.SqrtLink}
+\alias{dlinkinv.SqrtLink}
+\alias{d2linkinv.SqrtLink}
+\alias{d3linkinv.SqrtLink}
+\alias{d4linkinv.SqrtLink}
 \title{S7 Class for the Sqrt Link}
 \usage{
 SqrtLink(
@@ -34,6 +44,17 @@ parameter behind it. That is a property of the link, and \code{\link[=check_link
 reports the failing invertibility check as expected for exactly this
 reason.
 }
+\section{Methods}{
+
+Ten methods are registered on this class: \code{\link[=linkfun]{linkfun()}} and \code{\link[=linkinv]{linkinv()}},
+and the four derivative orders in each direction, \code{\link[=dlinkfun]{dlinkfun()}} through
+\code{\link[=d4linkfun]{d4linkfun()}} going out and \code{\link[=dlinkinv]{dlinkinv()}} through \code{\link[=d4linkinv]{d4linkinv()}} coming
+back. The forward derivatives are half-integer falling factorials. The
+inverse map is \eqn{\eta^2}, so its derivatives terminate: the second is
+the constant two and the third and fourth are exactly zero, both built by
+\code{\link[=const_like]{const_like()}} so a missing value still propagates.
+}
+
 \seealso{
 \code{\link[=sqrt_link]{sqrt_link()}}, the constructor users call.
 }

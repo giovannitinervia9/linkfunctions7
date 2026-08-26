@@ -6,8 +6,8 @@
 #' that position is carried by the logit, so
 #' \eqn{\eta = \log(p/(1-p))}.
 #'
-#' Its derivatives are the logistic polynomials of [logistic_deriv()] scaled by
-#' the width \eqn{u - l}, so a bounded link costs no more than a logit.
+#' Its derivatives are the logistic polynomials scaled by the width
+#' \eqn{u - l}, so a bounded link costs no more than a logit.
 #' It is the logit of \eqn{p = (\theta - \mathrm{lwr})/W}, the position of
 #' \eqn{\theta} within the interval.
 #'
@@ -30,6 +30,28 @@
 #'   carrying its three properties `link_name`, `link_bounds` and
 #'   `link_params`. Its `link_bounds` are the endpoints given, and its `link_params` holds
 #'   `lwr` and `upr`.
+#'
+#' @section Methods:
+#' Ten methods are registered on this class: [linkfun()] and [linkinv()],
+#' and the four derivative orders in each direction, [dlinkfun()] through
+#' [d4linkfun()] going out and [dlinkinv()] through [d4linkinv()] coming
+#' back. The forward derivatives are the logit's divided by \eqn{W^k} and
+#' the inverse ones the logit's multiplied by \eqn{W}, because \eqn{p} is
+#' \eqn{\theta} rescaled by the width; the inverse set therefore calls the
+#' logit's own compiled kernel rather than transcribing four more
+#' polynomials, and the forward set is the logit's four expressions written
+#' in \eqn{p}.
+#'
+#' @aliases linkfun.DoublyBoundedLink
+#' @aliases linkinv.DoublyBoundedLink
+#' @aliases dlinkfun.DoublyBoundedLink
+#' @aliases d2linkfun.DoublyBoundedLink
+#' @aliases d3linkfun.DoublyBoundedLink
+#' @aliases d4linkfun.DoublyBoundedLink
+#' @aliases dlinkinv.DoublyBoundedLink
+#' @aliases d2linkinv.DoublyBoundedLink
+#' @aliases d3linkinv.DoublyBoundedLink
+#' @aliases d4linkinv.DoublyBoundedLink
 #'
 #' @seealso [bounded_link()], the constructor users call.
 #' @keywords internal
@@ -70,6 +92,26 @@ DoublyBoundedLink <- S7::new_class(
 #'   carrying its three properties `link_name`, `link_bounds` and
 #'   `link_params`. Its `link_bounds` are `c(lwr, Inf)`, and its `link_params` holds `lwr`.
 #'
+#' @section Methods:
+#' Ten methods are registered on this class: [linkfun()] and [linkinv()],
+#' and the four derivative orders in each direction, [dlinkfun()] through
+#' [d4linkfun()] going out and [dlinkinv()] through [d4linkinv()] coming
+#' back. The forward derivatives are the log link's read at \eqn{\theta -
+#' \mathrm{lwr}}, the shift being a constant that differentiates away. Every
+#' inverse derivative is [exp_floored()] of \eqn{\eta} itself, the
+#' exponential being its own derivative to every order.
+#'
+#' @aliases linkfun.LowerBoundedLink
+#' @aliases linkinv.LowerBoundedLink
+#' @aliases dlinkfun.LowerBoundedLink
+#' @aliases d2linkfun.LowerBoundedLink
+#' @aliases d3linkfun.LowerBoundedLink
+#' @aliases d4linkfun.LowerBoundedLink
+#' @aliases dlinkinv.LowerBoundedLink
+#' @aliases d2linkinv.LowerBoundedLink
+#' @aliases d3linkinv.LowerBoundedLink
+#' @aliases d4linkinv.LowerBoundedLink
+#'
 #' @seealso [bounded_link()], the constructor users call.
 #' @keywords internal
 LowerBoundedLink <- S7::new_class(
@@ -101,6 +143,27 @@ LowerBoundedLink <- S7::new_class(
 #' @return An S7 object of class `UpperBoundedLink`, inheriting from [link()] and
 #'   carrying its three properties `link_name`, `link_bounds` and
 #'   `link_params`. Its `link_bounds` are `c(-Inf, upr)`, and its `link_params` holds `upr`.
+#'
+#' @section Methods:
+#' Ten methods are registered on this class: [linkfun()] and [linkinv()],
+#' and the four derivative orders in each direction, [dlinkfun()] through
+#' [d4linkfun()] going out and [dlinkinv()] through [d4linkinv()] coming
+#' back. The reflection makes the map decreasing, so every inverse
+#' derivative is the negative of [exp_floored()] of \eqn{\eta}, and the
+#' forward ones
+#' are the log's read at \eqn{\mathrm{upr} - \theta}, the odd orders
+#' carrying the sign the reflection introduces and the even ones not.
+#'
+#' @aliases linkfun.UpperBoundedLink
+#' @aliases linkinv.UpperBoundedLink
+#' @aliases dlinkfun.UpperBoundedLink
+#' @aliases d2linkfun.UpperBoundedLink
+#' @aliases d3linkfun.UpperBoundedLink
+#' @aliases d4linkfun.UpperBoundedLink
+#' @aliases dlinkinv.UpperBoundedLink
+#' @aliases d2linkinv.UpperBoundedLink
+#' @aliases d3linkinv.UpperBoundedLink
+#' @aliases d4linkinv.UpperBoundedLink
 #'
 #' @seealso [bounded_link()], the constructor users call.
 #' @keywords internal

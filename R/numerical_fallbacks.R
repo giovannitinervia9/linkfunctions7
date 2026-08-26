@@ -222,6 +222,26 @@ eta_bounds <- function(x) {
 #'
 #' @return A numeric vector of the same length as `v`.
 #'
+#' @section Methods:
+#' The eight registrations on the base class [link()] have this function as
+#' their whole body: `dlinkfun()` through `d4linkfun()` going out and
+#' `dlinkinv()` through `d4linkinv()` coming back, each passing its order and
+#' its direction. A link inherits them for the orders it does not implement
+#' itself, so a link defined with nothing but [linkfun()] and [linkinv()] can
+#' still answer every derivative generic. S7 requires a method's formals to
+#' match the generic's, and the two directions name their argument
+#' differently, so the eight wrappers are written out rather than generated.
+#'
+#' @aliases dlinkfun.link
+#' @aliases d2linkfun.link
+#' @aliases d3linkfun.link
+#' @aliases d4linkfun.link
+#' @aliases dlinkinv.link
+#' @aliases d2linkinv.link
+#' @aliases d3linkinv.link
+#' @aliases d4linkinv.link
+#'
+#'
 #' @keywords internal
 fallback_deriv <- function(x, v, order, inverse) {
   m <- min(analytic_order(x, inverse = inverse), order - 1L)

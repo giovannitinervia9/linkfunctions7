@@ -2,6 +2,16 @@
 % Please edit documentation in R/bounded_link.R
 \name{DoublyBoundedLink}
 \alias{DoublyBoundedLink}
+\alias{linkfun.DoublyBoundedLink}
+\alias{linkinv.DoublyBoundedLink}
+\alias{dlinkfun.DoublyBoundedLink}
+\alias{d2linkfun.DoublyBoundedLink}
+\alias{d3linkfun.DoublyBoundedLink}
+\alias{d4linkfun.DoublyBoundedLink}
+\alias{dlinkinv.DoublyBoundedLink}
+\alias{d2linkinv.DoublyBoundedLink}
+\alias{d3linkinv.DoublyBoundedLink}
+\alias{d4linkinv.DoublyBoundedLink}
 \title{S7 Class for a Doubly Bounded Link}
 \usage{
 DoublyBoundedLink(
@@ -39,8 +49,8 @@ mapped to its position \eqn{p = (\theta - l)/(u - l)} within the interval and
 that position is carried by the logit, so
 \eqn{\eta = \log(p/(1-p))}.
 
-Its derivatives are the logistic polynomials of \code{\link[=logistic_deriv]{logistic_deriv()}} scaled by
-the width \eqn{u - l}, so a bounded link costs no more than a logit.
+Its derivatives are the logistic polynomials scaled by the width
+\eqn{u - l}, so a bounded link costs no more than a logit.
 It is the logit of \eqn{p = (\theta - \mathrm{lwr})/W}, the position of
 \eqn{\theta} within the interval.
 }
@@ -50,6 +60,19 @@ property rather than recomputed. Every method needs it, and reading two S7
 properties and subtracting cost about a third of a call to \code{dlinkinv()};
 the constructor is the only place it can change.
 }
+\section{Methods}{
+
+Ten methods are registered on this class: \code{\link[=linkfun]{linkfun()}} and \code{\link[=linkinv]{linkinv()}},
+and the four derivative orders in each direction, \code{\link[=dlinkfun]{dlinkfun()}} through
+\code{\link[=d4linkfun]{d4linkfun()}} going out and \code{\link[=dlinkinv]{dlinkinv()}} through \code{\link[=d4linkinv]{d4linkinv()}} coming
+back. The forward derivatives are the logit's divided by \eqn{W^k} and
+the inverse ones the logit's multiplied by \eqn{W}, because \eqn{p} is
+\eqn{\theta} rescaled by the width; the inverse set therefore calls the
+logit's own compiled kernel rather than transcribing four more
+polynomials, and the forward set is the logit's four expressions written
+in \eqn{p}.
+}
+
 \seealso{
 \code{\link[=bounded_link]{bounded_link()}}, the constructor users call.
 }

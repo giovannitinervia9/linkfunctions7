@@ -20,6 +20,26 @@
 #'   carrying its three properties `link_name`, `link_bounds` and
 #'   `link_params`. Its `link_bounds` are `c(0, 1)` and it carries no link parameters.
 #'
+#' @section Methods:
+#' Ten methods are registered on this class: [linkfun()] and [linkinv()],
+#' and the four derivative orders in each direction, [dlinkfun()] through
+#' [d4linkfun()] going out and [dlinkinv()] through [d4linkinv()] coming
+#' back. `linkfun()` is written through `log1p()` rather than as
+#' \eqn{\log(-\log(1 - \theta))}, which rounds to \eqn{-\infty} for a small
+#' \eqn{\theta} where the true value is finite and representable. The eight
+#' derivatives come from a compiled kernel.
+#'
+#' @aliases linkfun.ClogLogLink
+#' @aliases linkinv.ClogLogLink
+#' @aliases dlinkfun.ClogLogLink
+#' @aliases d2linkfun.ClogLogLink
+#' @aliases d3linkfun.ClogLogLink
+#' @aliases d4linkfun.ClogLogLink
+#' @aliases dlinkinv.ClogLogLink
+#' @aliases d2linkinv.ClogLogLink
+#' @aliases d3linkinv.ClogLogLink
+#' @aliases d4linkinv.ClogLogLink
+#'
 #' @seealso [cloglog_link()], the constructor users call.
 #' @keywords internal
 ClogLogLink <- S7::new_class(

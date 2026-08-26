@@ -19,6 +19,25 @@
 #'   carrying its three properties `link_name`, `link_bounds` and
 #'   `link_params`. Its `link_bounds` are `c(0, 1)` and it carries no link parameters.
 #'
+#' @section Methods:
+#' Ten methods are registered on this class: [linkfun()] and [linkinv()],
+#' and the four derivative orders in each direction, [dlinkfun()] through
+#' [d4linkfun()] going out and [dlinkinv()] through [d4linkinv()] coming
+#' back. `linkfun()` and `linkinv()` are the elementary
+#' \eqn{-\log(-\log\theta)} and \eqn{\exp(-\exp(-\eta))}; the eight
+#' derivatives come from a compiled kernel.
+#'
+#' @aliases linkfun.LogLogLink
+#' @aliases linkinv.LogLogLink
+#' @aliases dlinkfun.LogLogLink
+#' @aliases d2linkfun.LogLogLink
+#' @aliases d3linkfun.LogLogLink
+#' @aliases d4linkfun.LogLogLink
+#' @aliases dlinkinv.LogLogLink
+#' @aliases d2linkinv.LogLogLink
+#' @aliases d3linkinv.LogLogLink
+#' @aliases d4linkinv.LogLogLink
+#'
 #' @seealso [loglog_link()], the constructor users call.
 #' @keywords internal
 LogLogLink <- S7::new_class(

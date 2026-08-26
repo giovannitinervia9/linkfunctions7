@@ -19,6 +19,26 @@
 #'   carrying its three properties `link_name`, `link_bounds` and
 #'   `link_params`. Its `link_bounds` are `c(0, Inf)` and it carries no link parameters.
 #'
+#' @section Methods:
+#' Ten methods are registered on this class: [linkfun()] and [linkinv()],
+#' and the four derivative orders in each direction, [dlinkfun()] through
+#' [d4linkfun()] going out and [dlinkinv()] through [d4linkinv()] coming
+#' back. The two directions are not the same map, \eqn{1/\theta^2} going
+#' forward and \eqn{\eta^{-1/2}} coming back, so the two sets of derivatives
+#' are written out separately: integer falling factorials one way,
+#' half-integer powers the other.
+#'
+#' @aliases linkfun.InverseSqLink
+#' @aliases linkinv.InverseSqLink
+#' @aliases dlinkfun.InverseSqLink
+#' @aliases d2linkfun.InverseSqLink
+#' @aliases d3linkfun.InverseSqLink
+#' @aliases d4linkfun.InverseSqLink
+#' @aliases dlinkinv.InverseSqLink
+#' @aliases d2linkinv.InverseSqLink
+#' @aliases d3linkinv.InverseSqLink
+#' @aliases d4linkinv.InverseSqLink
+#'
 #' @seealso [inverse_sq_link()], the constructor users call.
 #' @keywords internal
 InverseSqLink <- S7::new_class(

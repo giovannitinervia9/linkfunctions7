@@ -2,6 +2,16 @@
 % Please edit documentation in R/log_link.R
 \name{LogLink}
 \alias{LogLink}
+\alias{linkfun.LogLink}
+\alias{linkinv.LogLink}
+\alias{dlinkfun.LogLink}
+\alias{d2linkfun.LogLink}
+\alias{d3linkfun.LogLink}
+\alias{d4linkfun.LogLink}
+\alias{dlinkinv.LogLink}
+\alias{d2linkinv.LogLink}
+\alias{d3linkinv.LogLink}
+\alias{d4linkinv.LogLink}
 \title{S7 Class for the Logarithmic Link}
 \usage{
 LogLink(link_name = character(0), link_bounds = integer(0), link_params = NULL)
@@ -29,6 +39,17 @@ parameter, and the one a scale or a rate is almost always fitted on.
 The inverse is floored at \code{\link[=exp_floor]{exp_floor()}}, so a parameter reported by this link
 is never exactly zero and can be divided into.
 }
+\section{Methods}{
+
+Ten methods are registered on this class: \code{\link[=linkfun]{linkfun()}} and \code{\link[=linkinv]{linkinv()}},
+and the four derivative orders in each direction, \code{\link[=dlinkfun]{dlinkfun()}} through
+\code{\link[=d4linkfun]{d4linkfun()}} going out and \code{\link[=dlinkinv]{dlinkinv()}} through \code{\link[=d4linkinv]{d4linkinv()}} coming
+back. The forward derivatives are \eqn{(-1)^{k-1}(k-1)!\,\theta^{-k}},
+written out. Every inverse derivative is \code{\link[=exp_floored]{exp_floored()}} of \eqn{\eta},
+the exponential being its own derivative to every order, and the floor is
+what keeps \eqn{\theta} strictly inside \eqn{(0, \infty)}.
+}
+
 \seealso{
 \code{\link[=log_link]{log_link()}}, the constructor users call.
 }

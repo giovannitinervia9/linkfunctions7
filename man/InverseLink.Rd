@@ -2,6 +2,16 @@
 % Please edit documentation in R/inverse_link.R
 \name{InverseLink}
 \alias{InverseLink}
+\alias{linkfun.InverseLink}
+\alias{linkinv.InverseLink}
+\alias{dlinkfun.InverseLink}
+\alias{d2linkfun.InverseLink}
+\alias{d3linkfun.InverseLink}
+\alias{d4linkfun.InverseLink}
+\alias{dlinkinv.InverseLink}
+\alias{d2linkinv.InverseLink}
+\alias{d3linkinv.InverseLink}
+\alias{d4linkinv.InverseLink}
 \title{S7 Class for the Inverse Link}
 \usage{
 InverseLink(
@@ -33,6 +43,16 @@ It is the canonical link of the Gamma family. Its image is only
 \eqn{(0, \infty)}, so a negative linear predictor has no parameter behind it,
 and the map is decreasing: a larger parameter gives a smaller \eqn{\eta}.
 }
+\section{Methods}{
+
+Ten methods are registered on this class: \code{\link[=linkfun]{linkfun()}} and \code{\link[=linkinv]{linkinv()}},
+and the four derivative orders in each direction, \code{\link[=dlinkfun]{dlinkfun()}} through
+\code{\link[=d4linkfun]{d4linkfun()}} going out and \code{\link[=dlinkinv]{dlinkinv()}} through \code{\link[=d4linkinv]{d4linkinv()}} coming
+back. The link is its own inverse, so the two directions carry the same
+expressions: \eqn{1/\theta} and \eqn{1/\eta}, with the four derivatives
+\eqn{(-1)^k k!\,z^{-(k+1)}} written out in both.
+}
+
 \seealso{
 \code{\link[=inverse_link]{inverse_link()}}, the constructor users call.
 }

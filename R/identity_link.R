@@ -20,6 +20,27 @@
 #'   carrying its three properties `link_name`, `link_bounds` and
 #'   `link_params`. Its `link_bounds` are `c(-Inf, Inf)` and it carries no link parameters.
 #'
+#' @section Methods:
+#' Ten methods are registered on this class: [linkfun()] and [linkinv()],
+#' and the four derivative orders in each direction, [dlinkfun()] through
+#' [d4linkfun()] going out and [dlinkinv()] through [d4linkinv()] coming
+#' back. `linkfun()` and `linkinv()` return their argument. The first
+#' derivative is one and every higher one is zero, each built by
+#' [const_like()] so that a missing value in the argument propagates to the
+#' result: a derivative that does not depend on \eqn{\theta} is still
+#' undefined where \eqn{\theta} is.
+#'
+#' @aliases linkfun.IdentityLink
+#' @aliases linkinv.IdentityLink
+#' @aliases dlinkfun.IdentityLink
+#' @aliases d2linkfun.IdentityLink
+#' @aliases d3linkfun.IdentityLink
+#' @aliases d4linkfun.IdentityLink
+#' @aliases dlinkinv.IdentityLink
+#' @aliases d2linkinv.IdentityLink
+#' @aliases d3linkinv.IdentityLink
+#' @aliases d4linkinv.IdentityLink
+#'
 #' @seealso [identity_link()], the constructor users call.
 #' @keywords internal
 IdentityLink <- S7::new_class(

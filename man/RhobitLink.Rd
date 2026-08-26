@@ -2,6 +2,16 @@
 % Please edit documentation in R/rhobit_link.R
 \name{RhobitLink}
 \alias{RhobitLink}
+\alias{linkfun.RhobitLink}
+\alias{linkinv.RhobitLink}
+\alias{dlinkfun.RhobitLink}
+\alias{d2linkfun.RhobitLink}
+\alias{d3linkfun.RhobitLink}
+\alias{d4linkfun.RhobitLink}
+\alias{dlinkinv.RhobitLink}
+\alias{d2linkinv.RhobitLink}
+\alias{d3linkinv.RhobitLink}
+\alias{d4linkinv.RhobitLink}
 \title{S7 Class for the Rhobit Link}
 \usage{
 RhobitLink(
@@ -34,6 +44,16 @@ This is Fisher's z, the natural chart for a correlation: it carries the open
 interval onto the whole line, so an optimizer moving freely in \eqn{\eta}
 never proposes a correlation outside its range.
 }
+\section{Methods}{
+
+Ten methods are registered on this class: \code{\link[=linkfun]{linkfun()}} and \code{\link[=linkinv]{linkinv()}},
+and the four derivative orders in each direction, \code{\link[=dlinkfun]{dlinkfun()}} through
+\code{\link[=d4linkfun]{d4linkfun()}} going out and \code{\link[=dlinkinv]{dlinkinv()}} through \code{\link[=d4linkinv]{d4linkinv()}} coming
+back. \code{linkfun()} and \code{linkinv()} are \code{atanh()} and \code{tanh()}. The eight
+derivatives come from a compiled kernel, one call per order and
+direction.
+}
+
 \seealso{
 \code{\link[=rhobit_link]{rhobit_link()}}, the constructor users call.
 }
