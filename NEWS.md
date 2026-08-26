@@ -1,5 +1,22 @@
 # linkfunctions7 0.3.0
 
+* `logistic_deriv()` is held to the compiled kernel it is the R statement of.
+  The four logistic derivative polynomials are written twice, in R and as the
+  `static inline logistic_poly()` in `src/link_kernels.cpp` that the logit, the
+  doubly bounded link and the softplus reach; nothing called the R one and no
+  test compared them, so the page's claim that the two agree was unheld.
+  `test-logistic-twin.R` compares them at all four orders over 501 points and
+  checks that each of the three links reaches the polynomial its description
+  names -- as they stand, scaled by the interval width, and one order down
+  times a power of the steepness.
+
+  The comparison carries a tolerance rather than asking for identity. Both
+  forms are Horner and contain multiply-adds, which a compiler may contract
+  into an FMA; measured here the two agree to the bit at every order, and that
+  is a property of one compiler. A negative control asserts that a polynomial
+  wrong in one coefficient fails by more than 1e-3, which no contraction
+  reaches.
+
 * `eta_bounds()` is exported. It answers what a link maps **from**, where
   `link_bounds` says what it maps **onto**, and the two are different
   questions: `sqrt_link()`, `inverse_link()`, `inverse_sq_link()` and

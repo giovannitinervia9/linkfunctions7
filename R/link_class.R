@@ -131,8 +131,16 @@ na_from <- function(r, v) {
 #' What the three call is not this function but its transcription in
 #' `src/link_kernels.cpp`, the compiled kernels having replaced the R bodies
 #' when the transcendental links were compiled. This function is the R
-#' statement of the same four polynomials, and the two agree to the bit at
-#' every order; `lk_logistic_poly_cpp()` reaches the compiled one directly.
+#' statement of the same four polynomials, and `test-logistic-twin.R` holds the
+#' two together at every order and checks that each of the three links reaches
+#' the polynomial its description names. `lk_logistic_poly_cpp()` reaches the
+#' compiled one directly.
+#'
+#' The twin comparison carries a tolerance rather than asking for identity.
+#' Both forms are Horner and so contain multiply-adds, which a compiler may
+#' contract into an FMA, dropping an intermediate rounding; measured here the
+#' two agree to the bit at every order, and that is a statement about one
+#' compiler rather than about the arithmetic.
 #'
 #' The polynomials are
 #' \deqn{\sigma' = p(1-p)}
