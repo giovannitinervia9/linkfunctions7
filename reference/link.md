@@ -1,9 +1,10 @@
 # S7 Class for Statistical Link Functions
 
 The base S7 class for link functions. It carries the name, the domain
-and any link parameters; the transformations themselves – forward,
-inverse and their analytical derivatives to fourth order – are methods
-that each subclass registers on the ten generics.
+and any link parameters. The transformations themselves are methods that
+each subclass registers on the ten generics: the forward map, the
+inverse, and their analytical derivatives to fourth order in both
+directions.
 
 ## Usage
 
@@ -31,8 +32,8 @@ link(link_name = character(0), link_bounds = integer(0), link_params = NULL)
 
 An S7 object of class `link`. In practice this class is not instantiated
 directly: each link is a subclass created by one of the constructors
-([`logit_link`](https://statmodels7.github.io/linkfunctions7/reference/logit_link.md),
-[`power_link`](https://statmodels7.github.io/linkfunctions7/reference/power_link.md),
+([`logit_link()`](https://statmodels7.github.io/linkfunctions7/reference/logit_link.md),
+[`power_link()`](https://statmodels7.github.io/linkfunctions7/reference/power_link.md),
 ...), and `link` is what they all inherit from and what methods dispatch
 on.
 
@@ -52,11 +53,11 @@ The relationship is defined as \\\eta = g(\theta)\\ (link function) and
 
 ## See also
 
-[`linkfun`](https://statmodels7.github.io/linkfunctions7/reference/linkfun.md),
-[`linkinv`](https://statmodels7.github.io/linkfunctions7/reference/linkinv.md),
-[`linkderiv`](https://statmodels7.github.io/linkfunctions7/reference/linkderiv.md),
-[`linkinvderiv`](https://statmodels7.github.io/linkfunctions7/reference/linkinvderiv.md),
-[`check_link`](https://statmodels7.github.io/linkfunctions7/reference/check_link.md)
+[`linkfun()`](https://statmodels7.github.io/linkfunctions7/reference/linkfun.md),
+[`linkinv()`](https://statmodels7.github.io/linkfunctions7/reference/linkinv.md),
+[`linkderiv()`](https://statmodels7.github.io/linkfunctions7/reference/linkderiv.md),
+[`linkinvderiv()`](https://statmodels7.github.io/linkfunctions7/reference/linkinvderiv.md),
+[`check_link()`](https://statmodels7.github.io/linkfunctions7/reference/check_link.md)
 
 ## Examples
 

@@ -9,7 +9,7 @@ polynomial in \(p = \sigma(z)\) itself."><meta property="og:image" content="http
 
     <a class="navbar-brand me-2" href="../index.html">linkfunctions7</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -67,13 +67,25 @@ polynomial in \(p = \sigma(z)\) itself.</p>
     </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
-    <p>Three separate links need these same four polynomials, which is why they live
-in one place rather than being written out three times:</p><ul><li><p><code><a href="logit_link.html">logit_link</a></code> uses them directly, \(h^{(k)} = \sigma^{(k)}\);</p></li>
-<li><p><code><a href="bounded_link.html">bounded_link</a></code> with both endpoints scales them by the
+    <p>Three separate links need these same four polynomials, and each reaches
+them the same way:</p><ul><li><p><code><a href="logit_link.html">logit_link()</a></code> uses them directly, \(h^{(k)} = \sigma^{(k)}\);</p></li>
+<li><p><code><a href="bounded_link.html">bounded_link()</a></code> with both endpoints scales them by the
 interval width, \(h^{(k)} = W \sigma^{(k)}\);</p></li>
-<li><p><code><a href="softplus_link.html">softplus_link</a></code> uses them shifted one order down, since the
+<li><p><code><a href="softplus_link.html">softplus_link()</a></code> uses them shifted one order down, since the
 softplus is an antiderivative of the logistic: \(h^{(k+1)} = a^k \sigma^{(k)}\).</p></li>
-</ul><p>The polynomials are
+</ul><p>What the three call is not this function but its transcription in
+<code>src/link_kernels.cpp</code>, the compiled kernels having replaced the R bodies
+when the transcendental links were compiled. This function is the R
+statement of the same four polynomials, and <code>test-logistic-twin.R</code> holds the
+two together at every order and checks that each of the three links reaches
+the polynomial its description names. <code>lk_logistic_poly_cpp()</code> reaches the
+compiled one directly.</p>
+<p>The twin comparison carries a tolerance rather than asking for identity.
+Both forms are Horner and so contain multiply-adds, which a compiler may
+contract into an FMA, dropping an intermediate rounding; measured here the
+two agree to the bit at every order, and that is a statement about one
+compiler rather than about the arithmetic.</p>
+<p>The polynomials are
 $$\sigma' = p(1-p)$$
 $$\sigma'' = p(1-p)(1-2p)$$
 $$\sigma''' = p(1-p)(1 - 6p + 6p^2)$$

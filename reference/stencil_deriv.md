@@ -26,7 +26,7 @@ stencil_deriv(f, x, order, h)
 - h:
 
   A numeric vector of steps, from
-  [`fd_step`](https://statmodels7.github.io/linkfunctions7/reference/fd_step.md).
+  [`fd_step()`](https://statmodels7.github.io/linkfunctions7/reference/fd_step.md).
 
 ## Value
 
@@ -43,6 +43,6 @@ Applying one stencil of order \\k\\ is not the same as applying \\k\\
 stencils of order one, and the difference is the whole reason this
 function exists: each numerical differentiation multiplies the error of
 the one before it, so a fourth derivative reached by four nested first
-differences is noise. The identity link illustrates the failure directly
-– its third derivative is exactly zero, and nested differentiation
-returns a number of order one.
+differences is noise. The identity link shows the failure at its
+plainest. Its third derivative is exactly zero, and nested
+differentiation returns a number of order one.

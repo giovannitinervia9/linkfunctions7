@@ -38,8 +38,8 @@ operations.
 
 ## See also
 
-[`link`](https://statmodels7.github.io/linkfunctions7/reference/link.md),
-[`inverse_link`](https://statmodels7.github.io/linkfunctions7/reference/inverse_link.md)
+[`link()`](https://statmodels7.github.io/linkfunctions7/reference/link.md),
+[`inverse_link()`](https://statmodels7.github.io/linkfunctions7/reference/inverse_link.md)
 
 ## Examples
 

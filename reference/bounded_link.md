@@ -26,11 +26,11 @@ bounded_link(lwr = NULL, upr = NULL)
 An S7 object of class `link` containing the transformation functions and
 their exact analytical derivatives up to the fourth order. Which class
 exactly depends on the endpoints given:
-[`DoublyBoundedLink`](https://statmodels7.github.io/linkfunctions7/reference/DoublyBoundedLink.md),
-[`LowerBoundedLink`](https://statmodels7.github.io/linkfunctions7/reference/LowerBoundedLink.md),
-[`UpperBoundedLink`](https://statmodels7.github.io/linkfunctions7/reference/UpperBoundedLink.md),
+[`DoublyBoundedLink()`](https://statmodels7.github.io/linkfunctions7/reference/DoublyBoundedLink.md),
+[`LowerBoundedLink()`](https://statmodels7.github.io/linkfunctions7/reference/LowerBoundedLink.md),
+[`UpperBoundedLink()`](https://statmodels7.github.io/linkfunctions7/reference/UpperBoundedLink.md),
 or an
-[`IdentityLink`](https://statmodels7.github.io/linkfunctions7/reference/IdentityLink.md)
+[`IdentityLink()`](https://statmodels7.github.io/linkfunctions7/reference/IdentityLink.md)
 when neither endpoint is supplied.
 
 ## Details
@@ -49,13 +49,13 @@ function.
 \exp(\eta)\\.
 
 **Unbounded (`lwr = NULL`, `upr = NULL`):** Returns the standard
-[`identity_link`](https://statmodels7.github.io/linkfunctions7/reference/identity_link.md).
+[`identity_link()`](https://statmodels7.github.io/linkfunctions7/reference/identity_link.md).
 
 ## See also
 
-[`link`](https://statmodels7.github.io/linkfunctions7/reference/link.md),
-[`logit_link`](https://statmodels7.github.io/linkfunctions7/reference/logit_link.md),
-[`log_link`](https://statmodels7.github.io/linkfunctions7/reference/log_link.md)
+[`link()`](https://statmodels7.github.io/linkfunctions7/reference/link.md),
+[`logit_link()`](https://statmodels7.github.io/linkfunctions7/reference/logit_link.md),
+[`log_link()`](https://statmodels7.github.io/linkfunctions7/reference/log_link.md)
 
 ## Examples
 

@@ -1,6 +1,10 @@
-# 1st Derivative of Inverse Link Function
+# 1st Derivative of an Inverse Link Function
 
-The first derivative of \\g^{-1}(\eta)\\ with respect to \\\eta\\.
+The first derivative of the inverse link \\g^{-1}(\eta)\\ with respect
+to the linear predictor. This is the direction a modeling routine
+working on the unconstrained scale needs: it is the chain-rule factor
+that carries a derivative of the log-likelihood from \\\theta\\ onto
+\\\eta\\.
 
 ## Usage
 
@@ -16,7 +20,9 @@ dlinkinv(x, eta)
 
 - eta:
 
-  A numeric vector.
+  A numeric vector of linear predictors. Any finite value is admissible;
+  the inverse link clamps its result strictly inside `x@link_bounds`
+  before this derivative is taken.
 
 ## Value
 
@@ -24,24 +30,41 @@ A numeric vector of the same length as `eta`, missing wherever `eta` is.
 
 ## Details
 
-This and its higher-order siblings are the generics a modeling routine
-working on the unconstrained scale actually wants. Call them directly
-rather than through
-[`linkinvderiv`](https://statmodels7.github.io/linkfunctions7/reference/linkinvderiv.md)
-in a hot loop: the router dispatches once on itself and then again on
-the order-specific generic, which is about a third of the cost of the
-call.
+Every link answers this generic. A link whose class registers no method
+for it gets the base class's numerical one, which applies a single
+central stencil to the highest order that link does supply analytically,
+never a chain of lower-order differences.
+[`link_fallback_orders()`](https://statmodels7.github.io/linkfunctions7/reference/link_fallback_orders.md)
+says which orders of a given link are exact, and
+[`check_link()`](https://statmodels7.github.io/linkfunctions7/reference/check_link.md)
+leaves a fallback order unchecked, since comparing it against a
+difference of itself would agree however wrong the link is.
+
+Call this generic directly in a hot loop.
+[`linkderiv()`](https://statmodels7.github.io/linkfunctions7/reference/linkderiv.md)
+and
+[`linkinvderiv()`](https://statmodels7.github.io/linkfunctions7/reference/linkinvderiv.md)
+route by order and so dispatch twice, once on themselves and once here,
+which is about a third of the cost of the call.
 
 ## See also
 
-[`linkinvderiv`](https://statmodels7.github.io/linkfunctions7/reference/linkinvderiv.md),
-which routes to this generic by order.
+[`linkinvderiv()`](https://statmodels7.github.io/linkfunctions7/reference/linkinvderiv.md),
+which routes to this generic by order, and
+[`dlinkfun()`](https://statmodels7.github.io/linkfunctions7/reference/dlinkfun.md)
+for the same order in the other direction.
 
 ## Examples
 
 ``` r
-dlinkinv(logit_link(), 0)      # p(1 - p) at p = 0.5
+# Every derivative of exp is exp, so the log link's inverse gives the
+# same number at every order.
+dlinkinv(log_link(), 1) - exp(1)
+#> [1] 0
+
+# The logit's inverse derivatives are polynomials in theta. At eta = 0 the
+# logistic is symmetric about 1/2, so its even-order derivatives vanish
+# there while the first is the Bernoulli variance, 1/4.
+dlinkinv(logit_link(), 0)
 #> [1] 0.25
-dlinkinv(log_link(), c(0, 1))
-#> [1] 1.000000 2.718282
 ```

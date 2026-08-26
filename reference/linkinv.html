@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">linkfunctions7</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -65,9 +65,10 @@
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p><strong>The result is always strictly inside <code>link_bounds</code></strong>, and that is
-enforced here rather than left to each method. A link is a bijection onto an
-<em>open</em> interval, which is exactly what makes it useful — a value it
-returns can be handed to <code><a href="linkfun.html">linkfun</a></code> and come back, or to a density
+enforced in the generic, so no method has to repeat it. A link is a
+bijection onto an
+<em>open</em> interval, which is exactly what makes it useful: a value it
+returns can be handed to <code><a href="linkfun.html">linkfun()</a></code> and come back, or to a density
 that validates its parameters against open intervals. In double precision the
 bijection is not quite onto: <code>plogis</code> is exactly 1 above about
 \(\eta = 37\), <code>lwr + exp(eta)</code> rounds to <code>lwr</code> once the
@@ -76,8 +77,8 @@ overflow to infinity far out. Nine of the links shipped here reach a bound
 somewhere in \(\lvert \eta \rvert \le 800\).</p>
 <p>So the generic clamps: a result at or beyond a finite bound becomes the
 nearest double strictly inside it, and a non-finite result becomes the
-largest finite double of that sign. Both are derived rather than chosen —
-they are the extremes of what "strictly inside, and a usable number" permits,
+largest finite double of that sign. Both bounds are derived, being
+the extremes of what "strictly inside, and a usable number" permits,
 and no tolerance is invented. The clamp costs one comparison per bound and
 fires only in the tails.</p>
 <p>Doing it in the generic body means every link inherits it, including a
@@ -86,7 +87,7 @@ formula without a guard of its own.</p>
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
-    <div class="dont-index"><p><code><a href="linkfun.html">linkfun</a></code>, <code><a href="link_bounds_clamp.html">link_bounds_clamp</a></code></p></div>
+    <div class="dont-index"><p><code><a href="linkfun.html">linkfun()</a></code>, <code><a href="link_bounds_clamp.html">link_bounds_clamp()</a></code></p></div>
     </div>
 
     <div class="section level2">

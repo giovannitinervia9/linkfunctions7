@@ -37,13 +37,36 @@ The whole design is in the two lines that pick `m` and `gap`: never
 differentiate numerically more than the number of orders actually
 missing. A link analytic to the second order asks for a first difference
 to reach the third, not three; a link supplying nothing but
-[`linkfun`](https://statmodels7.github.io/linkfunctions7/reference/linkfun.md)
+[`linkfun()`](https://statmodels7.github.io/linkfunctions7/reference/linkfun.md)
 is the only case in which a fourth-order stencil is applied to the
 function itself.
 
 Note the recursion is only apparent. The base function is fetched
 through
-[`linkderiv`](https://statmodels7.github.io/linkfunctions7/reference/linkderiv.md),
-which dispatches to the link's own method for an order it implements —
-so the chain always terminates on analytic code, and never on another
+[`linkderiv()`](https://statmodels7.github.io/linkfunctions7/reference/linkderiv.md),
+which dispatches to the link's own method for an order it implements, so
+the chain always terminates on analytic code, and never on another
 fallback.
+
+## Methods
+
+The eight registrations on the base class
+[`link()`](https://statmodels7.github.io/linkfunctions7/reference/link.md)
+have this function as their whole body:
+[`dlinkfun()`](https://statmodels7.github.io/linkfunctions7/reference/dlinkfun.md)
+through
+[`d4linkfun()`](https://statmodels7.github.io/linkfunctions7/reference/d4linkfun.md)
+going out and
+[`dlinkinv()`](https://statmodels7.github.io/linkfunctions7/reference/dlinkinv.md)
+through
+[`d4linkinv()`](https://statmodels7.github.io/linkfunctions7/reference/d4linkinv.md)
+coming back, each passing its order and its direction. A link inherits
+them for the orders it does not implement itself, so a link defined with
+nothing but
+[`linkfun()`](https://statmodels7.github.io/linkfunctions7/reference/linkfun.md)
+and
+[`linkinv()`](https://statmodels7.github.io/linkfunctions7/reference/linkinv.md)
+can still answer every derivative generic. S7 requires a method's
+formals to match the generic's, and the two directions name their
+argument differently, so the eight wrappers are written out rather than
+generated.

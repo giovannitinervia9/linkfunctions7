@@ -1,7 +1,7 @@
 # Evaluate Derivative of Link Function by Order
 
 A convenience router over
-[`linkfun`](https://statmodels7.github.io/linkfunctions7/reference/linkfun.md)
+[`linkfun()`](https://statmodels7.github.io/linkfunctions7/reference/linkfun.md)
 and the four `d*linkfun` generics.
 
 Routes to the correct forward derivative generic based on order.
@@ -39,16 +39,16 @@ A numeric vector of the same length as `theta`.
 
 This dispatches twice, once on itself and once on the order-specific
 generic. Where that matters, call
-[`dlinkfun`](https://statmodels7.github.io/linkfunctions7/reference/dlinkfun.md)
+[`dlinkfun()`](https://statmodels7.github.io/linkfunctions7/reference/dlinkfun.md)
 and its siblings directly.
 
 ## See also
 
-[`linkfun`](https://statmodels7.github.io/linkfunctions7/reference/linkfun.md),
-[`linkinv`](https://statmodels7.github.io/linkfunctions7/reference/linkinv.md),
-[`linkinvderiv`](https://statmodels7.github.io/linkfunctions7/reference/linkinvderiv.md),
-[`check_link`](https://statmodels7.github.io/linkfunctions7/reference/check_link.md),
-[`link`](https://statmodels7.github.io/linkfunctions7/reference/link.md)
+[`linkfun()`](https://statmodels7.github.io/linkfunctions7/reference/linkfun.md),
+[`linkinv()`](https://statmodels7.github.io/linkfunctions7/reference/linkinv.md),
+[`linkinvderiv()`](https://statmodels7.github.io/linkfunctions7/reference/linkinvderiv.md),
+[`check_link()`](https://statmodels7.github.io/linkfunctions7/reference/check_link.md),
+[`link()`](https://statmodels7.github.io/linkfunctions7/reference/link.md)
 
 ## Examples
 

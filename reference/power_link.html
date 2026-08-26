@@ -9,7 +9,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">linkfunctions7</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -68,7 +68,7 @@ or an object of class <code>LogLink</code> if <code>lambda = 0</code>.</p>
 Consequently, the inverse link is derived as \(\theta = \eta^{1/\lambda}\).</p>
 <p><strong>Special Case (Box-Cox continuity):</strong>
 If <code>lambda = 0</code>, the function mathematically approaches \(\log(\theta)\).
-In this scenario, the function automatically instantiates and returns a <code><a href="log_link.html">log_link</a></code>
+In this scenario, the function automatically instantiates and returns a <code><a href="log_link.html">log_link()</a></code>
 object, modifying its internal state to reflect the <code>lambda = 0</code> parameter.</p>
 <p>Common special cases include:</p><ul><li><p><code>lambda = 1</code>: Identity link.</p></li>
 <li><p><code>lambda = 0.5</code>: Square-root link.</p></li>
@@ -80,7 +80,7 @@ that \(\eta\) remains strictly positive to avoid <code>NaN</code>s from fraction
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
-    <div class="dont-index"><p><code><a href="link.html">link</a></code>, <code><a href="log_link.html">log_link</a></code>, <code><a href="identity_link.html">identity_link</a></code></p></div>
+    <div class="dont-index"><p><code><a href="link.html">link()</a></code>, <code><a href="log_link.html">log_link()</a></code>, <code><a href="identity_link.html">identity_link()</a></code></p></div>
     </div>
 
     <div class="section level2">

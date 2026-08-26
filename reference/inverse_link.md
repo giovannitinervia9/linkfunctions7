@@ -32,8 +32,8 @@ mapping to invalid negative parameter values.
 
 ## See also
 
-[`link`](https://statmodels7.github.io/linkfunctions7/reference/link.md),
-[`identity_link`](https://statmodels7.github.io/linkfunctions7/reference/identity_link.md)
+[`link()`](https://statmodels7.github.io/linkfunctions7/reference/link.md),
+[`identity_link()`](https://statmodels7.github.io/linkfunctions7/reference/identity_link.md)
 
 ## Examples
 

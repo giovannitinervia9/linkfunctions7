@@ -32,9 +32,9 @@ The strict mathematical domain for \\\theta\\ is `c(0, Inf)`.
 
 ## See also
 
-[`link`](https://statmodels7.github.io/linkfunctions7/reference/link.md),
-[`power_link`](https://statmodels7.github.io/linkfunctions7/reference/power_link.md),
-[`log_link`](https://statmodels7.github.io/linkfunctions7/reference/log_link.md)
+[`link()`](https://statmodels7.github.io/linkfunctions7/reference/link.md),
+[`power_link()`](https://statmodels7.github.io/linkfunctions7/reference/power_link.md),
+[`log_link()`](https://statmodels7.github.io/linkfunctions7/reference/log_link.md)
 
 ## Examples
 

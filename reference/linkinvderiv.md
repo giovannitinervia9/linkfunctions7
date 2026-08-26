@@ -1,7 +1,7 @@
 # Evaluate Derivative of Inverse Link Function by Order
 
 A convenience router over
-[`linkinv`](https://statmodels7.github.io/linkfunctions7/reference/linkinv.md)
+[`linkinv()`](https://statmodels7.github.io/linkfunctions7/reference/linkinv.md)
 and the four `d*linkinv` generics.
 
 Routes to the correct inverse derivative generic based on order.
@@ -39,16 +39,16 @@ A numeric vector of the same length as `eta`.
 
 This dispatches twice, once on itself and once on the order-specific
 generic. Where that matters, call
-[`dlinkinv`](https://statmodels7.github.io/linkfunctions7/reference/dlinkinv.md)
+[`dlinkinv()`](https://statmodels7.github.io/linkfunctions7/reference/dlinkinv.md)
 and its siblings directly.
 
 ## See also
 
-[`linkfun`](https://statmodels7.github.io/linkfunctions7/reference/linkfun.md),
-[`linkinv`](https://statmodels7.github.io/linkfunctions7/reference/linkinv.md),
-[`linkderiv`](https://statmodels7.github.io/linkfunctions7/reference/linkderiv.md),
-[`check_link`](https://statmodels7.github.io/linkfunctions7/reference/check_link.md),
-[`link`](https://statmodels7.github.io/linkfunctions7/reference/link.md)
+[`linkfun()`](https://statmodels7.github.io/linkfunctions7/reference/linkfun.md),
+[`linkinv()`](https://statmodels7.github.io/linkfunctions7/reference/linkinv.md),
+[`linkderiv()`](https://statmodels7.github.io/linkfunctions7/reference/linkderiv.md),
+[`check_link()`](https://statmodels7.github.io/linkfunctions7/reference/check_link.md),
+[`link()`](https://statmodels7.github.io/linkfunctions7/reference/link.md)
 
 ## Examples
 

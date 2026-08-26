@@ -29,8 +29,8 @@ The valid mathematical domain of \\\theta\\ is exactly `c(-1, 1)`.
 
 ## See also
 
-[`link`](https://statmodels7.github.io/linkfunctions7/reference/link.md),
-[`logit_link`](https://statmodels7.github.io/linkfunctions7/reference/logit_link.md)
+[`link()`](https://statmodels7.github.io/linkfunctions7/reference/link.md),
+[`logit_link()`](https://statmodels7.github.io/linkfunctions7/reference/logit_link.md)
 
 ## Examples
 

@@ -9,7 +9,7 @@ differentiating once the highest order the link supplies analytically."><meta pr
 
     <a class="navbar-brand me-2" href="../index.html">linkfunctions7</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -78,12 +78,25 @@ differentiating once the highest order the link supplies analytically.</p>
     <p>The whole design is in the two lines that pick <code>m</code> and <code>gap</code>: never
 differentiate numerically more than the number of orders actually missing.
 A link analytic to the second order asks for a first difference to reach the
-third, not three; a link supplying nothing but <code><a href="linkfun.html">linkfun</a></code> is the
+third, not three; a link supplying nothing but <code><a href="linkfun.html">linkfun()</a></code> is the
 only case in which a fourth-order stencil is applied to the function itself.</p>
 <p>Note the recursion is only apparent. The base function is fetched through
-<code><a href="linkderiv.html">linkderiv</a></code>, which dispatches to the link's own method for an
-order it implements — so the chain always terminates on analytic code, and
+<code><a href="linkderiv.html">linkderiv()</a></code>, which dispatches to the link's own method for an
+order it implements, so the chain always terminates on analytic code, and
 never on another fallback.</p>
+    </div>
+    <div class="section level2">
+    <h2 id="methods">Methods<a class="anchor" aria-label="anchor" href="#methods"></a></h2>
+
+
+<p>The eight registrations on the base class <code><a href="link.html">link()</a></code> have this function as
+their whole body: <code><a href="dlinkfun.html">dlinkfun()</a></code> through <code><a href="d4linkfun.html">d4linkfun()</a></code> going out and
+<code><a href="dlinkinv.html">dlinkinv()</a></code> through <code><a href="d4linkinv.html">d4linkinv()</a></code> coming back, each passing its order and
+its direction. A link inherits them for the orders it does not implement
+itself, so a link defined with nothing but <code><a href="linkfun.html">linkfun()</a></code> and <code><a href="linkinv.html">linkinv()</a></code> can
+still answer every derivative generic. S7 requires a method's formals to
+match the generic's, and the two directions name their argument
+differently, so the eight wrappers are written out rather than generated.</p>
     </div>
 
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

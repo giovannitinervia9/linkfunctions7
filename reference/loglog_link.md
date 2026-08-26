@@ -2,7 +2,7 @@
 
 The log-log link \\\eta = -\log(-\log\theta)\\ on \\(0, 1)\\, with
 inverse \\\theta = \exp(-e^{-\eta})\\; the mirror image of
-[`cloglog_link`](https://statmodels7.github.io/linkfunctions7/reference/cloglog_link.md).
+[`cloglog_link()`](https://statmodels7.github.io/linkfunctions7/reference/cloglog_link.md).
 
 ## Usage
 
@@ -24,14 +24,14 @@ The Log-Log link is mathematically defined as \\\eta =
 
 Unlike the logit and the probit the link is asymmetric: the probability
 approaches 0 slowly and 1 sharply, the mirror image of
-[`cloglog_link`](https://statmodels7.github.io/linkfunctions7/reference/cloglog_link.md).
+[`cloglog_link()`](https://statmodels7.github.io/linkfunctions7/reference/cloglog_link.md).
 The domain of \\\theta\\ is \\(0, 1)\\.
 
 ## See also
 
-[`link`](https://statmodels7.github.io/linkfunctions7/reference/link.md),
-[`cloglog_link`](https://statmodels7.github.io/linkfunctions7/reference/cloglog_link.md),
-[`logit_link`](https://statmodels7.github.io/linkfunctions7/reference/logit_link.md)
+[`link()`](https://statmodels7.github.io/linkfunctions7/reference/link.md),
+[`cloglog_link()`](https://statmodels7.github.io/linkfunctions7/reference/cloglog_link.md),
+[`logit_link()`](https://statmodels7.github.io/linkfunctions7/reference/logit_link.md)
 
 ## Examples
 

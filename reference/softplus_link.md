@@ -36,25 +36,24 @@ Mathematically:
 - Link Function: \\\eta = \frac{1}{a} \log(\exp(a \theta) - 1)\\
 
 **Behavior:** For large negative \\\eta\\, \\\theta \approx 0\\. For
-large positive \\\eta\\, \\\theta \approx \eta\\ (linear behavior),
-whereas a Log link would imply \\\theta = \exp(\eta)\\ (exponential
-behavior).
+large positive \\\eta\\, \\\theta \approx \eta\\, growing linearly where
+a log link would grow as \\\exp(\eta)\\.
 
 **Numerical Stability:** Both directions are written so that no
 intermediate quantity grows with \\a\theta\\ or \\a\eta\\. The inverse
 link uses the log-sum-exp form, and the forward link and its derivatives
 are expressed in \\u = 1 - e^{-a\theta}\\ rather than in \\e^{a\theta} -
-1\\, which overflows once \\a\theta\\ passes about 709 — and, because
-the derivatives divide by its fourth power, well before that at the
-higher orders.
+1\\, which overflows once \\a\theta\\ passes about 709, and because the
+derivatives divide by its fourth power, well before that at the higher
+orders.
 
 The mathematical domain of \\\theta\\ is `c(0, Inf)`.
 
 ## See also
 
-[`link`](https://statmodels7.github.io/linkfunctions7/reference/link.md),
-[`log_link`](https://statmodels7.github.io/linkfunctions7/reference/log_link.md),
-[`identity_link`](https://statmodels7.github.io/linkfunctions7/reference/identity_link.md)
+[`link()`](https://statmodels7.github.io/linkfunctions7/reference/link.md),
+[`log_link()`](https://statmodels7.github.io/linkfunctions7/reference/log_link.md),
+[`identity_link()`](https://statmodels7.github.io/linkfunctions7/reference/identity_link.md)
 
 ## Examples
 

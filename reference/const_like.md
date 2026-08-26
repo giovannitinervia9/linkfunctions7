@@ -36,5 +36,5 @@ this helper instead of [`rep()`](https://rdrr.io/r/base/rep.html).
 
 ## See also
 
-[`na_from`](https://statmodels7.github.io/linkfunctions7/reference/na_from.md),
+[`na_from()`](https://statmodels7.github.io/linkfunctions7/reference/na_from.md),
 the same idea for a computed result.

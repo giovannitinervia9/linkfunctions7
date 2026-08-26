@@ -30,9 +30,9 @@ The strictly mathematical domain of \\\theta\\ is `c(0, 1)`.
 
 ## See also
 
-[`link`](https://statmodels7.github.io/linkfunctions7/reference/link.md),
-[`logit_link`](https://statmodels7.github.io/linkfunctions7/reference/logit_link.md),
-[`cauchit_link`](https://statmodels7.github.io/linkfunctions7/reference/cauchit_link.md)
+[`link()`](https://statmodels7.github.io/linkfunctions7/reference/link.md),
+[`logit_link()`](https://statmodels7.github.io/linkfunctions7/reference/logit_link.md),
+[`cauchit_link()`](https://statmodels7.github.io/linkfunctions7/reference/cauchit_link.md)
 
 ## Examples
 

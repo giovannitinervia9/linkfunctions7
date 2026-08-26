@@ -1,7 +1,7 @@
 # A Floored Exponential
 
 `exp(eta)`, bounded below by
-[`exp_floor`](https://statmodels7.github.io/linkfunctions7/reference/exp_floor.md).
+[`exp_floor()`](https://statmodels7.github.io/linkfunctions7/reference/exp_floor.md).
 
 ## Usage
 
@@ -18,7 +18,7 @@ exp_floored(eta)
 ## Value
 
 A numeric vector, never smaller than
-[`exp_floor`](https://statmodels7.github.io/linkfunctions7/reference/exp_floor.md).
+[`exp_floor()`](https://statmodels7.github.io/linkfunctions7/reference/exp_floor.md).
 
 ## Details
 

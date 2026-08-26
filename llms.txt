@@ -174,6 +174,8 @@ or to a density that validates against open intervals.
   : Evaluate Derivative of Inverse Link Function by Order
 - [`link_bounds_clamp()`](https://statmodels7.github.io/linkfunctions7/reference/link_bounds_clamp.md)
   : Clamp a Parameter Strictly Inside Its Domain
+- [`eta_bounds()`](https://statmodels7.github.io/linkfunctions7/reference/eta_bounds.md)
+  : The Range of Predictors a Link Admits
 
 ## Derivatives by order
 
@@ -184,21 +186,21 @@ and
 route to these; call them directly where the extra dispatch matters.
 
 - [`dlinkfun()`](https://statmodels7.github.io/linkfunctions7/reference/dlinkfun.md)
-  : 1st Derivative of Link Function
+  : 1st Derivative of a Link Function
 - [`d2linkfun()`](https://statmodels7.github.io/linkfunctions7/reference/d2linkfun.md)
-  : 2nd Derivative of Link Function
+  : 2nd Derivative of a Link Function
 - [`d3linkfun()`](https://statmodels7.github.io/linkfunctions7/reference/d3linkfun.md)
-  : 3rd Derivative of Link Function
+  : 3rd Derivative of a Link Function
 - [`d4linkfun()`](https://statmodels7.github.io/linkfunctions7/reference/d4linkfun.md)
-  : 4th Derivative of Link Function
+  : 4th Derivative of a Link Function
 - [`dlinkinv()`](https://statmodels7.github.io/linkfunctions7/reference/dlinkinv.md)
-  : 1st Derivative of Inverse Link Function
+  : 1st Derivative of an Inverse Link Function
 - [`d2linkinv()`](https://statmodels7.github.io/linkfunctions7/reference/d2linkinv.md)
-  : 2nd Derivative of Inverse Link Function
+  : 2nd Derivative of an Inverse Link Function
 - [`d3linkinv()`](https://statmodels7.github.io/linkfunctions7/reference/d3linkinv.md)
-  : 3rd Derivative of Inverse Link Function
+  : 3rd Derivative of an Inverse Link Function
 - [`d4linkinv()`](https://statmodels7.github.io/linkfunctions7/reference/d4linkinv.md)
-  : 4th Derivative of Inverse Link Function
+  : 4th Derivative of an Inverse Link Function
 
 ## Methods
 
@@ -241,8 +243,6 @@ route to these; call them directly where the extra dispatch matters.
   : Validate and Check a Link Object
 - [`const_like()`](https://statmodels7.github.io/linkfunctions7/reference/const_like.md)
   : A Constant Vector That Preserves Missingness
-- [`eta_bounds()`](https://statmodels7.github.io/linkfunctions7/reference/eta_bounds.md)
-  : The Range a Stencil May Evaluate the Inverse Link On
 - [`exp_floor`](https://statmodels7.github.io/linkfunctions7/reference/exp_floor.md)
   : The Smallest Parameter Value the Exponential Links Will Report
 - [`exp_floored()`](https://statmodels7.github.io/linkfunctions7/reference/exp_floored.md)

@@ -30,7 +30,7 @@ Consequently, the inverse link is derived as \\\theta =
 **Special Case (Box-Cox continuity):** If `lambda = 0`, the function
 mathematically approaches \\\log(\theta)\\. In this scenario, the
 function automatically instantiates and returns a
-[`log_link`](https://statmodels7.github.io/linkfunctions7/reference/log_link.md)
+[`log_link()`](https://statmodels7.github.io/linkfunctions7/reference/log_link.md)
 object, modifying its internal state to reflect the `lambda = 0`
 parameter.
 
@@ -51,9 +51,9 @@ avoid `NaN`s from fractional exponents.
 
 ## See also
 
-[`link`](https://statmodels7.github.io/linkfunctions7/reference/link.md),
-[`log_link`](https://statmodels7.github.io/linkfunctions7/reference/log_link.md),
-[`identity_link`](https://statmodels7.github.io/linkfunctions7/reference/identity_link.md)
+[`link()`](https://statmodels7.github.io/linkfunctions7/reference/link.md),
+[`log_link()`](https://statmodels7.github.io/linkfunctions7/reference/log_link.md),
+[`identity_link()`](https://statmodels7.github.io/linkfunctions7/reference/identity_link.md)
 
 ## Examples
 

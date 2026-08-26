@@ -29,18 +29,18 @@ A link is a strictly monotone differentiable bijection \\g : \Theta \to
 \mathbb{R}\\ from the parameter's open domain `x@link_bounds` onto the
 whole line, so that an unconstrained optimizer may work in \\\eta\\
 while \\\theta = g^{-1}(\eta)\\ stays admissible at every point.
-[`linkinv`](https://statmodels7.github.io/linkfunctions7/reference/linkinv.md)
+[`linkinv()`](https://statmodels7.github.io/linkfunctions7/reference/linkinv.md)
 evaluates that inverse and is the only other method a link has to
 supply; the eight derivative generics have numerical fallbacks derived
 from the pair.
 
 ## See also
 
-[`linkinv`](https://statmodels7.github.io/linkfunctions7/reference/linkinv.md),
-[`linkderiv`](https://statmodels7.github.io/linkfunctions7/reference/linkderiv.md),
-[`linkinvderiv`](https://statmodels7.github.io/linkfunctions7/reference/linkinvderiv.md),
-[`check_link`](https://statmodels7.github.io/linkfunctions7/reference/check_link.md),
-[`link`](https://statmodels7.github.io/linkfunctions7/reference/link.md)
+[`linkinv()`](https://statmodels7.github.io/linkfunctions7/reference/linkinv.md),
+[`linkderiv()`](https://statmodels7.github.io/linkfunctions7/reference/linkderiv.md),
+[`linkinvderiv()`](https://statmodels7.github.io/linkfunctions7/reference/linkinvderiv.md),
+[`check_link()`](https://statmodels7.github.io/linkfunctions7/reference/check_link.md),
+[`link()`](https://statmodels7.github.io/linkfunctions7/reference/link.md)
 
 ## Examples
 

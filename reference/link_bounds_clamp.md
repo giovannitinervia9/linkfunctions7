@@ -3,7 +3,7 @@
 Moves a value that has reached or passed a bound to the nearest double
 strictly inside it, and a non-finite value to the largest finite double
 of that sign. Applied by
-[`linkinv`](https://statmodels7.github.io/linkfunctions7/reference/linkinv.md)
+[`linkinv()`](https://statmodels7.github.io/linkfunctions7/reference/linkinv.md)
 to every link.
 
 ## Usage
@@ -27,8 +27,8 @@ link_bounds_clamp(theta, bounds)
 `theta`, with any value that has landed exactly on a bound moved just
 inside it and any infinity brought back to the largest finite double.
 `NA` and `NaN` pass through untouched, as does a value strictly outside
-by a real margin: converting either would hide something rather than fix
-it.
+by a real margin. Converting either would hide a defect, which is the
+caller's to see.
 
 ## Details
 
@@ -56,15 +56,15 @@ arithmetic reliably gets.
 A bound at zero is the exception and needs no bump, since there the
 spacing is relative all the way down to 1e-308 and the exponential links
 already floor at
-[`exp_floor`](https://statmodels7.github.io/linkfunctions7/reference/exp_floor.md).
+[`exp_floor()`](https://statmodels7.github.io/linkfunctions7/reference/exp_floor.md).
 The clamp therefore leaves an exact zero bound to
-[`exp_floor`](https://statmodels7.github.io/linkfunctions7/reference/exp_floor.md)
+[`exp_floor()`](https://statmodels7.github.io/linkfunctions7/reference/exp_floor.md)
 and uses the smallest positive normal only if something has still landed
 on it.
 
 ## See also
 
-[`linkinv`](https://statmodels7.github.io/linkfunctions7/reference/linkinv.md)
+[`linkinv()`](https://statmodels7.github.io/linkfunctions7/reference/linkinv.md)
 
 ## Examples
 

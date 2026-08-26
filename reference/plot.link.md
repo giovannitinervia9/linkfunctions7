@@ -23,7 +23,7 @@ plot(x, ...)
 - ...:
 
   Additional graphical parameters passed to
-  [`plot`](https://rdrr.io/r/graphics/plot.default.html).
+  [`graphics::plot()`](https://rdrr.io/r/graphics/plot.default.html).
 
 ## Value
 

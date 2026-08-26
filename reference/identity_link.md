@@ -28,7 +28,7 @@ The domain of \\\theta\\ is unbounded, meaning the valid domain is
 
 ## See also
 
-[`link`](https://statmodels7.github.io/linkfunctions7/reference/link.md)
+[`link()`](https://statmodels7.github.io/linkfunctions7/reference/link.md)
 
 ## Examples
 

@@ -11,7 +11,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">linkfunctions7</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -74,20 +74,20 @@ is the Softplus of the linear predictor \(\eta\).</p>
 <li><p>Link Function: \(\eta = \frac{1}{a} \log(\exp(a \theta) - 1)\)</p></li>
 </ul><p><strong>Behavior:</strong>
 For large negative \(\eta\), \(\theta \approx 0\).
-For large positive \(\eta\), \(\theta \approx \eta\) (linear behavior), whereas
-a Log link would imply \(\theta = \exp(\eta)\) (exponential behavior).</p>
+For large positive \(\eta\), \(\theta \approx \eta\), growing linearly
+where a log link would grow as \(\exp(\eta)\).</p>
 <p><strong>Numerical Stability:</strong>
 Both directions are written so that no intermediate quantity grows with
 \(a\theta\) or \(a\eta\). The inverse link uses the log-sum-exp form, and
 the forward link and its derivatives are expressed in
 \(u = 1 - e^{-a\theta}\) rather than in \(e^{a\theta} - 1\), which
-overflows once \(a\theta\) passes about 709 — and, because the derivatives
+overflows once \(a\theta\) passes about 709, and because the derivatives
 divide by its fourth power, well before that at the higher orders.</p>
 <p>The mathematical domain of \(\theta\) is <code>c(0, Inf)</code>.</p>
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
-    <div class="dont-index"><p><code><a href="link.html">link</a></code>, <code><a href="log_link.html">log_link</a></code>, <code><a href="identity_link.html">identity_link</a></code></p></div>
+    <div class="dont-index"><p><code><a href="link.html">link()</a></code>, <code><a href="log_link.html">log_link()</a></code>, <code><a href="identity_link.html">identity_link()</a></code></p></div>
     </div>
 
     <div class="section level2">

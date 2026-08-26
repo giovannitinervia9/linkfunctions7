@@ -33,9 +33,9 @@ accurate near both boundaries.
 
 ## See also
 
-[`link`](https://statmodels7.github.io/linkfunctions7/reference/link.md),
-[`probit_link`](https://statmodels7.github.io/linkfunctions7/reference/probit_link.md),
-[`cloglog_link`](https://statmodels7.github.io/linkfunctions7/reference/cloglog_link.md)
+[`link()`](https://statmodels7.github.io/linkfunctions7/reference/link.md),
+[`probit_link()`](https://statmodels7.github.io/linkfunctions7/reference/probit_link.md),
+[`cloglog_link()`](https://statmodels7.github.io/linkfunctions7/reference/cloglog_link.md)
 
 ## Examples
 

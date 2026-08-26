@@ -29,8 +29,8 @@ check_link.link(x, tolerance = 1e-05, ...)
 
 ## Value
 
-Invisibly, a named list of check results; see `check_link.link` for its
-shape. Called mainly for the summary printed to the console.
+Invisibly, a named list of check results; see `check_link.link()` for
+its shape. Called mainly for the summary printed to the console.
 
 Invisibly, a named list of the check results: the four scalar logicals
 `invertibility_theta`, `invertibility_eta`, `monotonicity` and
@@ -42,7 +42,7 @@ fallback, so the value and the reference would be the same arithmetic
 and would agree whatever the link did. The number of orders actually
 implemented is carried on the result as the attribute
 `"analytic_orders"`; see
-[`link_fallback_orders`](https://statmodels7.github.io/linkfunctions7/reference/link_fallback_orders.md).
+[`link_fallback_orders()`](https://statmodels7.github.io/linkfunctions7/reference/link_fallback_orders.md).
 A derivative that raises an error still counts as `FALSE`. Called mainly
 for the summary printed to the console.
 
@@ -85,11 +85,11 @@ the exact lower-order analytical derivatives.
 
 ## See also
 
-[`linkfun`](https://statmodels7.github.io/linkfunctions7/reference/linkfun.md),
-[`linkinv`](https://statmodels7.github.io/linkfunctions7/reference/linkinv.md),
-[`linkderiv`](https://statmodels7.github.io/linkfunctions7/reference/linkderiv.md),
-[`linkinvderiv`](https://statmodels7.github.io/linkfunctions7/reference/linkinvderiv.md),
-[`link`](https://statmodels7.github.io/linkfunctions7/reference/link.md)
+[`linkfun()`](https://statmodels7.github.io/linkfunctions7/reference/linkfun.md),
+[`linkinv()`](https://statmodels7.github.io/linkfunctions7/reference/linkinv.md),
+[`linkderiv()`](https://statmodels7.github.io/linkfunctions7/reference/linkderiv.md),
+[`linkinvderiv()`](https://statmodels7.github.io/linkfunctions7/reference/linkinvderiv.md),
+[`link()`](https://statmodels7.github.io/linkfunctions7/reference/link.md)
 
 ## Examples
 

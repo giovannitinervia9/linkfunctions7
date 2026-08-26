@@ -9,7 +9,7 @@ applied in a single step rather than by composing lower-order differences."><met
 
     <a class="navbar-brand me-2" href="../index.html">linkfunctions7</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -66,7 +66,7 @@ applied in a single step rather than by composing lower-order differences.</p>
 
 
 <dt id="arg-h">h<a class="anchor" aria-label="anchor" href="#arg-h"></a></dt>
-<dd><p>A numeric vector of steps, from <code><a href="fd_step.html">fd_step</a></code>.</p></dd>
+<dd><p>A numeric vector of steps, from <code><a href="fd_step.html">fd_step()</a></code>.</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -84,9 +84,8 @@ $$f''' \approx \frac{f(x+2h) - 2f(x+h) + 2f(x-h) - f(x-2h)}{2h^{3}}, \qquad
 stencils of order one, and the difference is the whole reason this function
 exists: each numerical differentiation multiplies the error of the one before
 it, so a fourth derivative reached by four nested first differences is noise.
-The identity link illustrates the failure directly – its third
-derivative is exactly zero, and nested differentiation returns a number of
-order one.</p>
+The identity link shows the failure at its plainest. Its third derivative is
+exactly zero, and nested differentiation returns a number of order one.</p>
     </div>
 
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

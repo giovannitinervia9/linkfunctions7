@@ -13,7 +13,7 @@ numerical differentiation of the analytic order below it."><meta property="og:im
 
     <a class="navbar-brand me-2" href="../index.html">linkfunctions7</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -76,7 +76,7 @@ numerical differentiation of the analytic order below it.</p>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     <p>Invisibly, a named list of check results; see
-<code>check_link.link</code> for its shape. Called mainly for the summary
+<code>check_link.link()</code> for its shape. Called mainly for the summary
 printed to the console.</p>
 <p>Invisibly, a named list of the check results: the four scalar logicals
 <code>invertibility_theta</code>, <code>invertibility_eta</code>, <code>monotonicity</code> and
@@ -87,7 +87,7 @@ mean what they say and <code>NA</code> means <strong>not checked</strong>: the o
 supplied by a numerical fallback, so the value and the reference would be
 the same arithmetic and would agree whatever the link did. The number of
 orders actually implemented is carried on the result as the attribute
-<code>"analytic_orders"</code>; see <code><a href="link_fallback_orders.html">link_fallback_orders</a></code>. A
+<code>"analytic_orders"</code>; see <code><a href="link_fallback_orders.html">link_fallback_orders()</a></code>. A
 derivative that raises an error still counts as <code>FALSE</code>. Called mainly
 for the summary printed to the console.</p>
     </div>
@@ -105,7 +105,7 @@ first-order numerical differentiation iteratively to the exact lower-order analy
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
-    <div class="dont-index"><p><code><a href="linkfun.html">linkfun</a></code>, <code><a href="linkinv.html">linkinv</a></code>, <code><a href="linkderiv.html">linkderiv</a></code>, <code><a href="linkinvderiv.html">linkinvderiv</a></code>, <code><a href="link.html">link</a></code></p></div>
+    <div class="dont-index"><p><code><a href="linkfun.html">linkfun()</a></code>, <code><a href="linkinv.html">linkinv()</a></code>, <code><a href="linkderiv.html">linkderiv()</a></code>, <code><a href="linkinvderiv.html">linkinvderiv()</a></code>, <code><a href="link.html">link()</a></code></p></div>
     </div>
 
     <div class="section level2">

@@ -1,5 +1,46 @@
 # Changelog
 
+## linkfunctions7 0.3.0
+
+- [`logistic_deriv()`](https://statmodels7.github.io/linkfunctions7/reference/logistic_deriv.md)
+  is held to the compiled kernel it is the R statement of. The four
+  logistic derivative polynomials are written twice, in R and as the
+  `static inline logistic_poly()` in `src/link_kernels.cpp` that the
+  logit, the doubly bounded link and the softplus reach; nothing called
+  the R one and no test compared them, so the page’s claim that the two
+  agree was unheld. `test-logistic-twin.R` compares them at all four
+  orders over 501 points and checks that each of the three links reaches
+  the polynomial its description names – as they stand, scaled by the
+  interval width, and one order down times a power of the steepness.
+
+  The comparison carries a tolerance rather than asking for identity.
+  Both forms are Horner and contain multiply-adds, which a compiler may
+  contract into an FMA; measured here the two agree to the bit at every
+  order, and that is a property of one compiler. A negative control
+  asserts that a polynomial wrong in one coefficient fails by more than
+  1e-3, which no contraction reaches.
+
+- [`eta_bounds()`](https://statmodels7.github.io/linkfunctions7/reference/eta_bounds.md)
+  is exported. It answers what a link maps **from**, where `link_bounds`
+  says what it maps **onto**, and the two are different questions:
+  [`sqrt_link()`](https://statmodels7.github.io/linkfunctions7/reference/sqrt_link.md),
+  [`inverse_link()`](https://statmodels7.github.io/linkfunctions7/reference/inverse_link.md),
+  [`inverse_sq_link()`](https://statmodels7.github.io/linkfunctions7/reference/inverse_sq_link.md)
+  and
+  [`power_link()`](https://statmodels7.github.io/linkfunctions7/reference/power_link.md)
+  at a positive exponent all reach the positive half of the theta axis
+  from the positive half of the eta axis alone. A consumer that carries
+  an unconstrained vector and applies an inverse link to each coordinate
+  needs the second question answered, the map being neither defined nor
+  injective outside those bounds – `linkinv(sqrt_link(), -2)` and
+  `linkinv(sqrt_link(), 2)` are both 4 and the round trip returns the
+  absolute value.
+
+  Nothing about the function changes. It was already documented and
+  reachable through `:::`; what changes is that a package depending on
+  this one can now ask the question at construction, where the message
+  can name the link, instead of discovering the fold in a fitted number.
+
 ## linkfunctions7 0.2.0
 
 - Scalar C entry points for the fast route of a score-driven filter

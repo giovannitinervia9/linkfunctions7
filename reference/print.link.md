@@ -1,9 +1,8 @@
 # Print Method for S7 Link Objects
 
-Print method for `link` objects: the name, the domain and any link
-parameters. It displays the name of the link function, its valid
-parameter domain, and any additional parameters it may have (e.g.,
-lambda for a power link).
+Prints a link's name, the open interval its parameter lives in, and the
+link parameters it carries, if any. Three lines at most, and two for a
+link with no parameters of its own.
 
 ## Usage
 
@@ -20,11 +19,22 @@ print(x, ...)
 
 - ...:
 
-  Additional arguments passed to methods (currently unused).
+  Additional arguments passed to methods, currently unused.
 
 ## Value
 
-The function returns `x` invisibly.
+`x`, invisibly. Called for the printed output.
+
+## Details
+
+The domain is shown as the open interval it is, so a probability link
+reads `(0, 1)` and never `[0, 1]`: no link ever returns an endpoint, and
+[`link_bounds_clamp()`](https://statmodels7.github.io/linkfunctions7/reference/link_bounds_clamp.md)
+is what keeps that true in double precision.
+
+The parameter line appears only for a link that has parameters, and
+names them, so `power(lambda=2)` and `bounded(lwr=0, upr=10)` report the
+values they were constructed with.
 
 ## Examples
 

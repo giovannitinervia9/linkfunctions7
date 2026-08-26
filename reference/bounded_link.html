@@ -13,7 +13,7 @@ when only the upper is, and the identity when neither is given."><meta property=
 
     <a class="navbar-brand me-2" href="../index.html">linkfunctions7</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -71,9 +71,9 @@ when only the upper is, and the identity when neither is given.</p>
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     <p>An S7 object of class <code>link</code> containing the transformation functions
 and their exact analytical derivatives up to the fourth order. Which class
-exactly depends on the endpoints given: <code><a href="DoublyBoundedLink.html">DoublyBoundedLink</a></code>,
-<code><a href="LowerBoundedLink.html">LowerBoundedLink</a></code>, <code><a href="UpperBoundedLink.html">UpperBoundedLink</a></code>, or an
-<code><a href="IdentityLink.html">IdentityLink</a></code> when neither endpoint is supplied.</p>
+exactly depends on the endpoints given: <code><a href="DoublyBoundedLink.html">DoublyBoundedLink()</a></code>,
+<code><a href="LowerBoundedLink.html">LowerBoundedLink()</a></code>, <code><a href="UpperBoundedLink.html">UpperBoundedLink()</a></code>, or an
+<code><a href="IdentityLink.html">IdentityLink()</a></code> when neither endpoint is supplied.</p>
     </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
@@ -85,11 +85,11 @@ Defined as \(\eta = \log(\theta - \text{lwr})\), with inverse \(\theta = \exp(\e
 <p><strong>Upper Bounded (<code>lwr = NULL</code>, <code>upr</code> provided):</strong>
 Defined as \(\eta = \log(\text{upr} - \theta)\), with inverse \(\theta = \text{upr} - \exp(\eta)\).</p>
 <p><strong>Unbounded (<code>lwr = NULL</code>, <code>upr = NULL</code>):</strong>
-Returns the standard <code><a href="identity_link.html">identity_link</a></code>.</p>
+Returns the standard <code><a href="identity_link.html">identity_link()</a></code>.</p>
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
-    <div class="dont-index"><p><code><a href="link.html">link</a></code>, <code><a href="logit_link.html">logit_link</a></code>, <code><a href="log_link.html">log_link</a></code></p></div>
+    <div class="dont-index"><p><code><a href="link.html">link()</a></code>, <code><a href="logit_link.html">logit_link()</a></code>, <code><a href="log_link.html">log_link()</a></code></p></div>
     </div>
 
     <div class="section level2">

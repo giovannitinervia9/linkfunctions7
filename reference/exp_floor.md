@@ -2,8 +2,8 @@
 
 The floor applied to `exp(eta)` by every link whose inverse is an
 exponential
-([`log_link`](https://statmodels7.github.io/linkfunctions7/reference/log_link.md),
-[`cloglog_link`](https://statmodels7.github.io/linkfunctions7/reference/cloglog_link.md),
+([`log_link()`](https://statmodels7.github.io/linkfunctions7/reference/log_link.md),
+[`cloglog_link()`](https://statmodels7.github.io/linkfunctions7/reference/cloglog_link.md),
 and the lower- and upper-bounded links).
 
 ## Usage
@@ -18,10 +18,8 @@ A length-one numeric vector.
 
 ## Value
 
-A length-one numeric vector, about `1.9e-77`. This is a constant and not
-a function, but a documented topic needs a return section either way: it
-is one of the two things a first CRAN submission is most often sent back
-for.
+A length-one numeric vector, about `1.9e-77`, at which \\-6/\theta^4\\
+evaluates to `-4.5e307`.
 
 ## Details
 
@@ -44,4 +42,4 @@ derivative just as finite as before.
 
 ## See also
 
-[`exp_floored`](https://statmodels7.github.io/linkfunctions7/reference/exp_floored.md)
+[`exp_floored()`](https://statmodels7.github.io/linkfunctions7/reference/exp_floored.md)

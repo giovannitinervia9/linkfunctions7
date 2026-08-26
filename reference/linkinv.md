@@ -25,10 +25,10 @@ A numeric vector, strictly inside `x@link_bounds`.
 ## Details
 
 **The result is always strictly inside `link_bounds`**, and that is
-enforced here rather than left to each method. A link is a bijection
-onto an *open* interval, which is exactly what makes it useful — a value
-it returns can be handed to
-[`linkfun`](https://statmodels7.github.io/linkfunctions7/reference/linkfun.md)
+enforced in the generic, so no method has to repeat it. A link is a
+bijection onto an *open* interval, which is exactly what makes it
+useful: a value it returns can be handed to
+[`linkfun()`](https://statmodels7.github.io/linkfunctions7/reference/linkfun.md)
 and come back, or to a density that validates its parameters against
 open intervals. In double precision the bijection is not quite onto:
 `plogis` is exactly 1 above about \\\eta = 37\\, `lwr + exp(eta)` rounds
@@ -38,10 +38,10 @@ here reach a bound somewhere in \\\lvert \eta \rvert \le 800\\.
 
 So the generic clamps: a result at or beyond a finite bound becomes the
 nearest double strictly inside it, and a non-finite result becomes the
-largest finite double of that sign. Both are derived rather than chosen
-— they are the extremes of what "strictly inside, and a usable number"
-permits, and no tolerance is invented. The clamp costs one comparison
-per bound and fires only in the tails.
+largest finite double of that sign. Both bounds are derived, being the
+extremes of what "strictly inside, and a usable number" permits, and no
+tolerance is invented. The clamp costs one comparison per bound and
+fires only in the tails.
 
 Doing it in the generic body means every link inherits it, including a
 user-defined one, and that a method can be written as the plain
@@ -49,8 +49,8 @@ mathematical formula without a guard of its own.
 
 ## See also
 
-[`linkfun`](https://statmodels7.github.io/linkfunctions7/reference/linkfun.md),
-[`link_bounds_clamp`](https://statmodels7.github.io/linkfunctions7/reference/link_bounds_clamp.md)
+[`linkfun()`](https://statmodels7.github.io/linkfunctions7/reference/linkfun.md),
+[`link_bounds_clamp()`](https://statmodels7.github.io/linkfunctions7/reference/link_bounds_clamp.md)
 
 ## Examples
 
