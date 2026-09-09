@@ -45,24 +45,24 @@ parameters.
 
 ## Methods
 
-Ten methods are registered on this class:
+Twelve methods are registered on this class:
 [`linkfun()`](https://statmodels7.github.io/linkfunctions7/reference/linkfun.md)
 and
 [`linkinv()`](https://statmodels7.github.io/linkfunctions7/reference/linkinv.md),
-and the four derivative orders in each direction,
+and the five derivative orders in each direction,
 [`dlinkfun()`](https://statmodels7.github.io/linkfunctions7/reference/dlinkfun.md)
 through
-[`d4linkfun()`](https://statmodels7.github.io/linkfunctions7/reference/d4linkfun.md)
+[`d5linkfun()`](https://statmodels7.github.io/linkfunctions7/reference/d5linkfun.md)
 going out and
 [`dlinkinv()`](https://statmodels7.github.io/linkfunctions7/reference/dlinkinv.md)
 through
-[`d4linkinv()`](https://statmodels7.github.io/linkfunctions7/reference/d4linkinv.md)
+[`d5linkinv()`](https://statmodels7.github.io/linkfunctions7/reference/d5linkinv.md)
 coming back.
 [`linkfun()`](https://statmodels7.github.io/linkfunctions7/reference/linkfun.md)
 is written through [`log1p()`](https://rdrr.io/r/base/Log.html) rather
 than as \\\log(-\log(1 - \theta))\\, which rounds to \\-\infty\\ for a
 small \\\theta\\ where the true value is finite and representable. The
-eight derivatives come from a compiled kernel.
+ten derivatives come from a compiled kernel.
 
 ## See also
 

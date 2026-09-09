@@ -17,7 +17,7 @@ logistic_deriv(p, k)
 
 - k:
 
-  The derivative order, an integer from 1 to 4.
+  The derivative order, an integer from 1 to 5.
 
 ## Value
 
@@ -42,7 +42,7 @@ them the same way:
 What the three call is not this function but its transcription in
 `src/link_kernels.cpp`, the compiled kernels having replaced the R
 bodies when the transcendental links were compiled. This function is the
-R statement of the same four polynomials, and `test-logistic-twin.R`
+R statement of the same five polynomials, and `test-logistic-twin.R`
 holds the two together at every order and checks that each of the three
 links reaches the polynomial its description names.
 `lk_logistic_poly_cpp()` reaches the compiled one directly.
@@ -55,6 +55,9 @@ one compiler rather than about the arithmetic.
 
 The polynomials are \$\$\sigma' = p(1-p)\$\$ \$\$\sigma'' =
 p(1-p)(1-2p)\$\$ \$\$\sigma''' = p(1-p)(1 - 6p + 6p^2)\$\$
-\$\$\sigma'''' = p(1-p)(1 - 14p + 36p^2 - 24p^3)\$\$ and are evaluated
-in Horner form, which is twice as fast at the fourth order and agrees
-with the expanded form to within one unit in the last place.
+\$\$\sigma'''' = p(1-p)(1 - 14p + 36p^2 - 24p^3)\$\$ \$\$\sigma^{(5)} =
+p(1-p)(1 - 30p + 150p^2 - 240p^3 + 120p^4)\$\$ and are evaluated in
+Horner form, which is twice as fast at the fourth order and agrees with
+the expanded form to within one unit in the last place. Each follows
+from the one before it by \\P\_{k+1} = (1-2p)P_k + p(1-p)P_k'\\, so an
+order beyond those written here is generated rather than transcribed.

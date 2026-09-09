@@ -26,7 +26,7 @@ linkinvderiv.link(x, eta, order = 1)
 
 - order:
 
-  An integer (0 to 4).
+  An integer (0 to 5).
 
 ## Value
 

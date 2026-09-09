@@ -21,7 +21,7 @@ fallback_deriv(x, v, order, inverse)
 
 - order:
 
-  The derivative order wanted, 1 to 4.
+  The derivative order wanted, 1 to 5.
 
 - inverse:
 
@@ -50,16 +50,16 @@ fallback.
 
 ## Methods
 
-The eight registrations on the base class
+The ten registrations on the base class
 [`link()`](https://statmodels7.github.io/linkfunctions7/reference/link.md)
 have this function as their whole body:
 [`dlinkfun()`](https://statmodels7.github.io/linkfunctions7/reference/dlinkfun.md)
 through
-[`d4linkfun()`](https://statmodels7.github.io/linkfunctions7/reference/d4linkfun.md)
+[`d5linkfun()`](https://statmodels7.github.io/linkfunctions7/reference/d5linkfun.md)
 going out and
 [`dlinkinv()`](https://statmodels7.github.io/linkfunctions7/reference/dlinkinv.md)
 through
-[`d4linkinv()`](https://statmodels7.github.io/linkfunctions7/reference/d4linkinv.md)
+[`d5linkinv()`](https://statmodels7.github.io/linkfunctions7/reference/d5linkinv.md)
 coming back, each passing its order and its direction. A link inherits
 them for the orders it does not implement itself, so a link defined with
 nothing but

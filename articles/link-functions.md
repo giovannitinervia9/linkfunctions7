@@ -238,8 +238,8 @@ invisible(check_link(neglog))
 #>   [2] Invertibility (Eta space):   [PASSED] 
 #>   [3] Strict Monotonicity:         [PASSED] 
 #>   [4] Inverse Function Theorem:    [PASSED] 
-#>   [5] Link Derivatives:            [PASSED] 
-#>   [6] Inverse Link Derivatives:    [PASSED]
+#>   [5] Link Derivatives:            [PASSED to order 4, 1 numerical] 
+#>   [6] Inverse Link Derivatives:    [PASSED to order 4, 1 numerical]
 ```
 
 A line reporting `[FAILED]` identifies a derivative to revisit, which is

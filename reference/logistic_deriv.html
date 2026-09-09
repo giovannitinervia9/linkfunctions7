@@ -9,7 +9,7 @@ polynomial in \(p = \sigma(z)\) itself."><meta property="og:image" content="http
 
     <a class="navbar-brand me-2" href="../index.html">linkfunctions7</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.4.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -58,7 +58,7 @@ polynomial in \(p = \sigma(z)\) itself.</p>
 
 
 <dt id="arg-k">k<a class="anchor" aria-label="anchor" href="#arg-k"></a></dt>
-<dd><p>The derivative order, an integer from 1 to 4.</p></dd>
+<dd><p>The derivative order, an integer from 1 to 5.</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -76,7 +76,7 @@ softplus is an antiderivative of the logistic: \(h^{(k+1)} = a^k \sigma^{(k)}\).
 </ul><p>What the three call is not this function but its transcription in
 <code>src/link_kernels.cpp</code>, the compiled kernels having replaced the R bodies
 when the transcendental links were compiled. This function is the R
-statement of the same four polynomials, and <code>test-logistic-twin.R</code> holds the
+statement of the same five polynomials, and <code>test-logistic-twin.R</code> holds the
 two together at every order and checks that each of the three links reaches
 the polynomial its description names. <code>lk_logistic_poly_cpp()</code> reaches the
 compiled one directly.</p>
@@ -90,8 +90,11 @@ $$\sigma' = p(1-p)$$
 $$\sigma'' = p(1-p)(1-2p)$$
 $$\sigma''' = p(1-p)(1 - 6p + 6p^2)$$
 $$\sigma'''' = p(1-p)(1 - 14p + 36p^2 - 24p^3)$$
+$$\sigma^{(5)} = p(1-p)(1 - 30p + 150p^2 - 240p^3 + 120p^4)$$
 and are evaluated in Horner form, which is twice as fast at the fourth order
-and agrees with the expanded form to within one unit in the last place.</p>
+and agrees with the expanded form to within one unit in the last place. Each
+follows from the one before it by \(P_{k+1} = (1-2p)P_k + p(1-p)P_k'\), so
+an order beyond those written here is generated rather than transcribed.</p>
     </div>
 
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

@@ -87,6 +87,8 @@ route to these; call them directly where the extra dispatch matters.
   : 3rd Derivative of a Link Function
 - [`d4linkfun()`](https://statmodels7.github.io/linkfunctions7/reference/d4linkfun.md)
   : 4th Derivative of a Link Function
+- [`d5linkfun()`](https://statmodels7.github.io/linkfunctions7/reference/d5linkfun.md)
+  : 5th Derivative of a Link Function
 - [`dlinkinv()`](https://statmodels7.github.io/linkfunctions7/reference/dlinkinv.md)
   : 1st Derivative of an Inverse Link Function
 - [`d2linkinv()`](https://statmodels7.github.io/linkfunctions7/reference/d2linkinv.md)
@@ -95,6 +97,8 @@ route to these; call them directly where the extra dispatch matters.
   : 3rd Derivative of an Inverse Link Function
 - [`d4linkinv()`](https://statmodels7.github.io/linkfunctions7/reference/d4linkinv.md)
   : 4th Derivative of an Inverse Link Function
+- [`d5linkinv()`](https://statmodels7.github.io/linkfunctions7/reference/d5linkinv.md)
+  : 5th Derivative of an Inverse Link Function
 
 ## Methods
 

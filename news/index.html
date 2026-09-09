@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">linkfunctions7</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.4.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -36,6 +36,16 @@
       <small>Source: <a href="https://github.com/statmodels7/linkfunctions7/blob/master/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
     </div>
 
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="0.4.0" id="linkfunctions7-040">linkfunctions7 0.4.0<a class="anchor" aria-label="anchor" href="#linkfunctions7-040"></a></h2>
+<ul><li>
+<p>Every link carries its <strong>fifth</strong> derivative analytically, in both directions: <code><a href="../reference/d5linkfun.html">d5linkfun()</a></code> and <code><a href="../reference/d5linkinv.html">d5linkinv()</a></code>, registered on all sixteen classes, with <code><a href="../reference/linkderiv.html">linkderiv()</a></code> and <code><a href="../reference/linkinvderiv.html">linkinvderiv()</a></code> routing to order 5 and <code><a href="../reference/check_link.html">check_link()</a></code> validating it. The order exists because each order of differentiating a score-driven filter’s predictor through its own recursion draws in one more order of the link and of the family – the curvature reaches the third, the directional third derivative the fourth, and the outer Hessian of a model carrying such a term the fifth.</p>
+<p>Nothing was transcribed on trust. Each formula was derived from the order below it and checked against one Richardson pass on the analytic fourth before it was written, with a negative control on the same grid: a coefficient 5 per cent out reads between 7.9e-03 and 3.9 where the formula as shipped reads between 4.5e-12 and 7.4e-11. The recurrences are worth keeping, since they generate the orders above rather than being copied: the logistic polynomials follow , the probit’s inverse derivatives are , the cloglog’s obey  and the softplus’s forward numerators are the Eulerian triangle, 1, 11, 11, 1 at this order.</p>
+<p>The softplus and the doubly bounded link have no algebra of their own here: the first uses the logistic polynomials one order down times a power of its steepness, the second scales them by the interval width, and both identities are asserted rather than assumed.</p>
+</li>
+<li><p>An unsupported order asks a compiled kernel for a number and gets <code>NA</code>. Every kernel takes the order as an argument and reached its order-4 branch through <code>default:</code>, so <code>lk_logit_inv_cpp(eta, 5L)</code> was <code><a href="https://rdrr.io/r/base/identical.html" class="external-link">identical()</a></code> to the fourth order and <code>lk_probit_inv_cpp(eta, 9L)</code> answered as well. The routers have always rejected an order they do not carry, so nothing was reachable from the public surface and no result was ever wrong; the shape was, and it would have become live with the fifth order wired in.</p></li>
+<li><p>⚠️ <strong>The fifth forward derivative of the exponential links does not fit under the exponential floor, and the floor stays where it was derived.</strong> <code>exp_floor</code> is , chosen so that  cannot overflow, and at the floor that derivative reads -4.49e+307 against a <code>double.xmax</code> of 1.80e+308: the bound is tight. The fifth would need  = 5.82e-62, fifteen orders higher, so <code><a href="../reference/d5linkfun.html">d5linkfun()</a></code> of a log, lower- or upper-bounded link is <code>Inf</code> below about . It is not a cancellation and there is no rewrite: at the floor the value of  is about 3.6e+384, which is not a double. Raising the floor to suit would clamp  for  between -177 and -141, where <code><a href="../reference/linkinv.html">linkinv()</a></code> is exact today. The inverse direction, which is the one the chain rule onto the link scale uses, stays finite at every order, and a test pins both halves.</p></li>
+</ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.3.0" id="linkfunctions7-030">linkfunctions7 0.3.0<a class="anchor" aria-label="anchor" href="#linkfunctions7-030"></a></h2>
 <ul><li>

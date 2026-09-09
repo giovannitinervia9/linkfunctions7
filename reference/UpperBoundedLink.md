@@ -52,18 +52,18 @@ and carrying its three properties `link_name`, `link_bounds` and
 
 ## Methods
 
-Ten methods are registered on this class:
+Twelve methods are registered on this class:
 [`linkfun()`](https://statmodels7.github.io/linkfunctions7/reference/linkfun.md)
 and
 [`linkinv()`](https://statmodels7.github.io/linkfunctions7/reference/linkinv.md),
-and the four derivative orders in each direction,
+and the five derivative orders in each direction,
 [`dlinkfun()`](https://statmodels7.github.io/linkfunctions7/reference/dlinkfun.md)
 through
-[`d4linkfun()`](https://statmodels7.github.io/linkfunctions7/reference/d4linkfun.md)
+[`d5linkfun()`](https://statmodels7.github.io/linkfunctions7/reference/d5linkfun.md)
 going out and
 [`dlinkinv()`](https://statmodels7.github.io/linkfunctions7/reference/dlinkinv.md)
 through
-[`d4linkinv()`](https://statmodels7.github.io/linkfunctions7/reference/d4linkinv.md)
+[`d5linkinv()`](https://statmodels7.github.io/linkfunctions7/reference/d5linkinv.md)
 coming back. The reflection makes the map decreasing, so every inverse
 derivative is the negative of
 [`exp_floored()`](https://statmodels7.github.io/linkfunctions7/reference/exp_floored.md)

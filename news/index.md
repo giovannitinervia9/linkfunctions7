@@ -1,5 +1,66 @@
 # Changelog
 
+## linkfunctions7 0.4.0
+
+- Every link carries its **fifth** derivative analytically, in both
+  directions:
+  [`d5linkfun()`](https://statmodels7.github.io/linkfunctions7/reference/d5linkfun.md)
+  and
+  [`d5linkinv()`](https://statmodels7.github.io/linkfunctions7/reference/d5linkinv.md),
+  registered on all sixteen classes, with
+  [`linkderiv()`](https://statmodels7.github.io/linkfunctions7/reference/linkderiv.md)
+  and
+  [`linkinvderiv()`](https://statmodels7.github.io/linkfunctions7/reference/linkinvderiv.md)
+  routing to order 5 and
+  [`check_link()`](https://statmodels7.github.io/linkfunctions7/reference/check_link.md)
+  validating it. The order exists because each order of differentiating
+  a score-driven filter’s predictor through its own recursion draws in
+  one more order of the link and of the family – the curvature reaches
+  the third, the directional third derivative the fourth, and the outer
+  Hessian of a model carrying such a term the fifth.
+
+  Nothing was transcribed on trust. Each formula was derived from the
+  order below it and checked against one Richardson pass on the analytic
+  fourth before it was written, with a negative control on the same
+  grid: a coefficient 5 per cent out reads between 7.9e-03 and 3.9 where
+  the formula as shipped reads between 4.5e-12 and 7.4e-11. The
+  recurrences are worth keeping, since they generate the orders above
+  rather than being copied: the logistic polynomials follow , the
+  probit’s inverse derivatives are , the cloglog’s obey and the
+  softplus’s forward numerators are the Eulerian triangle, 1, 11, 11, 1
+  at this order.
+
+  The softplus and the doubly bounded link have no algebra of their own
+  here: the first uses the logistic polynomials one order down times a
+  power of its steepness, the second scales them by the interval width,
+  and both identities are asserted rather than assumed.
+
+- An unsupported order asks a compiled kernel for a number and gets
+  `NA`. Every kernel takes the order as an argument and reached its
+  order-4 branch through `default:`, so `lk_logit_inv_cpp(eta, 5L)` was
+  [`identical()`](https://rdrr.io/r/base/identical.html) to the fourth
+  order and `lk_probit_inv_cpp(eta, 9L)` answered as well. The routers
+  have always rejected an order they do not carry, so nothing was
+  reachable from the public surface and no result was ever wrong; the
+  shape was, and it would have become live with the fifth order wired
+  in.
+
+- ⚠️ **The fifth forward derivative of the exponential links does not
+  fit under the exponential floor, and the floor stays where it was
+  derived.** `exp_floor` is , chosen so that cannot overflow, and at the
+  floor that derivative reads -4.49e+307 against a `double.xmax` of
+  1.80e+308: the bound is tight. The fifth would need = 5.82e-62,
+  fifteen orders higher, so
+  [`d5linkfun()`](https://statmodels7.github.io/linkfunctions7/reference/d5linkfun.md)
+  of a log, lower- or upper-bounded link is `Inf` below about . It is
+  not a cancellation and there is no rewrite: at the floor the value of
+  is about 3.6e+384, which is not a double. Raising the floor to suit
+  would clamp for between -177 and -141, where
+  [`linkinv()`](https://statmodels7.github.io/linkfunctions7/reference/linkinv.md)
+  is exact today. The inverse direction, which is the one the chain rule
+  onto the link scale uses, stays finite at every order, and a test pins
+  both halves.
+
 ## linkfunctions7 0.3.0
 
 - [`logistic_deriv()`](https://statmodels7.github.io/linkfunctions7/reference/logistic_deriv.md)

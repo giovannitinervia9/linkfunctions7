@@ -35,8 +35,8 @@ its shape. Called mainly for the summary printed to the console.
 Invisibly, a named list of the check results: the four scalar logicals
 `invertibility_theta`, `invertibility_eta`, `monotonicity` and
 `inverse_theorem`, plus `link_derivatives` and
-`inverse_link_derivatives`, each a logical vector of length four named
-`order_1` to `order_4`. In those two, `TRUE` and `FALSE` mean what they
+`inverse_link_derivatives`, each a logical vector of length five named
+`order_1` to `order_5`. In those two, `TRUE` and `FALSE` mean what they
 say and `NA` means **not checked**: the order is supplied by a numerical
 fallback, so the value and the reference would be the same arithmetic
 and would agree whatever the link did. The number of orders actually
@@ -72,11 +72,11 @@ diagnostic checks:
     derivative.
 
 5.  **Link Derivatives:** Validates the exact analytical forward
-    derivatives of \\g(\theta)\\ up to the 4th order by comparing them
+    derivatives of \\g(\theta)\\ up to the 5th order by comparing them
     against numerical gradients.
 
 6.  **Inverse Link Derivatives:** Validates the exact analytical inverse
-    derivatives of \\g^{-1}(\eta)\\ up to the 4th order by comparing
+    derivatives of \\g^{-1}(\eta)\\ up to the 5th order by comparing
     them against numerical gradients.
 
 Both forward and inverse derivative testing avoids compounding numerical
@@ -121,8 +121,8 @@ res <- check_link(power_link(2))
 #>   [5] Link Derivatives:            [PASSED] 
 #>   [6] Inverse Link Derivatives:    [PASSED] 
 res$link_derivatives
-#> order_1 order_2 order_3 order_4 
-#>    TRUE    TRUE    TRUE    TRUE 
+#> order_1 order_2 order_3 order_4 order_5 
+#>    TRUE    TRUE    TRUE    TRUE    TRUE 
 res$inverse_theorem
 #> [1] TRUE
 

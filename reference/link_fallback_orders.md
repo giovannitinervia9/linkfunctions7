@@ -19,7 +19,7 @@ link_fallback_orders(x)
 ## Value
 
 A list with `forward` and `inverse`, each an integer: the number of
-leading orders implemented analytically, from 0 to 4.
+leading orders implemented analytically, from 0 to 5.
 
 ## Details
 
@@ -40,9 +40,9 @@ reports such orders separately instead of passing them.
 # everything the package ships is exact to fourth order
 link_fallback_orders(logit_link())
 #> $forward
-#> [1] 4
+#> [1] 5
 #> 
 #> $inverse
-#> [1] 4
+#> [1] 5
 #> 
 ```
