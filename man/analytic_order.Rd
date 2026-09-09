@@ -12,10 +12,10 @@ analytic_order(x, inverse = FALSE)
 \item{inverse}{Logical; \code{TRUE} to ask about the inverse-link generics.}
 }
 \value{
-An integer between 0 and 4.
+An integer between 0 and 5.
 }
 \description{
-The largest \eqn{k \le 4} for which the link's own class registers a method
+The largest \eqn{k \le 5} for which the link's own class registers a method
 for the order-\eqn{k} derivative generic; \code{0} when it registers none, so
 that only \code{\link[=linkfun]{linkfun()}} or \code{\link[=linkinv]{linkinv()}} is available.
 }

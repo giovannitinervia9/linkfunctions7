@@ -24,9 +24,9 @@
 #'   `link_params`. Its `link_bounds` are `c(0, Inf)` and its `link_params` holds `a`.
 #'
 #' @section Methods:
-#' Ten methods are registered on this class: [linkfun()] and [linkinv()],
-#' and the four derivative orders in each direction, [dlinkfun()] through
-#' [d4linkfun()] going out and [dlinkinv()] through [d4linkinv()] coming
+#' Twelve methods are registered on this class: [linkfun()] and [linkinv()],
+#' and the five derivative orders in each direction, [dlinkfun()] through
+#' [d5linkfun()] going out and [dlinkinv()] through [d5linkinv()] coming
 #' back. The softplus is an antiderivative of the logistic, so its
 #' inverse-link derivatives are the logistic ones shifted a place,
 #' \eqn{h^{(k+1)} = a^k \sigma^{(k)}}, and they reuse the same polynomials
@@ -40,10 +40,12 @@
 #' @aliases d2linkfun.SoftplusLink
 #' @aliases d3linkfun.SoftplusLink
 #' @aliases d4linkfun.SoftplusLink
+#' @aliases d5linkfun.SoftplusLink
 #' @aliases dlinkinv.SoftplusLink
 #' @aliases d2linkinv.SoftplusLink
 #' @aliases d3linkinv.SoftplusLink
 #' @aliases d4linkinv.SoftplusLink
+#' @aliases d5linkinv.SoftplusLink
 #'
 #' @seealso [softplus_link()], the constructor users call.
 #' @keywords internal
@@ -93,6 +95,7 @@ S7::method(dlinkfun, SoftplusLink) <- function(x, theta) lk_softplus_fwd_cpp(the
 S7::method(d2linkfun, SoftplusLink) <- function(x, theta) lk_softplus_fwd_cpp(theta, x@a, 2L)
 S7::method(d3linkfun, SoftplusLink) <- function(x, theta) lk_softplus_fwd_cpp(theta, x@a, 3L)
 S7::method(d4linkfun, SoftplusLink) <- function(x, theta) lk_softplus_fwd_cpp(theta, x@a, 4L)
+S7::method(d5linkfun, SoftplusLink) <- function(x, theta) lk_softplus_fwd_cpp(theta, x@a, 5L)
 
 # Exact analytical derivatives of the inverse link function (wrt eta).
 #
@@ -111,6 +114,9 @@ S7::method(d3linkinv, SoftplusLink) <- function(x, eta) {
 }
 S7::method(d4linkinv, SoftplusLink) <- function(x, eta) {
   (x@a^3) * lk_logit_inv_cpp(x@a * eta, 3L)
+}
+S7::method(d5linkinv, SoftplusLink) <- function(x, eta) {
+  (x@a^4) * lk_logit_inv_cpp(x@a * eta, 4L)
 }
 
 #' @title The Softplus Link Function

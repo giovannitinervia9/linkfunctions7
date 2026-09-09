@@ -11,7 +11,7 @@ link_fallback_orders(x)
 }
 \value{
 A list with \code{forward} and \code{inverse}, each an integer: the
-number of leading orders implemented analytically, from 0 to 4.
+number of leading orders implemented analytically, from 0 to 5.
 }
 \description{
 Reports, for each direction, how many derivative orders the link implements

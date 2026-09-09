@@ -8,10 +8,12 @@
 \alias{d2linkfun.UpperBoundedLink}
 \alias{d3linkfun.UpperBoundedLink}
 \alias{d4linkfun.UpperBoundedLink}
+\alias{d5linkfun.UpperBoundedLink}
 \alias{dlinkinv.UpperBoundedLink}
 \alias{d2linkinv.UpperBoundedLink}
 \alias{d3linkinv.UpperBoundedLink}
 \alias{d4linkinv.UpperBoundedLink}
+\alias{d5linkinv.UpperBoundedLink}
 \title{S7 Class for an Upper Bounded Link}
 \usage{
 UpperBoundedLink(
@@ -48,9 +50,9 @@ the distance below \code{upr}.
 }
 \section{Methods}{
 
-Ten methods are registered on this class: \code{\link[=linkfun]{linkfun()}} and \code{\link[=linkinv]{linkinv()}},
-and the four derivative orders in each direction, \code{\link[=dlinkfun]{dlinkfun()}} through
-\code{\link[=d4linkfun]{d4linkfun()}} going out and \code{\link[=dlinkinv]{dlinkinv()}} through \code{\link[=d4linkinv]{d4linkinv()}} coming
+Twelve methods are registered on this class: \code{\link[=linkfun]{linkfun()}} and \code{\link[=linkinv]{linkinv()}},
+and the five derivative orders in each direction, \code{\link[=dlinkfun]{dlinkfun()}} through
+\code{\link[=d5linkfun]{d5linkfun()}} going out and \code{\link[=dlinkinv]{dlinkinv()}} through \code{\link[=d5linkinv]{d5linkinv()}} coming
 back. The reflection makes the map decreasing, so every inverse
 derivative is the negative of \code{\link[=exp_floored]{exp_floored()}} of \eqn{\eta}, and the
 forward ones

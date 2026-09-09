@@ -8,10 +8,12 @@
 \alias{d2linkfun.DoublyBoundedLink}
 \alias{d3linkfun.DoublyBoundedLink}
 \alias{d4linkfun.DoublyBoundedLink}
+\alias{d5linkfun.DoublyBoundedLink}
 \alias{dlinkinv.DoublyBoundedLink}
 \alias{d2linkinv.DoublyBoundedLink}
 \alias{d3linkinv.DoublyBoundedLink}
 \alias{d4linkinv.DoublyBoundedLink}
+\alias{d5linkinv.DoublyBoundedLink}
 \title{S7 Class for a Doubly Bounded Link}
 \usage{
 DoublyBoundedLink(
@@ -62,9 +64,9 @@ the constructor is the only place it can change.
 }
 \section{Methods}{
 
-Ten methods are registered on this class: \code{\link[=linkfun]{linkfun()}} and \code{\link[=linkinv]{linkinv()}},
-and the four derivative orders in each direction, \code{\link[=dlinkfun]{dlinkfun()}} through
-\code{\link[=d4linkfun]{d4linkfun()}} going out and \code{\link[=dlinkinv]{dlinkinv()}} through \code{\link[=d4linkinv]{d4linkinv()}} coming
+Twelve methods are registered on this class: \code{\link[=linkfun]{linkfun()}} and \code{\link[=linkinv]{linkinv()}},
+and the five derivative orders in each direction, \code{\link[=dlinkfun]{dlinkfun()}} through
+\code{\link[=d5linkfun]{d5linkfun()}} going out and \code{\link[=dlinkinv]{dlinkinv()}} through \code{\link[=d5linkinv]{d5linkinv()}} coming
 back. The forward derivatives are the logit's divided by \eqn{W^k} and
 the inverse ones the logit's multiplied by \eqn{W}, because \eqn{p} is
 \eqn{\theta} rescaled by the width; the inverse set therefore calls the

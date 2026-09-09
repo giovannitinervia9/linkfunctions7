@@ -21,9 +21,9 @@
 #'   `link_params`. Its `link_bounds` are `c(-Inf, Inf)` and it carries no link parameters.
 #'
 #' @section Methods:
-#' Ten methods are registered on this class: [linkfun()] and [linkinv()],
-#' and the four derivative orders in each direction, [dlinkfun()] through
-#' [d4linkfun()] going out and [dlinkinv()] through [d4linkinv()] coming
+#' Twelve methods are registered on this class: [linkfun()] and [linkinv()],
+#' and the five derivative orders in each direction, [dlinkfun()] through
+#' [d5linkfun()] going out and [dlinkinv()] through [d5linkinv()] coming
 #' back. `linkfun()` and `linkinv()` return their argument. The first
 #' derivative is one and every higher one is zero, each built by
 #' [const_like()] so that a missing value in the argument propagates to the
@@ -36,10 +36,12 @@
 #' @aliases d2linkfun.IdentityLink
 #' @aliases d3linkfun.IdentityLink
 #' @aliases d4linkfun.IdentityLink
+#' @aliases d5linkfun.IdentityLink
 #' @aliases dlinkinv.IdentityLink
 #' @aliases d2linkinv.IdentityLink
 #' @aliases d3linkinv.IdentityLink
 #' @aliases d4linkinv.IdentityLink
+#' @aliases d5linkinv.IdentityLink
 #'
 #' @seealso [identity_link()], the constructor users call.
 #' @keywords internal
@@ -59,12 +61,14 @@ S7::method(dlinkfun, IdentityLink) <- function(x, theta) const_like(theta, 1)
 S7::method(d2linkfun, IdentityLink) <- function(x, theta) const_like(theta, 0)
 S7::method(d3linkfun, IdentityLink) <- function(x, theta) const_like(theta, 0)
 S7::method(d4linkfun, IdentityLink) <- function(x, theta) const_like(theta, 0)
+S7::method(d5linkfun, IdentityLink) <- function(x, theta) const_like(theta, 0)
 
 # Exact analytical derivatives of the inverse link function (wrt eta)
 S7::method(dlinkinv, IdentityLink) <- function(x, eta) const_like(eta, 1)
 S7::method(d2linkinv, IdentityLink) <- function(x, eta) const_like(eta, 0)
 S7::method(d3linkinv, IdentityLink) <- function(x, eta) const_like(eta, 0)
 S7::method(d4linkinv, IdentityLink) <- function(x, eta) const_like(eta, 0)
+S7::method(d5linkinv, IdentityLink) <- function(x, eta) const_like(eta, 0)
 
 #' @title The Identity Link Function
 #'

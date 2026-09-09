@@ -8,10 +8,12 @@
 \alias{d2linkfun.PowerLink}
 \alias{d3linkfun.PowerLink}
 \alias{d4linkfun.PowerLink}
+\alias{d5linkfun.PowerLink}
 \alias{dlinkinv.PowerLink}
 \alias{d2linkinv.PowerLink}
 \alias{d3linkinv.PowerLink}
 \alias{d4linkinv.PowerLink}
+\alias{d5linkinv.PowerLink}
 \title{S7 Class for the Power Link}
 \usage{
 PowerLink(
@@ -51,9 +53,9 @@ At \code{lambda = 0} the power link is the log link by continuity, and
 }
 \section{Methods}{
 
-Ten methods are registered on this class: \code{\link[=linkfun]{linkfun()}} and \code{\link[=linkinv]{linkinv()}},
-and the four derivative orders in each direction, \code{\link[=dlinkfun]{dlinkfun()}} through
-\code{\link[=d4linkfun]{d4linkfun()}} going out and \code{\link[=dlinkinv]{dlinkinv()}} through \code{\link[=d4linkinv]{d4linkinv()}} coming
+Twelve methods are registered on this class: \code{\link[=linkfun]{linkfun()}} and \code{\link[=linkinv]{linkinv()}},
+and the five derivative orders in each direction, \code{\link[=dlinkfun]{dlinkfun()}} through
+\code{\link[=d5linkfun]{d5linkfun()}} going out and \code{\link[=dlinkinv]{dlinkinv()}} through \code{\link[=d5linkinv]{d5linkinv()}} coming
 back. Both directions are a power, so all eight derivatives are falling
 factorials in the exponent. Each is wrapped in \code{\link[=na_from]{na_from()}} because \code{NA^0}
 is one in R, which would turn a missing parameter into a number as soon

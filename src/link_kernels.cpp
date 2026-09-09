@@ -20,7 +20,12 @@ static inline double logistic_poly(double p, int k) {
     case 1: return pq;
     case 2: return pq * (1.0 - 2.0 * p);
     case 3: return pq * (1.0 + p * (-6.0 + 6.0 * p));
-    default: return pq * (1.0 + p * (-14.0 + p * (36.0 - 24.0 * p)));
+    case 4: return pq * (1.0 + p * (-14.0 + p * (36.0 - 24.0 * p)));
+    // P_{k+1} = (1 - 2p) P_k + pq P_k', so the fifth follows from the fourth
+    // and the orders above it are generated rather than transcribed.
+    case 5: return pq * (1.0 + p * (-30.0 + p * (150.0 +
+                                    p * (-240.0 + 120.0 * p))));
+    default: return NA_REAL;
     }
 }
 
@@ -53,10 +58,17 @@ NumericVector lk_logit_fwd_cpp(NumericVector theta, int k) {
         case 1: out[i] = 1.0 / (t * q); break;
         case 2: out[i] = (2.0 * t - 1.0) / ((t * q) * (t * q)); break;
         case 3: out[i] = 2.0 / (t * t * t) + 2.0 / (q * q * q); break;
-        default: {
+        case 4: {
             double t4 = t * t * t * t, q4 = q * q * q * q;
             out[i] = -6.0 / t4 + 6.0 / q4;
+            break;
         }
+        case 5: {
+            double t5 = t * t * t * t * t, q5 = q * q * q * q * q;
+            out[i] = 24.0 / t5 + 24.0 / q5;
+            break;
+        }
+        default: out[i] = NA_REAL;
         }
     }
     return out;
@@ -73,7 +85,14 @@ NumericVector lk_probit_fwd_cpp(NumericVector theta, int k) {
         case 1: out[i] = 1.0 / phi; break;
         case 2: out[i] = e / (phi * phi); break;
         case 3: out[i] = (1.0 + 2.0 * e * e) / (phi * phi * phi); break;
-        default: out[i] = (7.0 * e + 6.0 * e * e * e) / (phi * phi * phi * phi);
+        case 4: out[i] = (7.0 * e + 6.0 * e * e * e) / (phi * phi * phi * phi);
+            break;
+        case 5: {
+            double e2 = e * e, p2 = phi * phi;
+            out[i] = (7.0 + 46.0 * e2 + 24.0 * e2 * e2) / (p2 * p2 * phi);
+            break;
+        }
+        default: out[i] = NA_REAL;
         }
     }
     return out;
@@ -89,7 +108,13 @@ NumericVector lk_probit_inv_cpp(NumericVector eta, int k) {
         case 1: out[i] = phi; break;
         case 2: out[i] = -e * phi; break;
         case 3: out[i] = (e * e - 1.0) * phi; break;
-        default: out[i] = (3.0 * e - e * e * e) * phi;
+        case 4: out[i] = (3.0 * e - e * e * e) * phi; break;
+        case 5: {
+            double e2 = e * e;
+            out[i] = (e2 * e2 - 6.0 * e2 + 3.0) * phi;
+            break;
+        }
+        default: out[i] = NA_REAL;
         }
     }
     return out;
@@ -105,11 +130,19 @@ NumericVector lk_cloglog_fwd_cpp(NumericVector theta, int k) {
         case 1: out[i] = -1.0 / (v * L); break;
         case 2: out[i] = -(L + 1.0) / (v * v * L * L); break;
         case 3: out[i] = -(2.0 * L * L + 3.0 * L + 2.0) / (v * v * v * L * L * L); break;
-        default: {
+        case 4: {
             double L2 = L * L;
             out[i] = -(6.0 * L * L2 + 11.0 * L2 + 12.0 * L + 6.0) /
                 (v * v * v * v * L2 * L2);
+            break;
         }
+        case 5: {
+            double L2 = L * L, v2 = v * v;
+            out[i] = -(24.0 * L2 * L2 + 50.0 * L2 * L + 70.0 * L2 +
+                       60.0 * L + 24.0) / (v2 * v2 * v * L2 * L2 * L);
+            break;
+        }
+        default: out[i] = NA_REAL;
         }
     }
     return out;
@@ -126,7 +159,10 @@ NumericVector lk_cloglog_inv_cpp(NumericVector eta, int k) {
         case 1: out[i] = E; break;
         case 2: out[i] = E * (1.0 - w); break;
         case 3: out[i] = E * (1.0 + w * (-3.0 + w)); break;
-        default: out[i] = E * (1.0 + w * (-7.0 + w * (6.0 - w)));
+        case 4: out[i] = E * (1.0 + w * (-7.0 + w * (6.0 - w))); break;
+        case 5: out[i] = E * (1.0 + w * (-15.0 + w * (25.0 + w * (-10.0 + w))));
+            break;
+        default: out[i] = NA_REAL;
         }
     }
     return out;
@@ -142,11 +178,19 @@ NumericVector lk_loglog_fwd_cpp(NumericVector theta, int k) {
         case 1: out[i] = -1.0 / (t * l); break;
         case 2: out[i] = (1.0 + l) / (t * t * l * l); break;
         case 3: out[i] = -(2.0 + 3.0 * l + 2.0 * l * l) / (t * t * t * l * l * l); break;
-        default: {
+        case 4: {
             double l2 = l * l;
             out[i] = (6.0 + 12.0 * l + 11.0 * l2 + 6.0 * l * l2) /
                 (t * t * t * t * l2 * l2);
+            break;
         }
+        case 5: {
+            double l2 = l * l, t2 = t * t;
+            out[i] = -(24.0 + 60.0 * l + 70.0 * l2 + 50.0 * l2 * l +
+                       24.0 * l2 * l2) / (t2 * t2 * t * l2 * l2 * l);
+            break;
+        }
+        default: out[i] = NA_REAL;
         }
     }
     return out;
@@ -163,7 +207,11 @@ NumericVector lk_loglog_inv_cpp(NumericVector eta, int k) {
         case 1: out[i] = E * z; break;
         case 2: out[i] = E * z * (z - 1.0); break;
         case 3: out[i] = E * z * (1.0 + z * (-3.0 + z)); break;
-        default: out[i] = E * z * (-1.0 + z * (7.0 + z * (-6.0 + z)));
+        case 4: out[i] = E * z * (-1.0 + z * (7.0 + z * (-6.0 + z))); break;
+        case 5: out[i] = E * z * (1.0 + z * (-15.0 + z * (25.0 +
+                                  z * (-10.0 + z))));
+            break;
+        default: out[i] = NA_REAL;
         }
     }
     return out;
@@ -180,7 +228,14 @@ NumericVector lk_cauchit_fwd_cpp(NumericVector theta, int k) {
         case 1: out[i] = M_PI * u; break;
         case 2: out[i] = 2.0 * M_PI * M_PI * e * u; break;
         case 3: out[i] = 2.0 * M_PI * M_PI * M_PI * u * (1.0 + 3.0 * e * e); break;
-        default: out[i] = 8.0 * M_PI * M_PI * M_PI * M_PI * e * u * (2.0 + 3.0 * e * e);
+        case 4: out[i] = 8.0 * M_PI * M_PI * M_PI * M_PI * e * u * (2.0 + 3.0 * e * e);
+            break;
+        case 5: {
+            double p2 = M_PI * M_PI, e2 = e * e;
+            out[i] = 8.0 * p2 * p2 * M_PI * u * (2.0 + 15.0 * e2 + 15.0 * e2 * e2);
+            break;
+        }
+        default: out[i] = NA_REAL;
         }
     }
     return out;
@@ -196,7 +251,14 @@ NumericVector lk_cauchit_inv_cpp(NumericVector eta, int k) {
         case 1: out[i] = 1.0 / (M_PI * u); break;
         case 2: out[i] = -2.0 * e / (M_PI * u * u); break;
         case 3: out[i] = 2.0 * (3.0 * e * e - 1.0) / (M_PI * u * u * u); break;
-        default: out[i] = 24.0 * e * (1.0 - e * e) / (M_PI * u * u * u * u);
+        case 4: out[i] = 24.0 * e * (1.0 - e * e) / (M_PI * u * u * u * u);
+            break;
+        case 5: {
+            double u2 = u * u, e2 = e * e;
+            out[i] = 24.0 * (1.0 - 10.0 * e2 + 5.0 * e2 * e2) / (M_PI * u2 * u2 * u);
+            break;
+        }
+        default: out[i] = NA_REAL;
         }
     }
     return out;
@@ -212,7 +274,13 @@ NumericVector lk_rhobit_fwd_cpp(NumericVector theta, int k) {
         case 1: out[i] = 1.0 / u; break;
         case 2: out[i] = 2.0 * t / (u * u); break;
         case 3: out[i] = (2.0 + 6.0 * t * t) / (u * u * u); break;
-        default: out[i] = 24.0 * t * (1.0 + t * t) / (u * u * u * u);
+        case 4: out[i] = 24.0 * t * (1.0 + t * t) / (u * u * u * u); break;
+        case 5: {
+            double u2 = u * u, t2 = t * t;
+            out[i] = (24.0 + 240.0 * t2 + 120.0 * t2 * t2) / (u2 * u2 * u);
+            break;
+        }
+        default: out[i] = NA_REAL;
         }
     }
     return out;
@@ -228,7 +296,10 @@ NumericVector lk_rhobit_inv_cpp(NumericVector eta, int k) {
         case 1: out[i] = 1.0 - t2; break;
         case 2: out[i] = -2.0 * t * (1.0 - t2); break;
         case 3: out[i] = -2.0 + 8.0 * t2 - 6.0 * t2 * t2; break;
-        default: out[i] = t * (16.0 + t2 * (-40.0 + 24.0 * t2));
+        case 4: out[i] = t * (16.0 + t2 * (-40.0 + 24.0 * t2)); break;
+        case 5: out[i] = 16.0 + t2 * (-136.0 + t2 * (240.0 - 120.0 * t2));
+            break;
+        default: out[i] = NA_REAL;
         }
     }
     return out;
@@ -245,7 +316,14 @@ NumericVector lk_softplus_fwd_cpp(NumericVector theta, double a, int k) {
         case 1: out[i] = 1.0 / u; break;
         case 2: out[i] = -a * e / (u * u); break;
         case 3: out[i] = a * a * e * (1.0 + e) / (u * u * u); break;
-        default: out[i] = -a * a * a * e * (1.0 + e * (4.0 + e)) / (u * u * u * u);
+        case 4: out[i] = -a * a * a * e * (1.0 + e * (4.0 + e)) / (u * u * u * u);
+            break;
+        case 5: {
+            double a2 = a * a, u2 = u * u;
+            out[i] = a2 * a2 * e * (1.0 + e * (11.0 + e * (11.0 + e))) / (u2 * u2 * u);
+            break;
+        }
+        default: out[i] = NA_REAL;
         }
     }
     return out;

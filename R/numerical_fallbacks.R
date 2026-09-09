@@ -22,7 +22,7 @@ NULL
 #' Highest Analytically Implemented Derivative Order
 #'
 #' @description
-#' The largest \eqn{k \le 4} for which the link's own class registers a method
+#' The largest \eqn{k \le 5} for which the link's own class registers a method
 #' for the order-\eqn{k} derivative generic; `0` when it registers none, so
 #' that only [linkfun()] or [linkinv()] is available.
 #'
@@ -45,15 +45,15 @@ NULL
 #' @param x An object of class `link`.
 #' @param inverse Logical; `TRUE` to ask about the inverse-link generics.
 #'
-#' @return An integer between 0 and 4.
+#' @return An integer between 0 and 5.
 #'
 #' @seealso [link_fallback_orders()], which reports this to the user.
 #' @keywords internal
 analytic_order <- function(x, inverse = FALSE) {
   gens <- if (inverse) {
-    list(dlinkinv, d2linkinv, d3linkinv, d4linkinv)
+    list(dlinkinv, d2linkinv, d3linkinv, d4linkinv, d5linkinv)
   } else {
-    list(dlinkfun, d2linkfun, d3linkfun, d4linkfun)
+    list(dlinkfun, d2linkfun, d3linkfun, d4linkfun, d5linkfun)
   }
   cls <- S7::S7_class(x)
   n <- 0L
@@ -120,7 +120,7 @@ is_base_link_class <- function(cls) {
 #' reaches \eqn{2h}, so it is that reach, not \eqn{h}, that must fit.
 #'
 #' @param x A numeric vector of evaluation points.
-#' @param order The derivative order, 1 to 4.
+#' @param order The derivative order, 1 to 5.
 #' @param bounds An optional length-2 numeric vector, the open interval
 #'   `x` must stay inside.
 #'
@@ -156,7 +156,7 @@ fd_step <- function(x, order, bounds = NULL) {
 #'
 #' @param f A vectorized function of one numeric argument.
 #' @param x A numeric vector of evaluation points.
-#' @param order The derivative order, 1 to 4.
+#' @param order The derivative order, 1 to 5.
 #' @param h A numeric vector of steps, from [fd_step()].
 #'
 #' @return A numeric vector of the same length as `x`.
@@ -251,15 +251,15 @@ eta_bounds <- function(x) {
 #'
 #' @param x An object of class `link`.
 #' @param v A numeric vector: \eqn{\theta} going forward, \eqn{\eta} coming back.
-#' @param order The derivative order wanted, 1 to 4.
+#' @param order The derivative order wanted, 1 to 5.
 #' @param inverse Logical; `TRUE` for the inverse-link direction.
 #'
 #' @return A numeric vector of the same length as `v`.
 #'
 #' @section Methods:
-#' The eight registrations on the base class [link()] have this function as
-#' their whole body: `dlinkfun()` through `d4linkfun()` going out and
-#' `dlinkinv()` through `d4linkinv()` coming back, each passing its order and
+#' The ten registrations on the base class [link()] have this function as
+#' their whole body: `dlinkfun()` through `d5linkfun()` going out and
+#' `dlinkinv()` through `d5linkinv()` coming back, each passing its order and
 #' its direction. A link inherits them for the orders it does not implement
 #' itself, so a link defined with nothing but [linkfun()] and [linkinv()] can
 #' still answer every derivative generic. S7 requires a method's formals to
@@ -270,10 +270,12 @@ eta_bounds <- function(x) {
 #' @aliases d2linkfun.link
 #' @aliases d3linkfun.link
 #' @aliases d4linkfun.link
+#' @aliases d5linkfun.link
 #' @aliases dlinkinv.link
 #' @aliases d2linkinv.link
 #' @aliases d3linkinv.link
 #' @aliases d4linkinv.link
+#' @aliases d5linkinv.link
 #'
 #'
 #' @keywords internal
@@ -299,11 +301,13 @@ S7::method(dlinkfun,  link) <- function(x, theta) fallback_deriv(x, theta, 1L, F
 S7::method(d2linkfun, link) <- function(x, theta) fallback_deriv(x, theta, 2L, FALSE)
 S7::method(d3linkfun, link) <- function(x, theta) fallback_deriv(x, theta, 3L, FALSE)
 S7::method(d4linkfun, link) <- function(x, theta) fallback_deriv(x, theta, 4L, FALSE)
+S7::method(d5linkfun, link) <- function(x, theta) fallback_deriv(x, theta, 5L, FALSE)
 
 S7::method(dlinkinv,  link) <- function(x, eta) fallback_deriv(x, eta, 1L, TRUE)
 S7::method(d2linkinv, link) <- function(x, eta) fallback_deriv(x, eta, 2L, TRUE)
 S7::method(d3linkinv, link) <- function(x, eta) fallback_deriv(x, eta, 3L, TRUE)
 S7::method(d4linkinv, link) <- function(x, eta) fallback_deriv(x, eta, 4L, TRUE)
+S7::method(d5linkinv, link) <- function(x, eta) fallback_deriv(x, eta, 5L, TRUE)
 
 
 #' Which Derivative Orders a Link Computes Exactly
@@ -322,7 +326,7 @@ S7::method(d4linkinv, link) <- function(x, eta) fallback_deriv(x, eta, 4L, TRUE)
 #' @param x An object of class `link`.
 #'
 #' @return A list with `forward` and `inverse`, each an integer: the
-#'   number of leading orders implemented analytically, from 0 to 4.
+#'   number of leading orders implemented analytically, from 0 to 5.
 #'
 #' @examples
 #' # everything the package ships is exact to fourth order

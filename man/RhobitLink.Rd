@@ -8,10 +8,12 @@
 \alias{d2linkfun.RhobitLink}
 \alias{d3linkfun.RhobitLink}
 \alias{d4linkfun.RhobitLink}
+\alias{d5linkfun.RhobitLink}
 \alias{dlinkinv.RhobitLink}
 \alias{d2linkinv.RhobitLink}
 \alias{d3linkinv.RhobitLink}
 \alias{d4linkinv.RhobitLink}
+\alias{d5linkinv.RhobitLink}
 \title{S7 Class for the Rhobit Link}
 \usage{
 RhobitLink(
@@ -46,10 +48,10 @@ never proposes a correlation outside its range.
 }
 \section{Methods}{
 
-Ten methods are registered on this class: \code{\link[=linkfun]{linkfun()}} and \code{\link[=linkinv]{linkinv()}},
-and the four derivative orders in each direction, \code{\link[=dlinkfun]{dlinkfun()}} through
-\code{\link[=d4linkfun]{d4linkfun()}} going out and \code{\link[=dlinkinv]{dlinkinv()}} through \code{\link[=d4linkinv]{d4linkinv()}} coming
-back. \code{linkfun()} and \code{linkinv()} are \code{atanh()} and \code{tanh()}. The eight
+Twelve methods are registered on this class: \code{\link[=linkfun]{linkfun()}} and \code{\link[=linkinv]{linkinv()}},
+and the five derivative orders in each direction, \code{\link[=dlinkfun]{dlinkfun()}} through
+\code{\link[=d5linkfun]{d5linkfun()}} going out and \code{\link[=dlinkinv]{dlinkinv()}} through \code{\link[=d5linkinv]{d5linkinv()}} coming
+back. \code{linkfun()} and \code{linkinv()} are \code{atanh()} and \code{tanh()}. The ten
 derivatives come from a compiled kernel, one call per order and
 direction.
 }

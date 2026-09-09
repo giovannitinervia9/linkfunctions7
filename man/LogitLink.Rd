@@ -8,10 +8,12 @@
 \alias{d2linkfun.LogitLink}
 \alias{d3linkfun.LogitLink}
 \alias{d4linkfun.LogitLink}
+\alias{d5linkfun.LogitLink}
 \alias{dlinkinv.LogitLink}
 \alias{d2linkinv.LogitLink}
 \alias{d3linkinv.LogitLink}
 \alias{d4linkinv.LogitLink}
+\alias{d5linkinv.LogitLink}
 \title{S7 Class for the Logit Link}
 \usage{
 LogitLink(
@@ -45,11 +47,11 @@ being \eqn{\theta(1-\theta)}, the variance of a Bernoulli.
 }
 \section{Methods}{
 
-Ten methods are registered on this class: \code{\link[=linkfun]{linkfun()}} and \code{\link[=linkinv]{linkinv()}},
-and the four derivative orders in each direction, \code{\link[=dlinkfun]{dlinkfun()}} through
-\code{\link[=d4linkfun]{d4linkfun()}} going out and \code{\link[=dlinkinv]{dlinkinv()}} through \code{\link[=d4linkinv]{d4linkinv()}} coming
+Twelve methods are registered on this class: \code{\link[=linkfun]{linkfun()}} and \code{\link[=linkinv]{linkinv()}},
+and the five derivative orders in each direction, \code{\link[=dlinkfun]{dlinkfun()}} through
+\code{\link[=d5linkfun]{d5linkfun()}} going out and \code{\link[=dlinkinv]{dlinkinv()}} through \code{\link[=d5linkinv]{d5linkinv()}} coming
 back. \code{linkfun()} and \code{linkinv()} delegate to \code{stats::qlogis()} and
-\code{stats::plogis()}, which remain accurate near both boundaries. The eight
+\code{stats::plogis()}, which remain accurate near both boundaries. The ten
 derivatives come from a compiled kernel, one call per order and
 direction.
 }

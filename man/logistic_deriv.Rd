@@ -9,7 +9,7 @@ logistic_deriv(p, k)
 \arguments{
 \item{p}{A numeric vector of logistic values, \eqn{p = \sigma(z)}.}
 
-\item{k}{The derivative order, an integer from 1 to 4.}
+\item{k}{The derivative order, an integer from 1 to 5.}
 }
 \value{
 A numeric vector of the same length as \code{p}.
@@ -32,7 +32,7 @@ softplus is an antiderivative of the logistic: \eqn{h^{(k+1)} = a^k \sigma^{(k)}
 What the three call is not this function but its transcription in
 \code{src/link_kernels.cpp}, the compiled kernels having replaced the R bodies
 when the transcendental links were compiled. This function is the R
-statement of the same four polynomials, and \code{test-logistic-twin.R} holds the
+statement of the same five polynomials, and \code{test-logistic-twin.R} holds the
 two together at every order and checks that each of the three links reaches
 the polynomial its description names. \code{lk_logistic_poly_cpp()} reaches the
 compiled one directly.
@@ -48,7 +48,10 @@ The polynomials are
 \deqn{\sigma'' = p(1-p)(1-2p)}
 \deqn{\sigma''' = p(1-p)(1 - 6p + 6p^2)}
 \deqn{\sigma'''' = p(1-p)(1 - 14p + 36p^2 - 24p^3)}
+\deqn{\sigma^{(5)} = p(1-p)(1 - 30p + 150p^2 - 240p^3 + 120p^4)}
 and are evaluated in Horner form, which is twice as fast at the fourth order
-and agrees with the expanded form to within one unit in the last place.
+and agrees with the expanded form to within one unit in the last place. Each
+follows from the one before it by \eqn{P_{k+1} = (1-2p)P_k + p(1-p)P_k'}, so
+an order beyond those written here is generated rather than transcribed.
 }
 \keyword{internal}

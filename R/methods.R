@@ -179,7 +179,7 @@ S7::method(plot, link) <- plot.link
 #' @description Routes to the correct forward derivative generic based on order.
 #' @param x An object of class `link`.
 #' @param theta A numeric vector.
-#' @param order An integer (0 to 4).
+#' @param order An integer (0 to 5).
 #' @return A numeric vector of the same length as `theta`.
 #' @rdname linkderiv
 #' @keywords internal
@@ -187,7 +187,7 @@ linkderiv.link <- function(x, theta, order = 1) {
   # switch() on the integer directly: converting it to a character first costs
   # more than the branch it selects, on a function called once per parameter per
   # order by anything that works on the link scale.
-  if (length(order) != 1L || is.na(order) || order < 0 || order > 4) {
+  if (length(order) != 1L || is.na(order) || order < 0 || order > 5) {
     stop("Forward derivative order not supported.", call. = FALSE)
   }
   switch(as.integer(order) + 1L,
@@ -195,7 +195,8 @@ linkderiv.link <- function(x, theta, order = 1) {
          dlinkfun(x, theta),
          d2linkfun(x, theta),
          d3linkfun(x, theta),
-         d4linkfun(x, theta)
+         d4linkfun(x, theta),
+         d5linkfun(x, theta)
   )
 }
 S7::method(linkderiv, link) <- linkderiv.link
@@ -204,12 +205,12 @@ S7::method(linkderiv, link) <- linkderiv.link
 #' @description Routes to the correct inverse derivative generic based on order.
 #' @param x An object of class `link`.
 #' @param eta A numeric vector.
-#' @param order An integer (0 to 4).
+#' @param order An integer (0 to 5).
 #' @return A numeric vector of the same length as `eta`.
 #' @rdname linkinvderiv
 #' @keywords internal
 linkinvderiv.link <- function(x, eta, order = 1) {
-  if (length(order) != 1L || is.na(order) || order < 0 || order > 4) {
+  if (length(order) != 1L || is.na(order) || order < 0 || order > 5) {
     stop("Inverse derivative order not supported.", call. = FALSE)
   }
   switch(as.integer(order) + 1L,
@@ -217,7 +218,8 @@ linkinvderiv.link <- function(x, eta, order = 1) {
          dlinkinv(x, eta),
          d2linkinv(x, eta),
          d3linkinv(x, eta),
-         d4linkinv(x, eta)
+         d4linkinv(x, eta),
+         d5linkinv(x, eta)
   )
 }
 S7::method(linkinvderiv, link) <- linkinvderiv.link
@@ -242,8 +244,8 @@ S7::method(linkinvderiv, link) <- linkinvderiv.link
 #' 2. **Invertibility (\eqn{\eta} space):** Verifies \eqn{g(g^{-1}(\eta)) = \eta}. Ensures that mapping from the linear predictor to the parameter space and back is lossless. Note that this test may fail intentionally and correctly for links that map to a restricted \eqn{\eta} domain (e.g., the square root link).
 #' 3. **Strict Monotonicity:** Checks if the first derivative \eqn{g'(\theta)} is strictly positive or strictly negative across the domain, guaranteeing a one-to-one mapping.
 #' 4. **Inverse Function Theorem:** Verifies the mathematical identity \eqn{g'(\theta) \cdot (g^{-1})'(\eta) = 1}, confirming the theoretical relationship between the link derivative and the inverse link derivative.
-#' 5. **Link Derivatives:** Validates the exact analytical forward derivatives of \eqn{g(\theta)} up to the 4th order by comparing them against numerical gradients.
-#' 6. **Inverse Link Derivatives:** Validates the exact analytical inverse derivatives of \eqn{g^{-1}(\eta)} up to the 4th order by comparing them against numerical gradients.
+#' 5. **Link Derivatives:** Validates the exact analytical forward derivatives of \eqn{g(\theta)} up to the 5th order by comparing them against numerical gradients.
+#' 6. **Inverse Link Derivatives:** Validates the exact analytical inverse derivatives of \eqn{g^{-1}(\eta)} up to the 5th order by comparing them against numerical gradients.
 #'
 #' Both forward and inverse derivative testing avoids compounding numerical errors by applying
 #' first-order numerical differentiation iteratively to the exact lower-order analytical derivatives.
@@ -252,8 +254,8 @@ S7::method(linkinvderiv, link) <- linkinvderiv.link
 #' @return Invisibly, a named list of the check results: the four scalar logicals
 #'   `invertibility_theta`, `invertibility_eta`, `monotonicity` and
 #'   `inverse_theorem`, plus `link_derivatives` and
-#'   `inverse_link_derivatives`, each a logical vector of length four named
-#'   `order_1` to `order_4`. In those two, `TRUE` and `FALSE`
+#'   `inverse_link_derivatives`, each a logical vector of length five named
+#'   `order_1` to `order_5`. In those two, `TRUE` and `FALSE`
 #'   mean what they say and `NA` means **not checked**: the order is
 #'   supplied by a numerical fallback, so the value and the reference would be
 #'   the same arithmetic and would agree whatever the link did. The number of
@@ -331,7 +333,7 @@ check_link.link <- function(x, tolerance = 1e-5, ...) {
   inv_thm_pass <- !is.na(inv_thm_error) && inv_thm_error <= tolerance
 
   # Generic function to test a chain of derivatives
-  test_derivative_chain <- function(eval_seq, deriv_fn, max_order = 4,
+  test_derivative_chain <- function(eval_seq, deriv_fn, max_order = 5,
                                     n_exact = max_order) {
     results <- rep(NA, max_order)
     names(results) <- paste0("order_", 1:max_order)
@@ -388,11 +390,11 @@ check_link.link <- function(x, tolerance = 1e-5, ...) {
 
   # 6. Test Link Derivatives (Chained)
   exact <- link_fallback_orders(x)
-  link_deriv_pass <- test_derivative_chain(theta_seq, linkderiv, max_order = 4,
+  link_deriv_pass <- test_derivative_chain(theta_seq, linkderiv, max_order = 5,
                                            n_exact = exact$forward)
 
   # 7. Test Inverse Link Derivatives (Chained)
-  inv_deriv_pass <- test_derivative_chain(eta_vals, linkinvderiv, max_order = 4,
+  inv_deriv_pass <- test_derivative_chain(eta_vals, linkinvderiv, max_order = 5,
                                           n_exact = exact$inverse)
 
   # A verdict for a family of orders: FAILED if any checked order failed,

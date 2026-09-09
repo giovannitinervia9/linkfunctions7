@@ -8,10 +8,12 @@
 \alias{d2linkfun.ClogLogLink}
 \alias{d3linkfun.ClogLogLink}
 \alias{d4linkfun.ClogLogLink}
+\alias{d5linkfun.ClogLogLink}
 \alias{dlinkinv.ClogLogLink}
 \alias{d2linkinv.ClogLogLink}
 \alias{d3linkinv.ClogLogLink}
 \alias{d4linkinv.ClogLogLink}
+\alias{d5linkinv.ClogLogLink}
 \title{S7 Class for the Complementary Log-Log Link}
 \usage{
 ClogLogLink(
@@ -46,12 +48,12 @@ proportional-hazards model for a binary outcome.
 }
 \section{Methods}{
 
-Ten methods are registered on this class: \code{\link[=linkfun]{linkfun()}} and \code{\link[=linkinv]{linkinv()}},
-and the four derivative orders in each direction, \code{\link[=dlinkfun]{dlinkfun()}} through
-\code{\link[=d4linkfun]{d4linkfun()}} going out and \code{\link[=dlinkinv]{dlinkinv()}} through \code{\link[=d4linkinv]{d4linkinv()}} coming
+Twelve methods are registered on this class: \code{\link[=linkfun]{linkfun()}} and \code{\link[=linkinv]{linkinv()}},
+and the five derivative orders in each direction, \code{\link[=dlinkfun]{dlinkfun()}} through
+\code{\link[=d5linkfun]{d5linkfun()}} going out and \code{\link[=dlinkinv]{dlinkinv()}} through \code{\link[=d5linkinv]{d5linkinv()}} coming
 back. \code{linkfun()} is written through \code{log1p()} rather than as
 \eqn{\log(-\log(1 - \theta))}, which rounds to \eqn{-\infty} for a small
-\eqn{\theta} where the true value is finite and representable. The eight
+\eqn{\theta} where the true value is finite and representable. The ten
 derivatives come from a compiled kernel.
 }
 

@@ -21,9 +21,9 @@
 #'   `link_params`. Its `link_bounds` are `c(0, 1)` and it carries no link parameters.
 #'
 #' @section Methods:
-#' Ten methods are registered on this class: [linkfun()] and [linkinv()],
-#' and the four derivative orders in each direction, [dlinkfun()] through
-#' [d4linkfun()] going out and [dlinkinv()] through [d4linkinv()] coming
+#' Twelve methods are registered on this class: [linkfun()] and [linkinv()],
+#' and the five derivative orders in each direction, [dlinkfun()] through
+#' [d5linkfun()] going out and [dlinkinv()] through [d5linkinv()] coming
 #' back. `linkfun()` and `linkinv()` delegate to `stats::qnorm()` and
 #' `stats::pnorm()`. The eight derivatives come from a compiled kernel, one
 #' call per order and direction.
@@ -34,10 +34,12 @@
 #' @aliases d2linkfun.ProbitLink
 #' @aliases d3linkfun.ProbitLink
 #' @aliases d4linkfun.ProbitLink
+#' @aliases d5linkfun.ProbitLink
 #' @aliases dlinkinv.ProbitLink
 #' @aliases d2linkinv.ProbitLink
 #' @aliases d3linkinv.ProbitLink
 #' @aliases d4linkinv.ProbitLink
+#' @aliases d5linkinv.ProbitLink
 #'
 #' @seealso [probit_link()], the constructor users call.
 #' @keywords internal
@@ -58,6 +60,7 @@ S7::method(dlinkfun, ProbitLink) <- function(x, theta) lk_probit_fwd_cpp(theta, 
 S7::method(d2linkfun, ProbitLink) <- function(x, theta) lk_probit_fwd_cpp(theta, 2L)
 S7::method(d3linkfun, ProbitLink) <- function(x, theta) lk_probit_fwd_cpp(theta, 3L)
 S7::method(d4linkfun, ProbitLink) <- function(x, theta) lk_probit_fwd_cpp(theta, 4L)
+S7::method(d5linkfun, ProbitLink) <- function(x, theta) lk_probit_fwd_cpp(theta, 5L)
 
 # Exact analytical derivatives of the inverse link function (wrt eta)
 # They rely exclusively on standard normal density properties.
@@ -65,6 +68,7 @@ S7::method(dlinkinv, ProbitLink) <- function(x, eta) lk_probit_inv_cpp(eta, 1L)
 S7::method(d2linkinv, ProbitLink) <- function(x, eta) lk_probit_inv_cpp(eta, 2L)
 S7::method(d3linkinv, ProbitLink) <- function(x, eta) lk_probit_inv_cpp(eta, 3L)
 S7::method(d4linkinv, ProbitLink) <- function(x, eta) lk_probit_inv_cpp(eta, 4L)
+S7::method(d5linkinv, ProbitLink) <- function(x, eta) lk_probit_inv_cpp(eta, 5L)
 
 #' @title The Probit Link Function
 #'

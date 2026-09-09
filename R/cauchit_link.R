@@ -21,11 +21,11 @@
 #'   `link_params`. Its `link_bounds` are `c(0, 1)` and it carries no link parameters.
 #'
 #' @section Methods:
-#' Ten methods are registered on this class: [linkfun()] and [linkinv()],
-#' and the four derivative orders in each direction, [dlinkfun()] through
-#' [d4linkfun()] going out and [dlinkinv()] through [d4linkinv()] coming
+#' Twelve methods are registered on this class: [linkfun()] and [linkinv()],
+#' and the five derivative orders in each direction, [dlinkfun()] through
+#' [d5linkfun()] going out and [dlinkinv()] through [d5linkinv()] coming
 #' back. `linkfun()` and `linkinv()` delegate to `stats::qcauchy()` and
-#' `stats::pcauchy()`, which stay accurate in both tails. The eight
+#' `stats::pcauchy()`, which stay accurate in both tails. The ten
 #' derivatives come from a compiled kernel, one call per order and
 #' direction.
 #'
@@ -35,10 +35,12 @@
 #' @aliases d2linkfun.CauchitLink
 #' @aliases d3linkfun.CauchitLink
 #' @aliases d4linkfun.CauchitLink
+#' @aliases d5linkfun.CauchitLink
 #' @aliases dlinkinv.CauchitLink
 #' @aliases d2linkinv.CauchitLink
 #' @aliases d3linkinv.CauchitLink
 #' @aliases d4linkinv.CauchitLink
+#' @aliases d5linkinv.CauchitLink
 #'
 #' @seealso [cauchit_link()], the constructor users call.
 #' @keywords internal
@@ -60,6 +62,7 @@ S7::method(dlinkfun, CauchitLink) <- function(x, theta) lk_cauchit_fwd_cpp(theta
 S7::method(d2linkfun, CauchitLink) <- function(x, theta) lk_cauchit_fwd_cpp(theta, 2L)
 S7::method(d3linkfun, CauchitLink) <- function(x, theta) lk_cauchit_fwd_cpp(theta, 3L)
 S7::method(d4linkfun, CauchitLink) <- function(x, theta) lk_cauchit_fwd_cpp(theta, 4L)
+S7::method(d5linkfun, CauchitLink) <- function(x, theta) lk_cauchit_fwd_cpp(theta, 5L)
 
 # Exact analytical derivatives of the inverse link function (wrt eta)
 # Derived purely from the Cauchy probability density function
@@ -67,6 +70,7 @@ S7::method(dlinkinv, CauchitLink) <- function(x, eta) lk_cauchit_inv_cpp(eta, 1L
 S7::method(d2linkinv, CauchitLink) <- function(x, eta) lk_cauchit_inv_cpp(eta, 2L)
 S7::method(d3linkinv, CauchitLink) <- function(x, eta) lk_cauchit_inv_cpp(eta, 3L)
 S7::method(d4linkinv, CauchitLink) <- function(x, eta) lk_cauchit_inv_cpp(eta, 4L)
+S7::method(d5linkinv, CauchitLink) <- function(x, eta) lk_cauchit_inv_cpp(eta, 5L)
 
 #' @title The Cauchit Link Function
 #'

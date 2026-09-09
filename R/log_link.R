@@ -20,9 +20,9 @@
 #'   `link_params`. Its `link_bounds` are `c(0, Inf)` and it carries no link parameters.
 #'
 #' @section Methods:
-#' Ten methods are registered on this class: [linkfun()] and [linkinv()],
-#' and the four derivative orders in each direction, [dlinkfun()] through
-#' [d4linkfun()] going out and [dlinkinv()] through [d4linkinv()] coming
+#' Twelve methods are registered on this class: [linkfun()] and [linkinv()],
+#' and the five derivative orders in each direction, [dlinkfun()] through
+#' [d5linkfun()] going out and [dlinkinv()] through [d5linkinv()] coming
 #' back. The forward derivatives are \eqn{(-1)^{k-1}(k-1)!\,\theta^{-k}},
 #' written out. Every inverse derivative is [exp_floored()] of \eqn{\eta},
 #' the exponential being its own derivative to every order, and the floor is
@@ -34,10 +34,12 @@
 #' @aliases d2linkfun.LogLink
 #' @aliases d3linkfun.LogLink
 #' @aliases d4linkfun.LogLink
+#' @aliases d5linkfun.LogLink
 #' @aliases dlinkinv.LogLink
 #' @aliases d2linkinv.LogLink
 #' @aliases d3linkinv.LogLink
 #' @aliases d4linkinv.LogLink
+#' @aliases d5linkinv.LogLink
 #'
 #' @seealso [log_link()], the constructor users call.
 #' @keywords internal
@@ -57,6 +59,7 @@ S7::method(dlinkfun, LogLink) <- function(x, theta)  1 / theta
 S7::method(d2linkfun, LogLink) <- function(x, theta) -1 / (theta^2)
 S7::method(d3linkfun, LogLink) <- function(x, theta)  2 / (theta^3)
 S7::method(d4linkfun, LogLink) <- function(x, theta) -6 / (theta^4)
+S7::method(d5linkfun, LogLink) <- function(x, theta) 24 / (theta^5)
 
 # Exact analytical derivatives of the inverse link function (wrt eta)
 # d^k/deta^k exp(eta) = exp(eta) for all k > 0, floored for numerical stability
@@ -64,6 +67,7 @@ S7::method(dlinkinv, LogLink) <- function(x, eta) exp_floored(eta)
 S7::method(d2linkinv, LogLink) <- function(x, eta) exp_floored(eta)
 S7::method(d3linkinv, LogLink) <- function(x, eta) exp_floored(eta)
 S7::method(d4linkinv, LogLink) <- function(x, eta) exp_floored(eta)
+S7::method(d5linkinv, LogLink) <- function(x, eta) exp_floored(eta)
 
 #' @title The Logarithmic Link Function
 #'

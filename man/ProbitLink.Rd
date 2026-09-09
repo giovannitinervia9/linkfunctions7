@@ -8,10 +8,12 @@
 \alias{d2linkfun.ProbitLink}
 \alias{d3linkfun.ProbitLink}
 \alias{d4linkfun.ProbitLink}
+\alias{d5linkfun.ProbitLink}
 \alias{dlinkinv.ProbitLink}
 \alias{d2linkinv.ProbitLink}
 \alias{d3linkinv.ProbitLink}
 \alias{d4linkinv.ProbitLink}
+\alias{d5linkinv.ProbitLink}
 \title{S7 Class for the Probit Link}
 \usage{
 ProbitLink(
@@ -46,9 +48,9 @@ the tails.
 }
 \section{Methods}{
 
-Ten methods are registered on this class: \code{\link[=linkfun]{linkfun()}} and \code{\link[=linkinv]{linkinv()}},
-and the four derivative orders in each direction, \code{\link[=dlinkfun]{dlinkfun()}} through
-\code{\link[=d4linkfun]{d4linkfun()}} going out and \code{\link[=dlinkinv]{dlinkinv()}} through \code{\link[=d4linkinv]{d4linkinv()}} coming
+Twelve methods are registered on this class: \code{\link[=linkfun]{linkfun()}} and \code{\link[=linkinv]{linkinv()}},
+and the five derivative orders in each direction, \code{\link[=dlinkfun]{dlinkfun()}} through
+\code{\link[=d5linkfun]{d5linkfun()}} going out and \code{\link[=dlinkinv]{dlinkinv()}} through \code{\link[=d5linkinv]{d5linkinv()}} coming
 back. \code{linkfun()} and \code{linkinv()} delegate to \code{stats::qnorm()} and
 \code{stats::pnorm()}. The eight derivatives come from a compiled kernel, one
 call per order and direction.

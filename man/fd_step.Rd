@@ -9,7 +9,7 @@ fd_step(x, order, bounds = NULL)
 \arguments{
 \item{x}{A numeric vector of evaluation points.}
 
-\item{order}{The derivative order, 1 to 4.}
+\item{order}{The derivative order, 1 to 5.}
 
 \item{bounds}{An optional length-2 numeric vector, the open interval
 \code{x} must stay inside.}

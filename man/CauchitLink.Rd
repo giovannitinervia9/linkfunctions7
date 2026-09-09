@@ -8,10 +8,12 @@
 \alias{d2linkfun.CauchitLink}
 \alias{d3linkfun.CauchitLink}
 \alias{d4linkfun.CauchitLink}
+\alias{d5linkfun.CauchitLink}
 \alias{dlinkinv.CauchitLink}
 \alias{d2linkinv.CauchitLink}
 \alias{d3linkinv.CauchitLink}
 \alias{d4linkinv.CauchitLink}
+\alias{d5linkinv.CauchitLink}
 \title{S7 Class for the Cauchit Link}
 \usage{
 CauchitLink(
@@ -46,11 +48,11 @@ when a few observations would otherwise drive the fit to a boundary.
 }
 \section{Methods}{
 
-Ten methods are registered on this class: \code{\link[=linkfun]{linkfun()}} and \code{\link[=linkinv]{linkinv()}},
-and the four derivative orders in each direction, \code{\link[=dlinkfun]{dlinkfun()}} through
-\code{\link[=d4linkfun]{d4linkfun()}} going out and \code{\link[=dlinkinv]{dlinkinv()}} through \code{\link[=d4linkinv]{d4linkinv()}} coming
+Twelve methods are registered on this class: \code{\link[=linkfun]{linkfun()}} and \code{\link[=linkinv]{linkinv()}},
+and the five derivative orders in each direction, \code{\link[=dlinkfun]{dlinkfun()}} through
+\code{\link[=d5linkfun]{d5linkfun()}} going out and \code{\link[=dlinkinv]{dlinkinv()}} through \code{\link[=d5linkinv]{d5linkinv()}} coming
 back. \code{linkfun()} and \code{linkinv()} delegate to \code{stats::qcauchy()} and
-\code{stats::pcauchy()}, which stay accurate in both tails. The eight
+\code{stats::pcauchy()}, which stay accurate in both tails. The ten
 derivatives come from a compiled kernel, one call per order and
 direction.
 }

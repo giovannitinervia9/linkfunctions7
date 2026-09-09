@@ -8,10 +8,12 @@
 \alias{d2linkfun.LowerBoundedLink}
 \alias{d3linkfun.LowerBoundedLink}
 \alias{d4linkfun.LowerBoundedLink}
+\alias{d5linkfun.LowerBoundedLink}
 \alias{dlinkinv.LowerBoundedLink}
 \alias{d2linkinv.LowerBoundedLink}
 \alias{d3linkinv.LowerBoundedLink}
 \alias{d4linkinv.LowerBoundedLink}
+\alias{d5linkinv.LowerBoundedLink}
 \title{S7 Class for a Lower Bounded Link}
 \usage{
 LowerBoundedLink(
@@ -48,9 +50,9 @@ parameter never reaches the bound exactly. It is the log link shifted to start a
 }
 \section{Methods}{
 
-Ten methods are registered on this class: \code{\link[=linkfun]{linkfun()}} and \code{\link[=linkinv]{linkinv()}},
-and the four derivative orders in each direction, \code{\link[=dlinkfun]{dlinkfun()}} through
-\code{\link[=d4linkfun]{d4linkfun()}} going out and \code{\link[=dlinkinv]{dlinkinv()}} through \code{\link[=d4linkinv]{d4linkinv()}} coming
+Twelve methods are registered on this class: \code{\link[=linkfun]{linkfun()}} and \code{\link[=linkinv]{linkinv()}},
+and the five derivative orders in each direction, \code{\link[=dlinkfun]{dlinkfun()}} through
+\code{\link[=d5linkfun]{d5linkfun()}} going out and \code{\link[=dlinkinv]{dlinkinv()}} through \code{\link[=d5linkinv]{d5linkinv()}} coming
 back. The forward derivatives are the log link's read at \eqn{\theta -
 \mathrm{lwr}}, the shift being a constant that differentiates away. Every
 inverse derivative is \code{\link[=exp_floored]{exp_floored()}} of \eqn{\eta} itself, the

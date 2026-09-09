@@ -20,11 +20,11 @@
 #'   `link_params`. Its `link_bounds` are `c(0, 1)` and it carries no link parameters.
 #'
 #' @section Methods:
-#' Ten methods are registered on this class: [linkfun()] and [linkinv()],
-#' and the four derivative orders in each direction, [dlinkfun()] through
-#' [d4linkfun()] going out and [dlinkinv()] through [d4linkinv()] coming
+#' Twelve methods are registered on this class: [linkfun()] and [linkinv()],
+#' and the five derivative orders in each direction, [dlinkfun()] through
+#' [d5linkfun()] going out and [dlinkinv()] through [d5linkinv()] coming
 #' back. `linkfun()` and `linkinv()` delegate to `stats::qlogis()` and
-#' `stats::plogis()`, which remain accurate near both boundaries. The eight
+#' `stats::plogis()`, which remain accurate near both boundaries. The ten
 #' derivatives come from a compiled kernel, one call per order and
 #' direction.
 #'
@@ -34,10 +34,12 @@
 #' @aliases d2linkfun.LogitLink
 #' @aliases d3linkfun.LogitLink
 #' @aliases d4linkfun.LogitLink
+#' @aliases d5linkfun.LogitLink
 #' @aliases dlinkinv.LogitLink
 #' @aliases d2linkinv.LogitLink
 #' @aliases d3linkinv.LogitLink
 #' @aliases d4linkinv.LogitLink
+#' @aliases d5linkinv.LogitLink
 #'
 #' @seealso [logit_link()], the constructor users call.
 #' @keywords internal
@@ -57,6 +59,7 @@ S7::method(dlinkfun, LogitLink) <- function(x, theta) lk_logit_fwd_cpp(theta, 1L
 S7::method(d2linkfun, LogitLink) <- function(x, theta) lk_logit_fwd_cpp(theta, 2L)
 S7::method(d3linkfun, LogitLink) <- function(x, theta) lk_logit_fwd_cpp(theta, 3L)
 S7::method(d4linkfun, LogitLink) <- function(x, theta) lk_logit_fwd_cpp(theta, 4L)
+S7::method(d5linkfun, LogitLink) <- function(x, theta) lk_logit_fwd_cpp(theta, 5L)
 
 # Exact analytical derivatives of the inverse link function (wrt eta).
 #
@@ -67,6 +70,7 @@ S7::method(dlinkinv, LogitLink) <- function(x, eta) lk_logit_inv_cpp(eta, 1L)
 S7::method(d2linkinv, LogitLink) <- function(x, eta) lk_logit_inv_cpp(eta, 2L)
 S7::method(d3linkinv, LogitLink) <- function(x, eta) lk_logit_inv_cpp(eta, 3L)
 S7::method(d4linkinv, LogitLink) <- function(x, eta) lk_logit_inv_cpp(eta, 4L)
+S7::method(d5linkinv, LogitLink) <- function(x, eta) lk_logit_inv_cpp(eta, 5L)
 
 #' @title The Logit Link Function
 #'

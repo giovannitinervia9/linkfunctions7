@@ -21,9 +21,9 @@
 #'   `link_params`. Its `link_bounds` are `c(0, Inf)` and it carries no link parameters.
 #'
 #' @section Methods:
-#' Ten methods are registered on this class: [linkfun()] and [linkinv()],
-#' and the four derivative orders in each direction, [dlinkfun()] through
-#' [d4linkfun()] going out and [dlinkinv()] through [d4linkinv()] coming
+#' Twelve methods are registered on this class: [linkfun()] and [linkinv()],
+#' and the five derivative orders in each direction, [dlinkfun()] through
+#' [d5linkfun()] going out and [dlinkinv()] through [d5linkinv()] coming
 #' back. The forward derivatives are half-integer falling factorials. The
 #' inverse map is \eqn{\eta^2}, so its derivatives terminate: the second is
 #' the constant two and the third and fourth are exactly zero, both built by
@@ -35,10 +35,12 @@
 #' @aliases d2linkfun.SqrtLink
 #' @aliases d3linkfun.SqrtLink
 #' @aliases d4linkfun.SqrtLink
+#' @aliases d5linkfun.SqrtLink
 #' @aliases dlinkinv.SqrtLink
 #' @aliases d2linkinv.SqrtLink
 #' @aliases d3linkinv.SqrtLink
 #' @aliases d4linkinv.SqrtLink
+#' @aliases d5linkinv.SqrtLink
 #'
 #' @seealso [sqrt_link()], the constructor users call.
 #' @keywords internal
@@ -66,6 +68,9 @@ S7::method(d3linkfun, SqrtLink) <- function(x, theta) {
 S7::method(d4linkfun, SqrtLink) <- function(x, theta) {
   -15 / (16 * (theta^3.5))
 }
+S7::method(d5linkfun, SqrtLink) <- function(x, theta) {
+  105 / (32 * (theta^4.5))
+}
 
 # Exact analytical derivatives of the inverse link function (wrt eta)
 # 3rd and 4th derivatives uniquely vanish to exactly 0 for this quadratic form.
@@ -73,6 +78,7 @@ S7::method(dlinkinv, SqrtLink) <- function(x, eta) 2 * eta
 S7::method(d2linkinv, SqrtLink) <- function(x, eta) const_like(eta, 2)
 S7::method(d3linkinv, SqrtLink) <- function(x, eta) const_like(eta, 0)
 S7::method(d4linkinv, SqrtLink) <- function(x, eta) const_like(eta, 0)
+S7::method(d5linkinv, SqrtLink) <- function(x, eta) const_like(eta, 0)
 
 #' @title The Square Root Link Function
 #'

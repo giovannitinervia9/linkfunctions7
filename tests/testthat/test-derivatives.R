@@ -16,7 +16,7 @@ theta_grid <- function(lk, m = 9) {
   }
 }
 
-test_that("analytical derivatives match Richardson extrapolation to fourth order", {
+test_that("analytical derivatives match Richardson extrapolation to fifth order", {
   # The reference differentiates the analytical derivative one order below, so an
   # error at order k cannot hide behind an error at order k-1.
   for (nm in names(all_links())) {
@@ -24,7 +24,7 @@ test_that("analytical derivatives match Richardson extrapolation to fourth order
     th <- theta_grid(lk)
     eta <- linkfun(lk, th)
 
-    for (o in 1:4) {
+    for (o in 1:5) {
       ref_f <- vapply(th, function(v) {
         numDeriv::grad(function(z) linkderiv(lk, z, order = o - 1), v)
       }, numeric(1))
@@ -89,7 +89,7 @@ test_that("derivatives are vectorized and preserve missing values", {
 
 test_that("an unsupported derivative order is rejected", {
   lk <- log_link()
-  expect_error(linkderiv(lk, 1, order = 5), "not supported")
+  expect_error(linkderiv(lk, 1, order = 6), "not supported")
   expect_error(linkinvderiv(lk, 1, order = -1), "not supported")
   expect_error(linkderiv(lk, 1, order = NA), "not supported")
 })

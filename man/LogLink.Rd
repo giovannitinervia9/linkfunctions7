@@ -8,10 +8,12 @@
 \alias{d2linkfun.LogLink}
 \alias{d3linkfun.LogLink}
 \alias{d4linkfun.LogLink}
+\alias{d5linkfun.LogLink}
 \alias{dlinkinv.LogLink}
 \alias{d2linkinv.LogLink}
 \alias{d3linkinv.LogLink}
 \alias{d4linkinv.LogLink}
+\alias{d5linkinv.LogLink}
 \title{S7 Class for the Logarithmic Link}
 \usage{
 LogLink(link_name = character(0), link_bounds = integer(0), link_params = NULL)
@@ -41,9 +43,9 @@ is never exactly zero and can be divided into.
 }
 \section{Methods}{
 
-Ten methods are registered on this class: \code{\link[=linkfun]{linkfun()}} and \code{\link[=linkinv]{linkinv()}},
-and the four derivative orders in each direction, \code{\link[=dlinkfun]{dlinkfun()}} through
-\code{\link[=d4linkfun]{d4linkfun()}} going out and \code{\link[=dlinkinv]{dlinkinv()}} through \code{\link[=d4linkinv]{d4linkinv()}} coming
+Twelve methods are registered on this class: \code{\link[=linkfun]{linkfun()}} and \code{\link[=linkinv]{linkinv()}},
+and the five derivative orders in each direction, \code{\link[=dlinkfun]{dlinkfun()}} through
+\code{\link[=d5linkfun]{d5linkfun()}} going out and \code{\link[=dlinkinv]{dlinkinv()}} through \code{\link[=d5linkinv]{d5linkinv()}} coming
 back. The forward derivatives are \eqn{(-1)^{k-1}(k-1)!\,\theta^{-k}},
 written out. Every inverse derivative is \code{\link[=exp_floored]{exp_floored()}} of \eqn{\eta},
 the exponential being its own derivative to every order, and the floor is

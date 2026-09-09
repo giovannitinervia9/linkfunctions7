@@ -21,10 +21,10 @@
 #'   `link_params`. Its `link_bounds` are `c(-1, 1)` and it carries no link parameters.
 #'
 #' @section Methods:
-#' Ten methods are registered on this class: [linkfun()] and [linkinv()],
-#' and the four derivative orders in each direction, [dlinkfun()] through
-#' [d4linkfun()] going out and [dlinkinv()] through [d4linkinv()] coming
-#' back. `linkfun()` and `linkinv()` are `atanh()` and `tanh()`. The eight
+#' Twelve methods are registered on this class: [linkfun()] and [linkinv()],
+#' and the five derivative orders in each direction, [dlinkfun()] through
+#' [d5linkfun()] going out and [dlinkinv()] through [d5linkinv()] coming
+#' back. `linkfun()` and `linkinv()` are `atanh()` and `tanh()`. The ten
 #' derivatives come from a compiled kernel, one call per order and
 #' direction.
 #'
@@ -34,10 +34,12 @@
 #' @aliases d2linkfun.RhobitLink
 #' @aliases d3linkfun.RhobitLink
 #' @aliases d4linkfun.RhobitLink
+#' @aliases d5linkfun.RhobitLink
 #' @aliases dlinkinv.RhobitLink
 #' @aliases d2linkinv.RhobitLink
 #' @aliases d3linkinv.RhobitLink
 #' @aliases d4linkinv.RhobitLink
+#' @aliases d5linkinv.RhobitLink
 #'
 #' @seealso [rhobit_link()], the constructor users call.
 #' @keywords internal
@@ -57,6 +59,7 @@ S7::method(dlinkfun, RhobitLink) <- function(x, theta) lk_rhobit_fwd_cpp(theta, 
 S7::method(d2linkfun, RhobitLink) <- function(x, theta) lk_rhobit_fwd_cpp(theta, 2L)
 S7::method(d3linkfun, RhobitLink) <- function(x, theta) lk_rhobit_fwd_cpp(theta, 3L)
 S7::method(d4linkfun, RhobitLink) <- function(x, theta) lk_rhobit_fwd_cpp(theta, 4L)
+S7::method(d5linkfun, RhobitLink) <- function(x, theta) lk_rhobit_fwd_cpp(theta, 5L)
 
 # Exact analytical derivatives of the inverse link function (wrt eta)
 # All of these are evaluated as polynomials in t = tanh(eta)
@@ -64,6 +67,7 @@ S7::method(dlinkinv, RhobitLink) <- function(x, eta) lk_rhobit_inv_cpp(eta, 1L)
 S7::method(d2linkinv, RhobitLink) <- function(x, eta) lk_rhobit_inv_cpp(eta, 2L)
 S7::method(d3linkinv, RhobitLink) <- function(x, eta) lk_rhobit_inv_cpp(eta, 3L)
 S7::method(d4linkinv, RhobitLink) <- function(x, eta) lk_rhobit_inv_cpp(eta, 4L)
+S7::method(d5linkinv, RhobitLink) <- function(x, eta) lk_rhobit_inv_cpp(eta, 5L)
 
 #' @title The Rhobit (Fisher's z) Link Function
 #'

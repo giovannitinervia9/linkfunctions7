@@ -8,10 +8,12 @@
 \alias{d2linkfun.InverseSqLink}
 \alias{d3linkfun.InverseSqLink}
 \alias{d4linkfun.InverseSqLink}
+\alias{d5linkfun.InverseSqLink}
 \alias{dlinkinv.InverseSqLink}
 \alias{d2linkinv.InverseSqLink}
 \alias{d3linkinv.InverseSqLink}
 \alias{d4linkinv.InverseSqLink}
+\alias{d5linkinv.InverseSqLink}
 \title{S7 Class for the InverseSq Link}
 \usage{
 InverseSqLink(
@@ -45,9 +47,9 @@ it, and like \code{\link[=inverse_link]{inverse_link()}} the map is decreasing.
 }
 \section{Methods}{
 
-Ten methods are registered on this class: \code{\link[=linkfun]{linkfun()}} and \code{\link[=linkinv]{linkinv()}},
-and the four derivative orders in each direction, \code{\link[=dlinkfun]{dlinkfun()}} through
-\code{\link[=d4linkfun]{d4linkfun()}} going out and \code{\link[=dlinkinv]{dlinkinv()}} through \code{\link[=d4linkinv]{d4linkinv()}} coming
+Twelve methods are registered on this class: \code{\link[=linkfun]{linkfun()}} and \code{\link[=linkinv]{linkinv()}},
+and the five derivative orders in each direction, \code{\link[=dlinkfun]{dlinkfun()}} through
+\code{\link[=d5linkfun]{d5linkfun()}} going out and \code{\link[=dlinkinv]{dlinkinv()}} through \code{\link[=d5linkinv]{d5linkinv()}} coming
 back. The two directions are not the same map, \eqn{1/\theta^2} going
 forward and \eqn{\eta^{-1/2}} coming back, so the two sets of derivatives
 are written out separately: integer falling factorials one way,

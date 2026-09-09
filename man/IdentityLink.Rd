@@ -8,10 +8,12 @@
 \alias{d2linkfun.IdentityLink}
 \alias{d3linkfun.IdentityLink}
 \alias{d4linkfun.IdentityLink}
+\alias{d5linkfun.IdentityLink}
 \alias{dlinkinv.IdentityLink}
 \alias{d2linkinv.IdentityLink}
 \alias{d3linkinv.IdentityLink}
 \alias{d4linkinv.IdentityLink}
+\alias{d5linkinv.IdentityLink}
 \title{S7 Class for the Identity Link}
 \usage{
 IdentityLink(
@@ -46,9 +48,9 @@ endpoint, there being nothing then to constrain.
 }
 \section{Methods}{
 
-Ten methods are registered on this class: \code{\link[=linkfun]{linkfun()}} and \code{\link[=linkinv]{linkinv()}},
-and the four derivative orders in each direction, \code{\link[=dlinkfun]{dlinkfun()}} through
-\code{\link[=d4linkfun]{d4linkfun()}} going out and \code{\link[=dlinkinv]{dlinkinv()}} through \code{\link[=d4linkinv]{d4linkinv()}} coming
+Twelve methods are registered on this class: \code{\link[=linkfun]{linkfun()}} and \code{\link[=linkinv]{linkinv()}},
+and the five derivative orders in each direction, \code{\link[=dlinkfun]{dlinkfun()}} through
+\code{\link[=d5linkfun]{d5linkfun()}} going out and \code{\link[=dlinkinv]{dlinkinv()}} through \code{\link[=d5linkinv]{d5linkinv()}} coming
 back. \code{linkfun()} and \code{linkinv()} return their argument. The first
 derivative is one and every higher one is zero, each built by
 \code{\link[=const_like]{const_like()}} so that a missing value in the argument propagates to the

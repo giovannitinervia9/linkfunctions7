@@ -12,7 +12,7 @@ home:
   title: Link functions as reusable objects
   description: >
     Link functions written once, as objects any package can use, each carrying
-    exact derivatives to fourth order in both directions and a diagnostic that
+    exact derivatives to fifth order in both directions and a diagnostic that
     proves them right — instead of being buried as helper functions inside the
     package that happens to need them.
 
@@ -81,10 +81,12 @@ reference:
   - d2linkfun
   - d3linkfun
   - d4linkfun
+  - d5linkfun
   - dlinkinv
   - d2linkinv
   - d3linkinv
   - d4linkinv
+  - d5linkinv
 
 - title: Methods
   contents:

@@ -6,10 +6,12 @@
 \alias{d2linkfun.link}
 \alias{d3linkfun.link}
 \alias{d4linkfun.link}
+\alias{d5linkfun.link}
 \alias{dlinkinv.link}
 \alias{d2linkinv.link}
 \alias{d3linkinv.link}
 \alias{d4linkinv.link}
+\alias{d5linkinv.link}
 \title{The Body Shared by Every Numerical Fallback}
 \usage{
 fallback_deriv(x, v, order, inverse)
@@ -19,7 +21,7 @@ fallback_deriv(x, v, order, inverse)
 
 \item{v}{A numeric vector: \eqn{\theta} going forward, \eqn{\eta} coming back.}
 
-\item{order}{The derivative order wanted, 1 to 4.}
+\item{order}{The derivative order wanted, 1 to 5.}
 
 \item{inverse}{Logical; \code{TRUE} for the inverse-link direction.}
 }
@@ -44,9 +46,9 @@ never on another fallback.
 }
 \section{Methods}{
 
-The eight registrations on the base class \code{\link[=link]{link()}} have this function as
-their whole body: \code{dlinkfun()} through \code{d4linkfun()} going out and
-\code{dlinkinv()} through \code{d4linkinv()} coming back, each passing its order and
+The ten registrations on the base class \code{\link[=link]{link()}} have this function as
+their whole body: \code{dlinkfun()} through \code{d5linkfun()} going out and
+\code{dlinkinv()} through \code{d5linkinv()} coming back, each passing its order and
 its direction. A link inherits them for the orders it does not implement
 itself, so a link defined with nothing but \code{\link[=linkfun]{linkfun()}} and \code{\link[=linkinv]{linkinv()}} can
 still answer every derivative generic. S7 requires a method's formals to

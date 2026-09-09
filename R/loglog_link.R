@@ -20,9 +20,9 @@
 #'   `link_params`. Its `link_bounds` are `c(0, 1)` and it carries no link parameters.
 #'
 #' @section Methods:
-#' Ten methods are registered on this class: [linkfun()] and [linkinv()],
-#' and the four derivative orders in each direction, [dlinkfun()] through
-#' [d4linkfun()] going out and [dlinkinv()] through [d4linkinv()] coming
+#' Twelve methods are registered on this class: [linkfun()] and [linkinv()],
+#' and the five derivative orders in each direction, [dlinkfun()] through
+#' [d5linkfun()] going out and [dlinkinv()] through [d5linkinv()] coming
 #' back. `linkfun()` and `linkinv()` are the elementary
 #' \eqn{-\log(-\log\theta)} and \eqn{\exp(-\exp(-\eta))}; the eight
 #' derivatives come from a compiled kernel.
@@ -33,10 +33,12 @@
 #' @aliases d2linkfun.LogLogLink
 #' @aliases d3linkfun.LogLogLink
 #' @aliases d4linkfun.LogLogLink
+#' @aliases d5linkfun.LogLogLink
 #' @aliases dlinkinv.LogLogLink
 #' @aliases d2linkinv.LogLogLink
 #' @aliases d3linkinv.LogLogLink
 #' @aliases d4linkinv.LogLogLink
+#' @aliases d5linkinv.LogLogLink
 #'
 #' @seealso [loglog_link()], the constructor users call.
 #' @keywords internal
@@ -56,6 +58,7 @@ S7::method(d2linkfun, LogLogLink) <- function(x, theta) lk_loglog_fwd_cpp(theta,
 
 S7::method(d3linkfun, LogLogLink) <- function(x, theta) lk_loglog_fwd_cpp(theta, 3L)
 S7::method(d4linkfun, LogLogLink) <- function(x, theta) lk_loglog_fwd_cpp(theta, 4L)
+S7::method(d5linkfun, LogLogLink) <- function(x, theta) lk_loglog_fwd_cpp(theta, 5L)
 
 # Exact analytical derivatives of the inverse link function (wrt eta)
 # Utilizing the term z = exp(-eta) to evaluate derivatives as polynomials,
@@ -64,6 +67,7 @@ S7::method(dlinkinv, LogLogLink) <- function(x, eta) lk_loglog_inv_cpp(eta, 1L)
 S7::method(d2linkinv, LogLogLink) <- function(x, eta) lk_loglog_inv_cpp(eta, 2L)
 S7::method(d3linkinv, LogLogLink) <- function(x, eta) lk_loglog_inv_cpp(eta, 3L)
 S7::method(d4linkinv, LogLogLink) <- function(x, eta) lk_loglog_inv_cpp(eta, 4L)
+S7::method(d5linkinv, LogLogLink) <- function(x, eta) lk_loglog_inv_cpp(eta, 5L)
 
 #' @title The Log-Log Link Function
 #'

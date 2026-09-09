@@ -14,7 +14,7 @@ linkinvderiv.link(x, eta, order = 1)
 
 \item{eta}{A numeric vector.}
 
-\item{order}{An integer (0 to 4).}
+\item{order}{An integer (0 to 5).}
 }
 \value{
 A numeric vector of the same length as \code{eta}: the requested

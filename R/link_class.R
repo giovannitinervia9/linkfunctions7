@@ -131,7 +131,7 @@ na_from <- function(r, v) {
 #' What the three call is not this function but its transcription in
 #' `src/link_kernels.cpp`, the compiled kernels having replaced the R bodies
 #' when the transcendental links were compiled. This function is the R
-#' statement of the same four polynomials, and `test-logistic-twin.R` holds the
+#' statement of the same five polynomials, and `test-logistic-twin.R` holds the
 #' two together at every order and checks that each of the three links reaches
 #' the polynomial its description names. `lk_logistic_poly_cpp()` reaches the
 #' compiled one directly.
@@ -147,11 +147,14 @@ na_from <- function(r, v) {
 #' \deqn{\sigma'' = p(1-p)(1-2p)}
 #' \deqn{\sigma''' = p(1-p)(1 - 6p + 6p^2)}
 #' \deqn{\sigma'''' = p(1-p)(1 - 14p + 36p^2 - 24p^3)}
+#' \deqn{\sigma^{(5)} = p(1-p)(1 - 30p + 150p^2 - 240p^3 + 120p^4)}
 #' and are evaluated in Horner form, which is twice as fast at the fourth order
-#' and agrees with the expanded form to within one unit in the last place.
+#' and agrees with the expanded form to within one unit in the last place. Each
+#' follows from the one before it by \eqn{P_{k+1} = (1-2p)P_k + p(1-p)P_k'}, so
+#' an order beyond those written here is generated rather than transcribed.
 #'
 #' @param p A numeric vector of logistic values, \eqn{p = \sigma(z)}.
-#' @param k The derivative order, an integer from 1 to 4.
+#' @param k The derivative order, an integer from 1 to 5.
 #'
 #' @return A numeric vector of the same length as `p`.
 #'
@@ -162,7 +165,8 @@ logistic_deriv <- function(p, k) {
     pq,
     pq * (1 - 2 * p),
     pq * (1 + p * (-6 + 6 * p)),
-    pq * (1 + p * (-14 + p * (36 - 24 * p)))
+    pq * (1 + p * (-14 + p * (36 - 24 * p))),
+    pq * (1 + p * (-30 + p * (150 + p * (-240 + 120 * p))))
   )
 }
 

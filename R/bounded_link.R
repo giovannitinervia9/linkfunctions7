@@ -32,9 +32,9 @@
 #'   `lwr` and `upr`.
 #'
 #' @section Methods:
-#' Ten methods are registered on this class: [linkfun()] and [linkinv()],
-#' and the four derivative orders in each direction, [dlinkfun()] through
-#' [d4linkfun()] going out and [dlinkinv()] through [d4linkinv()] coming
+#' Twelve methods are registered on this class: [linkfun()] and [linkinv()],
+#' and the five derivative orders in each direction, [dlinkfun()] through
+#' [d5linkfun()] going out and [dlinkinv()] through [d5linkinv()] coming
 #' back. The forward derivatives are the logit's divided by \eqn{W^k} and
 #' the inverse ones the logit's multiplied by \eqn{W}, because \eqn{p} is
 #' \eqn{\theta} rescaled by the width; the inverse set therefore calls the
@@ -48,10 +48,12 @@
 #' @aliases d2linkfun.DoublyBoundedLink
 #' @aliases d3linkfun.DoublyBoundedLink
 #' @aliases d4linkfun.DoublyBoundedLink
+#' @aliases d5linkfun.DoublyBoundedLink
 #' @aliases dlinkinv.DoublyBoundedLink
 #' @aliases d2linkinv.DoublyBoundedLink
 #' @aliases d3linkinv.DoublyBoundedLink
 #' @aliases d4linkinv.DoublyBoundedLink
+#' @aliases d5linkinv.DoublyBoundedLink
 #'
 #' @seealso [bounded_link()], the constructor users call.
 #' @keywords internal
@@ -93,9 +95,9 @@ DoublyBoundedLink <- S7::new_class(
 #'   `link_params`. Its `link_bounds` are `c(lwr, Inf)`, and its `link_params` holds `lwr`.
 #'
 #' @section Methods:
-#' Ten methods are registered on this class: [linkfun()] and [linkinv()],
-#' and the four derivative orders in each direction, [dlinkfun()] through
-#' [d4linkfun()] going out and [dlinkinv()] through [d4linkinv()] coming
+#' Twelve methods are registered on this class: [linkfun()] and [linkinv()],
+#' and the five derivative orders in each direction, [dlinkfun()] through
+#' [d5linkfun()] going out and [dlinkinv()] through [d5linkinv()] coming
 #' back. The forward derivatives are the log link's read at \eqn{\theta -
 #' \mathrm{lwr}}, the shift being a constant that differentiates away. Every
 #' inverse derivative is [exp_floored()] of \eqn{\eta} itself, the
@@ -107,10 +109,12 @@ DoublyBoundedLink <- S7::new_class(
 #' @aliases d2linkfun.LowerBoundedLink
 #' @aliases d3linkfun.LowerBoundedLink
 #' @aliases d4linkfun.LowerBoundedLink
+#' @aliases d5linkfun.LowerBoundedLink
 #' @aliases dlinkinv.LowerBoundedLink
 #' @aliases d2linkinv.LowerBoundedLink
 #' @aliases d3linkinv.LowerBoundedLink
 #' @aliases d4linkinv.LowerBoundedLink
+#' @aliases d5linkinv.LowerBoundedLink
 #'
 #' @seealso [bounded_link()], the constructor users call.
 #' @keywords internal
@@ -145,9 +149,9 @@ LowerBoundedLink <- S7::new_class(
 #'   `link_params`. Its `link_bounds` are `c(-Inf, upr)`, and its `link_params` holds `upr`.
 #'
 #' @section Methods:
-#' Ten methods are registered on this class: [linkfun()] and [linkinv()],
-#' and the four derivative orders in each direction, [dlinkfun()] through
-#' [d4linkfun()] going out and [dlinkinv()] through [d4linkinv()] coming
+#' Twelve methods are registered on this class: [linkfun()] and [linkinv()],
+#' and the five derivative orders in each direction, [dlinkfun()] through
+#' [d5linkfun()] going out and [dlinkinv()] through [d5linkinv()] coming
 #' back. The reflection makes the map decreasing, so every inverse
 #' derivative is the negative of [exp_floored()] of \eqn{\eta}, and the
 #' forward ones
@@ -160,10 +164,12 @@ LowerBoundedLink <- S7::new_class(
 #' @aliases d2linkfun.UpperBoundedLink
 #' @aliases d3linkfun.UpperBoundedLink
 #' @aliases d4linkfun.UpperBoundedLink
+#' @aliases d5linkfun.UpperBoundedLink
 #' @aliases dlinkinv.UpperBoundedLink
 #' @aliases d2linkinv.UpperBoundedLink
 #' @aliases d3linkinv.UpperBoundedLink
 #' @aliases d4linkinv.UpperBoundedLink
+#' @aliases d5linkinv.UpperBoundedLink
 #'
 #' @seealso [bounded_link()], the constructor users call.
 #' @keywords internal
@@ -207,6 +213,11 @@ S7::method(d4linkfun, DoublyBoundedLink) <- function(x, theta) {
   p <- (theta - x@lwr) / W
   (-6 / (p^4) + 6 / ((1 - p)^4)) / (W^4)
 }
+S7::method(d5linkfun, DoublyBoundedLink) <- function(x, theta) {
+  W <- x@width
+  p <- (theta - x@lwr) / W
+  (24 / (p^5) + 24 / ((1 - p)^5)) / (W^5)
+}
 S7::method(dlinkinv, DoublyBoundedLink) <- function(x, eta) {
   x@width * lk_logit_inv_cpp(eta, 1L)
 }
@@ -218,6 +229,9 @@ S7::method(d3linkinv, DoublyBoundedLink) <- function(x, eta) {
 }
 S7::method(d4linkinv, DoublyBoundedLink) <- function(x, eta) {
   x@width * lk_logit_inv_cpp(eta, 4L)
+}
+S7::method(d5linkinv, DoublyBoundedLink) <- function(x, eta) {
+  x@width * lk_logit_inv_cpp(eta, 5L)
 }
 
 # --- Methods for LowerBoundedLink ---
@@ -231,10 +245,12 @@ S7::method(dlinkfun, LowerBoundedLink) <- function(x, theta) 1 / (theta - x@lwr)
 S7::method(d2linkfun, LowerBoundedLink) <- function(x, theta) -1 / ((theta - x@lwr)^2)
 S7::method(d3linkfun, LowerBoundedLink) <- function(x, theta) 2 / ((theta - x@lwr)^3)
 S7::method(d4linkfun, LowerBoundedLink) <- function(x, theta) -6 / ((theta - x@lwr)^4)
+S7::method(d5linkfun, LowerBoundedLink) <- function(x, theta) 24 / ((theta - x@lwr)^5)
 S7::method(dlinkinv, LowerBoundedLink) <- function(x, eta) exp_floored(eta)
 S7::method(d2linkinv, LowerBoundedLink) <- function(x, eta) exp_floored(eta)
 S7::method(d3linkinv, LowerBoundedLink) <- function(x, eta) exp_floored(eta)
 S7::method(d4linkinv, LowerBoundedLink) <- function(x, eta) exp_floored(eta)
+S7::method(d5linkinv, LowerBoundedLink) <- function(x, eta) exp_floored(eta)
 
 # --- Methods for UpperBoundedLink ---
 #
@@ -247,10 +263,12 @@ S7::method(dlinkfun, UpperBoundedLink) <- function(x, theta) -1 / (x@upr - theta
 S7::method(d2linkfun, UpperBoundedLink) <- function(x, theta) -1 / ((x@upr - theta)^2)
 S7::method(d3linkfun, UpperBoundedLink) <- function(x, theta) -2 / ((x@upr - theta)^3)
 S7::method(d4linkfun, UpperBoundedLink) <- function(x, theta) -6 / ((x@upr - theta)^4)
+S7::method(d5linkfun, UpperBoundedLink) <- function(x, theta) -24 / ((x@upr - theta)^5)
 S7::method(dlinkinv, UpperBoundedLink) <- function(x, eta) -exp_floored(eta)
 S7::method(d2linkinv, UpperBoundedLink) <- function(x, eta) -exp_floored(eta)
 S7::method(d3linkinv, UpperBoundedLink) <- function(x, eta) -exp_floored(eta)
 S7::method(d4linkinv, UpperBoundedLink) <- function(x, eta) -exp_floored(eta)
+S7::method(d5linkinv, UpperBoundedLink) <- function(x, eta) -exp_floored(eta)
 
 # --- The General Bounded Link Function Factory ---
 

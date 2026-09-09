@@ -8,10 +8,12 @@
 \alias{d2linkfun.LogLogLink}
 \alias{d3linkfun.LogLogLink}
 \alias{d4linkfun.LogLogLink}
+\alias{d5linkfun.LogLogLink}
 \alias{dlinkinv.LogLogLink}
 \alias{d2linkinv.LogLogLink}
 \alias{d3linkinv.LogLogLink}
 \alias{d4linkinv.LogLogLink}
+\alias{d5linkinv.LogLogLink}
 \title{S7 Class for the LogLog Link}
 \usage{
 LogLogLink(
@@ -45,9 +47,9 @@ faster than one.
 }
 \section{Methods}{
 
-Ten methods are registered on this class: \code{\link[=linkfun]{linkfun()}} and \code{\link[=linkinv]{linkinv()}},
-and the four derivative orders in each direction, \code{\link[=dlinkfun]{dlinkfun()}} through
-\code{\link[=d4linkfun]{d4linkfun()}} going out and \code{\link[=dlinkinv]{dlinkinv()}} through \code{\link[=d4linkinv]{d4linkinv()}} coming
+Twelve methods are registered on this class: \code{\link[=linkfun]{linkfun()}} and \code{\link[=linkinv]{linkinv()}},
+and the five derivative orders in each direction, \code{\link[=dlinkfun]{dlinkfun()}} through
+\code{\link[=d5linkfun]{d5linkfun()}} going out and \code{\link[=dlinkinv]{dlinkinv()}} through \code{\link[=d5linkinv]{d5linkinv()}} coming
 back. \code{linkfun()} and \code{linkinv()} are the elementary
 \eqn{-\log(-\log\theta)} and \eqn{\exp(-\exp(-\eta))}; the eight
 derivatives come from a compiled kernel.

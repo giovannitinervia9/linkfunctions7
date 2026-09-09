@@ -12,7 +12,7 @@ test_that("softplus survives large a * theta", {
 
     expect_true(all(is.finite(linkfun(lk, th))),
       label = sprintf("softplus(a=%g) linkfun finite", a))
-    for (o in 1:4) {
+    for (o in 1:5) {
       expect_true(all(is.finite(linkderiv(lk, th, order = o))),
         label = sprintf("softplus(a=%g) forward derivative order %d finite", a, o))
     }
@@ -57,13 +57,41 @@ test_that("the exponential links stay exact far into the lower tail", {
 })
 
 test_that("the exponential floor keeps the forward derivatives finite", {
-  # The floor is chosen so that -6/theta^4, the binding one, cannot overflow.
+  # The floor is chosen so that -6/theta^4 cannot overflow, and at the floor
+  # that derivative reads -4.49e+307 against a double.xmax of 1.80e+308: the
+  # bound is tight, which is the point of deriving it rather than picking it.
   lk <- log_link()
   theta <- linkinv(lk, c(-500, -1000, -Inf))
   for (o in 1:4) {
     expect_true(all(is.finite(linkderiv(lk, theta, order = o))),
       label = sprintf("log link forward derivative order %d finite at the floor", o))
   }
+})
+
+test_that("the fifth forward derivative does not fit under that floor", {
+  # The floor answers the fourth order, and the fifth would need
+  # (120/double.xmax)^(1/5) = 5.82e-62, fifteen orders higher. Raising it to
+  # suit would clamp theta for eta between -177 and -141, where linkinv is
+  # exact today, so the floor stays where it was derived and this is the
+  # documented limit rather than a defect.
+  #
+  # It is not a cancellation and there is no rewrite: at the floor the true
+  # value of 24/theta^5 is about 3.6e+384, which is not a double.
+  lk <- log_link()
+  theta <- linkinv(lk, -Inf)
+  expect_true(is.finite(linkderiv(lk, theta, order = 4)))
+  expect_false(is.finite(linkderiv(lk, theta, order = 5)))
+
+  # The INVERSE direction, which is the one the chain rule onto the link scale
+  # uses, stays finite at every order: each derivative of exp is exp_floored.
+  for (o in 1:5) {
+    expect_true(all(is.finite(linkinvderiv(lk, c(-500, -1000, -Inf), order = o))),
+      label = sprintf("log link inverse derivative order %d finite", o))
+  }
+
+  # and above the fifth order's own floor the fifth is finite and right
+  th <- 1e-40
+  expect_equal(linkderiv(lk, th, order = 5), 24 / th^5)
 })
 
 test_that("check_link reports a numerical order as numerical, not as passed", {
@@ -119,10 +147,10 @@ test_that("the numerical fallbacks reproduce a known link", {
   half <- Half(link_name = "half log", link_bounds = c(0, Inf), link_params = NULL)
 
   th <- c(0.5, 1, 2, 5)
-  exact <- list(1 / th, -1 / th^2, 2 / th^3, -6 / th^4)
-  tol <- c(1e-8, 1e-6, 1e-4, 1e-3)          # what a stencil of that order can do
+  exact <- list(1 / th, -1 / th^2, 2 / th^3, -6 / th^4, 24 / th^5)
+  tol <- c(1e-8, 1e-6, 1e-4, 1e-3, 1e-2)    # what a stencil of that order can do
 
-  for (k in 1:4) {
+  for (k in 1:5) {
     e_bare <- max(abs(linkderiv(bare, th, order = k) - exact[[k]]) / abs(exact[[k]]))
     e_half <- max(abs(linkderiv(half, th, order = k) - exact[[k]]) / abs(exact[[k]]))
     expect_lt(e_bare, tol[k])
@@ -139,12 +167,12 @@ test_that("the numerical fallbacks reproduce a known link", {
   expect_equal(linkinvderiv(bare, 0.7, order = 3), exp(0.7), tolerance = 1e-4)
 })
 
-test_that("the shipped links are all analytic to fourth order", {
+test_that("the shipped links are all analytic to fifth order", {
   # The fallbacks exist for user-defined links; nothing in the catalog should
   # ever reach them.
   for (nm in names(all_links())) {
     expect_equal(link_fallback_orders(all_links()[[nm]]),
-                 list(forward = 4L, inverse = 4L),
+                 list(forward = 5L, inverse = 5L),
                  label = nm)
   }
 })

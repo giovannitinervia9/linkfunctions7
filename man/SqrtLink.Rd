@@ -8,10 +8,12 @@
 \alias{d2linkfun.SqrtLink}
 \alias{d3linkfun.SqrtLink}
 \alias{d4linkfun.SqrtLink}
+\alias{d5linkfun.SqrtLink}
 \alias{dlinkinv.SqrtLink}
 \alias{d2linkinv.SqrtLink}
 \alias{d3linkinv.SqrtLink}
 \alias{d4linkinv.SqrtLink}
+\alias{d5linkinv.SqrtLink}
 \title{S7 Class for the Sqrt Link}
 \usage{
 SqrtLink(
@@ -46,9 +48,9 @@ reason.
 }
 \section{Methods}{
 
-Ten methods are registered on this class: \code{\link[=linkfun]{linkfun()}} and \code{\link[=linkinv]{linkinv()}},
-and the four derivative orders in each direction, \code{\link[=dlinkfun]{dlinkfun()}} through
-\code{\link[=d4linkfun]{d4linkfun()}} going out and \code{\link[=dlinkinv]{dlinkinv()}} through \code{\link[=d4linkinv]{d4linkinv()}} coming
+Twelve methods are registered on this class: \code{\link[=linkfun]{linkfun()}} and \code{\link[=linkinv]{linkinv()}},
+and the five derivative orders in each direction, \code{\link[=dlinkfun]{dlinkfun()}} through
+\code{\link[=d5linkfun]{d5linkfun()}} going out and \code{\link[=dlinkinv]{dlinkinv()}} through \code{\link[=d5linkinv]{d5linkinv()}} coming
 back. The forward derivatives are half-integer falling factorials. The
 inverse map is \eqn{\eta^2}, so its derivatives terminate: the second is
 the constant two and the third and fourth are exactly zero, both built by

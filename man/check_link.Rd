@@ -24,8 +24,8 @@ printed to the console.
 Invisibly, a named list of the check results: the four scalar logicals
 \code{invertibility_theta}, \code{invertibility_eta}, \code{monotonicity} and
 \code{inverse_theorem}, plus \code{link_derivatives} and
-\code{inverse_link_derivatives}, each a logical vector of length four named
-\code{order_1} to \code{order_4}. In those two, \code{TRUE} and \code{FALSE}
+\code{inverse_link_derivatives}, each a logical vector of length five named
+\code{order_1} to \code{order_5}. In those two, \code{TRUE} and \code{FALSE}
 mean what they say and \code{NA} means \strong{not checked}: the order is
 supplied by a numerical fallback, so the value and the reference would be
 the same arithmetic and would agree whatever the link did. The number of
@@ -48,8 +48,8 @@ The function assumes the existence of S7 generics \code{linkfun}, \code{linkinv}
 \item \strong{Invertibility (\eqn{\eta} space):} Verifies \eqn{g(g^{-1}(\eta)) = \eta}. Ensures that mapping from the linear predictor to the parameter space and back is lossless. Note that this test may fail intentionally and correctly for links that map to a restricted \eqn{\eta} domain (e.g., the square root link).
 \item \strong{Strict Monotonicity:} Checks if the first derivative \eqn{g'(\theta)} is strictly positive or strictly negative across the domain, guaranteeing a one-to-one mapping.
 \item \strong{Inverse Function Theorem:} Verifies the mathematical identity \eqn{g'(\theta) \cdot (g^{-1})'(\eta) = 1}, confirming the theoretical relationship between the link derivative and the inverse link derivative.
-\item \strong{Link Derivatives:} Validates the exact analytical forward derivatives of \eqn{g(\theta)} up to the 4th order by comparing them against numerical gradients.
-\item \strong{Inverse Link Derivatives:} Validates the exact analytical inverse derivatives of \eqn{g^{-1}(\eta)} up to the 4th order by comparing them against numerical gradients.
+\item \strong{Link Derivatives:} Validates the exact analytical forward derivatives of \eqn{g(\theta)} up to the 5th order by comparing them against numerical gradients.
+\item \strong{Inverse Link Derivatives:} Validates the exact analytical inverse derivatives of \eqn{g^{-1}(\eta)} up to the 5th order by comparing them against numerical gradients.
 }
 
 Both forward and inverse derivative testing avoids compounding numerical errors by applying

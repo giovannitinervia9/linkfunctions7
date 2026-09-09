@@ -14,7 +14,7 @@ linkderiv.link(x, theta, order = 1)
 
 \item{theta}{A numeric vector.}
 
-\item{order}{An integer (0 to 4).}
+\item{order}{An integer (0 to 5).}
 }
 \value{
 A numeric vector of the same length as \code{theta}: the requested
