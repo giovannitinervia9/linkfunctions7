@@ -126,13 +126,15 @@ test_that("the softplus and the doubly bounded link reuse the logit's fifth", {
 
   a <- 2
   q <- stats::plogis(a * z)
-  expect_equal(d5linkinv(softplus_link(a), z), a^4 * logistic_deriv(q, 4L),
-               tolerance = 1e-15)
+  expect_agrees_on_scale(d5linkinv(softplus_link(a), z),
+                         a^4 * logistic_deriv(q, 4L),
+                         label = "softplus fifth against the logistic fourth")
 
   w <- 3
   p <- stats::plogis(z)
-  expect_equal(d5linkinv(bounded_link(lwr = 1, upr = 1 + w), z),
-               w * logistic_deriv(p, 5L), tolerance = 1e-15)
+  expect_agrees_on_scale(d5linkinv(bounded_link(lwr = 1, upr = 1 + w), z),
+                         w * logistic_deriv(p, 5L),
+                         label = "doubly bounded fifth against the logistic")
 })
 
 
