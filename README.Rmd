@@ -31,7 +31,7 @@ package, asked for its second derivative, or extended without editing the
 source that owns it.
 
 `{linkfunctions7}` makes a link an object. The package provides fourteen
-constructors, each carrying **exact analytical derivatives up to fourth order
+constructors, each carrying **exact analytical derivatives up to fifth order
 in both directions**, forward and inverse, together with a diagnostic that
 verifies those derivatives against numerical ones.
 
@@ -39,8 +39,8 @@ It is part of [statmodels7](https://statmodels7.github.io), an S7 toolkit for
 statistical modeling, and is what
 [distributions7](https://statmodels7.github.io/distributions7/) uses to move
 between a constrained parameter and the unconstrained scale a fitting routine
-works on. The mathematics behind every formula, including the derivation of
-the derivatives to fourth order, is worked out in
+works on. The mathematics behind the formulas, and the derivations the
+derivatives come from, is worked out in
 [the statmodels7 book](https://statmodels7.github.io/book/).
 
 ## Installation
@@ -61,7 +61,7 @@ pak::pak("statmodels7/statmodels7")
 
 Each link is created by a constructor and carries its own name, domain and
 parameters. The forward link $\eta = g(\theta)$ and the inverse
-$\theta = g^{-1}(\eta)$ are generics that dispatch on it, as are all eight
+$\theta = g^{-1}(\eta)$ are generics that dispatch on it, as are all ten
 derivatives.
 
 The softplus link illustrates why more than one positivity link is useful.
@@ -78,7 +78,7 @@ plot(softplus_link(a = 1))
 A parameter confined to an interval gets `bounded_link()`, which maps the
 interval onto the whole real line and accepts a lower bound, an upper bound,
 or both. Whatever the link, the derivatives are exact formulas rather than
-finite differences, and they go to fourth order in both directions:
+finite differences, and they go to fifth order in both directions:
 
 ```{r}
 link <- bounded_link(lwr = -3, upr = 2)
@@ -86,7 +86,7 @@ theta <- linkinv(link, seq(-3, 3, length.out = 5))
 
 theta                    # stays inside (-3, 2) whatever eta is
 dlinkfun(link, theta)    # g'(theta), exactly
-d4linkfun(link, theta)   # ... down to the fourth order
+d5linkfun(link, theta)   # ... down to the fifth order
 ```
 
 ## Validating a link
