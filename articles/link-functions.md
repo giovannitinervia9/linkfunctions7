@@ -14,11 +14,14 @@ the optimization onto the whole real line and map the result back.
 What distinguishes **linkfunctions7** from a couple of
 [`log()`](https://rdrr.io/r/base/Log.html) and
 [`plogis()`](https://rdrr.io/r/stats/Logistic.html) calls is that every
-link carries its **exact analytical derivatives up to fourth order**, in
+link carries its **exact analytical derivatives up to fifth order**, in
 both directions, together with a diagnostic that verifies them. Those
 derivatives are what a modeling package needs: a Newton or
 Fisher-scoring step uses the derivative of the inverse link, and a
-higher-order correction uses the orders above it.
+higher-order correction uses the orders above it. The fifth is reached
+by a model whose predictor comes out of a recursion, where each order of
+differentiating through the recursion draws in one further order of the
+link.
 
 ## A link is an object
 
@@ -76,7 +79,7 @@ all.equal(dlinkfun(lk, theta), 1 / theta)
 [`linkderiv()`](https://statmodels7.github.io/linkfunctions7/reference/linkderiv.md)
 and
 [`linkinvderiv()`](https://statmodels7.github.io/linkfunctions7/reference/linkinvderiv.md)
-reach any order from zero to four without naming a separate function:
+reach any order from zero to five without naming a separate function:
 
 ``` r
 
@@ -84,15 +87,27 @@ lk <- logit_link()
 theta <- c(0.2, 0.5, 0.8)
 eta <- linkfun(lk, theta)
 
-sapply(0:4, function(k) linkinvderiv(lk, eta, order = k))
-#>      [,1] [,2]   [,3]    [,4]     [,5]
-#> [1,]  0.2 0.16  0.096  0.0064 -0.08832
-#> [2,]  0.5 0.25  0.000 -0.1250  0.00000
-#> [3,]  0.8 0.16 -0.096  0.0064  0.08832
+sapply(0:5, function(k) linkinvderiv(lk, eta, order = k))
+#>      [,1] [,2]   [,3]    [,4]     [,5]     [,6]
+#> [1,]  0.2 0.16  0.096  0.0064 -0.08832 -0.11648
+#> [2,]  0.5 0.25  0.000 -0.1250  0.00000  0.25000
+#> [3,]  0.8 0.16 -0.096  0.0064  0.08832 -0.11648
 ```
 
 Order zero is the function itself; the columns are the successive
 derivatives of the inverse logit at those three points.
+
+One limit at the top order is worth stating. The exponential links floor
+$`\theta = e^{\eta}`$ at the smallest value whose fourth forward
+derivative $`-6/\theta^4`$ is still representable, and the fifth,
+$`24/\theta^5`$, is not: the forward fifth derivative of a log, lower-
+or upper-bounded link is `Inf` below about $`\eta = -145`$, where the
+fourth remains finite to $`\eta = -200`$. Raising the floor to
+accommodate it would clamp $`\theta`$ over a range where
+[`linkinv()`](https://statmodels7.github.io/linkfunctions7/reference/linkinv.md)
+is exact today, which is the worse trade. The inverse direction, which
+is the one a chain rule onto the link scale uses, is finite at every
+order.
 
 ## Seeing a link
 
@@ -191,9 +206,15 @@ one, where a wrong derivative is likeliest.
 
 ## Defining a new link
 
-A new link is a subclass of `link` with its ten methods: the two
-directions and their four derivatives each. The pattern is short; here
-is a complete one for the **negative log-log** link,
+A new link is a subclass of `link` carrying the two directions and their
+five derivatives each, twelve methods in all. Fewer will do: only
+[`linkfun()`](https://statmodels7.github.io/linkfunctions7/reference/linkfun.md)
+and
+[`linkinv()`](https://statmodels7.github.io/linkfunctions7/reference/linkinv.md)
+are compulsory, and the base class supplies every derivative a link does
+not implement by one stencil applied to the highest order it does. The
+example below writes four orders in each direction and leaves the fifth
+to that fallback. It is the **negative log-log** link,
 $`\eta = -\log(-\log\theta)`$ on $`(0, 1)`$.
 
 ``` r
@@ -241,6 +262,14 @@ invisible(check_link(neglog))
 #>   [5] Link Derivatives:            [PASSED to order 4, 1 numerical] 
 #>   [6] Inverse Link Derivatives:    [PASSED to order 4, 1 numerical]
 ```
+
+Both derivative rows report that they passed to order four with one
+order numerical. The fifth came from the fallback, and a fallback is not
+checked, since it would be compared against a numerical differentiation
+of the order below it, which is the same arithmetic twice and would
+agree however wrong the link was.
+[`link_fallback_orders()`](https://statmodels7.github.io/linkfunctions7/reference/link_fallback_orders.md)
+answers that question programmatically.
 
 A line reporting `[FAILED]` identifies a derivative to revisit, which is
 the mistake

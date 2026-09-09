@@ -8,7 +8,7 @@ editing the source that owns it.
 
 [linkfunctions7](https://statmodels7.github.io/linkfunctions7/) makes a
 link an object. The package provides fourteen constructors, each
-carrying **exact analytical derivatives up to fourth order in both
+carrying **exact analytical derivatives up to fifth order in both
 directions**, forward and inverse, together with a diagnostic that
 verifies those derivatives against numerical ones.
 
@@ -16,9 +16,9 @@ It is part of [statmodels7](https://statmodels7.github.io), an S7
 toolkit for statistical modeling, and is what
 [distributions7](https://statmodels7.github.io/distributions7/) uses to
 move between a constrained parameter and the unconstrained scale a
-fitting routine works on. The mathematics behind every formula,
-including the derivation of the derivatives to fourth order, is worked
-out in [the statmodels7 book](https://statmodels7.github.io/book/).
+fitting routine works on. The mathematics behind the formulas, and the
+derivations the derivatives come from, is worked out in [the statmodels7
+book](https://statmodels7.github.io/book/).
 
 ## Installation
 
@@ -41,7 +41,7 @@ pak::pak("statmodels7/statmodels7")
 Each link is created by a constructor and carries its own name, domain
 and parameters. The forward link $`\eta = g(\theta)`$ and the inverse
 $`\theta = g^{-1}(\eta)`$ are generics that dispatch on it, as are all
-eight derivatives.
+ten derivatives.
 
 The softplus link illustrates why more than one positivity link is
 useful. Like the log it keeps $`\theta`$ positive, but where the log
@@ -64,7 +64,7 @@ A parameter confined to an interval gets
 [`bounded_link()`](https://statmodels7.github.io/linkfunctions7/reference/bounded_link.md),
 which maps the interval onto the whole real line and accepts a lower
 bound, an upper bound, or both. Whatever the link, the derivatives are
-exact formulas rather than finite differences, and they go to fourth
+exact formulas rather than finite differences, and they go to fifth
 order in both directions:
 
 ``` r
@@ -76,8 +76,8 @@ theta                    # stays inside (-3, 2) whatever eta is
 #> [1] -2.762871 -2.087872 -0.500000  1.087872  1.762871
 dlinkfun(link, theta)    # g'(theta), exactly
 #> [1] 4.427065 1.340964 0.800000 1.340964 4.427065
-d4linkfun(link, theta)   # ... down to the fourth order
-#> [1] -1897.611144    -8.646712     0.000000     8.646712  1897.611144
+d5linkfun(link, theta)   # ... down to the fifth order
+#> [1] 32009.92634    38.03412     0.49152    38.03412 32009.92634
 ```
 
 ## Validating a link
